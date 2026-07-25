@@ -43,7 +43,7 @@ const CONTACT_INFO = [
 
 const ContactMe = () => {
   return (
-    <Container className="max-w-7xl mx-auto  px-6">
+    <Container className=" mx-auto  px-6">
 
       <Card
         className="
@@ -61,8 +61,6 @@ const ContactMe = () => {
       >
         {/* Background Glow */}
 
-        <View className="absolute -top-28 -right-28 h-72 w-72 rounded-full bg-amber-500/10 blur-[140px]" />
-        <View className="absolute -bottom-28 -left-28 h-72 w-72 rounded-full bg-orange-600/10 blur-[140px]" />
 
         <View className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
 
@@ -120,7 +118,7 @@ const ContactMe = () => {
 
           {/* Right */}
 
-          <View className="grid grid-cols-2 gap-8" >
+          <View className="grid xl:grid-cols-2 gap-8" >
 
             {CONTACT_INFO.map((item) => (
 
