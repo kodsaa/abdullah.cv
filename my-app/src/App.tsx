@@ -14,7 +14,6 @@ import LeadershipOwnership from "./component/LeadershipOwnership";
 import CFooter from "./component/Footer";
 
 export default function App() {
-  const [activeFilter, setActiveFilter] = useState("ALL");
   const [isTelegraphOpen, setIsTelegraphOpen] = useState(false);
   const [saloonLights, setSaloonLights] = useState(true);
   const [loading, setLoading] = useState(true);

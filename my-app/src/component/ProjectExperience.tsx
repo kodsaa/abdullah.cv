@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Button,
   Card,
@@ -90,7 +89,7 @@ const projects = [
 
 export default function ProjectExperience() {
   return (
-    <Container className="max-w-7xl py-28">
+    <Container id="projects" className="max-w-7xl py-28">
 
       <View className="text-center mb-16">
 

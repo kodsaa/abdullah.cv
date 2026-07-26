@@ -264,7 +264,7 @@ export const EXPERIENCE = [
 
 const Experience = () => {
   return (
-    <Container className="max-w-7xl mx-auto py-24 px-6">
+    <Container id="experience" className="max-w-7xl mx-auto py-24 px-6">
 
       {/* Heading */}
 
@@ -327,7 +327,7 @@ const Experience = () => {
                 </Text>
 
                 <Text className="text-stone-500 text-sm">
-                  {job.mode}
+                  {job.employmentType}
                 </Text>
 
               </View>
