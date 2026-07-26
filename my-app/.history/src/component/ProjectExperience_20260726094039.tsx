@@ -19,7 +19,7 @@ import {
 const projects = [
   {
     title: "Enterprise ERP Platform",
-    icon:  <ERPIcon className="h-8 w-8 text-orange-500" />,
+    icon: ,
     color: "from-amber-600 to-orange-700",
 
     description:
@@ -37,7 +37,7 @@ const projects = [
 
   {
     title: "AI-Powered E-Commerce",
-    icon: <AIPoweredIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🤖",
     color: "from-cyan-500 to-blue-600",
 
     description:
@@ -55,7 +55,7 @@ const projects = [
 
   {
     title: "CRM Platform",
-    icon:<CRMPlatformIcon className="h-8 w-8 text-orange-500" />,
+    icon: "📊",
     color: "from-purple-500 to-fuchsia-700",
 
     description:
@@ -72,7 +72,7 @@ const projects = [
 
   {
     title: "Real-Time Marketplace",
-    icon: <RealtimeMarketplaceIcon className="h-8 w-8 text-orange-500" />,
+    icon: "⚡",
     color: "from-emerald-500 to-green-700",
 
     description:

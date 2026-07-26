@@ -37,7 +37,7 @@ const projects = [
 
   {
     title: "AI-Powered E-Commerce",
-    icon: <AIPoweredIcon className="h-8 w-8 text-orange-500" />,
+    icon: <AIPoweredIcon className="h-8 w-8 text-cyan-500" />,
     color: "from-cyan-500 to-blue-600",
 
     description:
@@ -55,7 +55,7 @@ const projects = [
 
   {
     title: "CRM Platform",
-    icon:<CRMPlatformIcon className="h-8 w-8 text-orange-500" />,
+    icon: <CRMPlatformIcon className="h-8 w-8 text-purple-500" />,
     color: "from-purple-500 to-fuchsia-700",
 
     description:
@@ -72,7 +72,7 @@ const projects = [
 
   {
     title: "Real-Time Marketplace",
-    icon: <RealtimeMarketplaceIcon className="h-8 w-8 text-orange-500" />,
+    icon: <RealtimeMarketplaceIcon className="h-8 w-8 text-emerald-500" />,
     color: "from-emerald-500 to-green-700",
 
     description:

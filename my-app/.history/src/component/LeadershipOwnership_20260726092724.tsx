@@ -1,63 +1,51 @@
 import React from "react";
 import { Card, Container, H2, H4, Span, View } from "strivui";
 
-
-import {
-  LeadershipIcon,
-  ArchitectureIcon,
-  MentorshipIcon,
-  StakeholderIcon,
-  AgileDeliveryIcon,
-  EngineeringEstimationIcon,
-  CodeQualityIcon,
-  ProductOwnershipIcon,
-} from "../icon/icon";
-
 const leadershipItems = [
   {
-    icon: <LeadershipIcon className="h-8 w-8 text-orange-500" />,
+    icon: <TeamIcon className="w-7 h-7 text-yellow-500" />,
     title: "Engineering Leadership",
     description:
       "Led engineering teams across multiple enterprise projects while driving technical execution and delivery.",
   },
   {
-    icon: <ArchitectureIcon className="h-8 w-8 text-orange-500" />,
+    icon: <SystemDesignIcon className="w-7 h-7 text-yellow-500" />,
     title: "Architecture & Planning",
     description:
       "Conducted architecture reviews and technical planning for scalable software solutions.",
   },
   {
-    icon: <MentorshipIcon className="h-8 w-8 text-orange-500" />,
+    icon: <GraduationIcon className="w-7 h-7 text-yellow-500" />,
     title: "Mentorship",
     description:
       "Mentored junior and mid-level engineers through code reviews, technical guidance, and knowledge sharing.",
   },
   {
-    icon: <StakeholderIcon className="h-8 w-8 text-orange-500" />,
+    icon: <HandshakeIcon className="w-7 h-7 text-yellow-500" />,
     title: "Stakeholder Collaboration",
     description:
       "Worked directly with founders, clients, and product teams to transform business ideas into technical solutions.",
   },
   {
-    icon: <AgileDeliveryIcon className="h-8 w-8 text-orange-500" />,
+    icon: <CalendarIcon className="w-7 h-7 text-yellow-500" />,
     title: "Agile Delivery",
     description:
       "Managed sprint planning, project timelines, and cross-functional engineering collaboration.",
   },
   {
-    icon: <EngineeringEstimationIcon className="h-8 w-8 text-orange-500" />,
+    icon: <ChartIcon className="w-7 h-7 text-yellow-500" />,
     title: "Engineering Estimation",
     description:
       "Estimated engineering effort, resource allocation, and project delivery schedules.",
   },
   {
-    icon: <CodeQualityIcon className="h-8 w-8 text-orange-500" />,
+    icon: <ShieldCheckIcon className="w-7 h-7 text-yellow-500" />,
     title: "Code Quality",
     description:
       "Maintained engineering standards through code reviews, best practices, and continuous improvements.",
   },
   {
-    icon: <ProductOwnershipIcon className="h-8 w-8 text-orange-500" />,
+    icon: <RocketIcon className="w-7 h-7 text-yellow-500" />,
     title: "Product Ownership",
     description:
       "Delivered products from concept and architecture through deployment and production support.",
