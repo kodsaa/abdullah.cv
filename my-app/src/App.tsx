@@ -1,28 +1,5 @@
-import React, { useState } from "react";
-import {
-  Main,
-  Container,
-  View,
-  Card,
-  H1,
-  H2,
-  H3,
-  H4,
-  Text,
-  Span,
-  Button,
-  Avatar,
-  Progress,
-  FlatList,
-  Link,
-  Modal,
-  Input,
-  TextArea,
-  Label,
-  Switch,
-  Tooltip,
-  Image
-} from "strivui";
+import { useState } from "react";
+import { Main } from "strivui";
 import Hero from "./component/Hero";
 import Header from "./component/Header";
 import Feature from "./component/Feature";
@@ -34,27 +11,18 @@ import ProjectExperience from "./component/ProjectExperience";
 import LeadershipOwnership from "./component/LeadershipOwnership";
 import CFooter from "./component/Footer";
 
-// Architecture Domains & Core System Principles
-
-
 export default function App() {
-  const [activeFilter, setActiveFilter] = useState("ALL");
   const [isTelegraphOpen, setIsTelegraphOpen] = useState(false);
   const [saloonLights, setSaloonLights] = useState(true);
 
-
-
   return (
-    
     <Main
-    
       className={`p-0 m-0 ${
         saloonLights
           ? "bg-gradient-to-r from-amber-900 via-stone-800 to-stone-700 text-white"
           : "bg-amber-900 text-amber-50"
       }`}
     >
-
       {/* Saloon Bar Header / Navigation */}
       <Header
         saloonLights={saloonLights}
@@ -63,24 +31,24 @@ export default function App() {
       />
 
       {/* Senior Engineer Hero */}
-       <Hero/>
+      <Hero />
 
-       <Experience/>
-       <Feature/>
-       <Experience/>
-       <TechnicalArsenal/>
-       <ContactMe/>
-       <TechnicalExpertise/>
-       <ProjectExperience/>
-       <LeadershipOwnership/>
-       <CFooter/>
+      <Experience />
 
-  
+      {/*
+        Skills = TechnicalExpertise (id="skills") + TechnicalArsenal,
+        kept back-to-back so the footer's "Skills" scroll target
+        (TechnicalExpertise) lands right at the start of this whole
+        block instead of being split apart by other sections.
+      */}
+      <TechnicalExpertise />
+      <TechnicalArsenal />
 
-      {/* Technical Arsenal */}
-   
-      {/* Telegraph Modal */}
-    
+      <ProjectExperience />
+      <Feature />
+      <LeadershipOwnership />
+      <ContactMe />
+      <CFooter />
     </Main>
   );
 }

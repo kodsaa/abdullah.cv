@@ -43,7 +43,7 @@ const CONTACT_INFO = [
 
 const ContactMe = () => {
   return (
-    <Container className=" mx-auto  px-6">
+    <Container id="contact" className=" mx-auto  px-6">
 
       <Card
         className="
@@ -100,13 +100,22 @@ const ContactMe = () => {
                 Hire Me
               </Button>
 
+              {/*
+                Removed `variant="outline"` — Button's type doesn't
+                declare a `variant` prop (that was the original build
+                error). The outline look is fully achievable with
+                plain classes: transparent background + visible border.
+              */}
               <Button
-                variant="outline"
                 className="
+                bg-transparent
+                border
                 border-amber-700
                 text-amber-400
                 px-8
                 py-3
+                hover:bg-amber-500/10
+                transition
                 "
               >
                 Download Resume
