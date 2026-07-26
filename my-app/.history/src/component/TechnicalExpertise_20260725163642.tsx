@@ -1,10 +1,10 @@
 
 
-import {CodeIcon, ReactIcon, BackendIcon, DatabaseIcon, SystemDesignIcon, RobotIcon, CloudIcon,  RealtimeIcon} from "../icon/icon";
+import {CodeIcon} from "../icon/icon";
 
 const TECHNICAL_EXPERTISE = [
   {
-    icon: <CodeIcon className="h-8 w-8 text-orange-500" />,
+    icon: <CodeIcon className = "w-10 h-10 text-blue-500"/>,
     title: "Programming Languages",
     description: "High-performance application development with modern and low-level languages.",
     skills: [
@@ -20,7 +20,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <ReactIcon className="h-8 w-8 text-orange-500" />,
+    icon: "⚛️",
     title: "Frontend Engineering",
     description: "Modern React ecosystem with enterprise-scale frontend architecture.",
     skills: [
@@ -36,7 +36,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <BackendIcon className="h-8 w-8 text-orange-500" />,
+    icon: "⚙️",
     title: "Backend Engineering",
     description: "Scalable backend services and enterprise application architecture.",
     skills: [
@@ -53,7 +53,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <DatabaseIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🗄️",
     title: "Databases",
     description: "SQL & NoSQL databases with optimization and scaling strategies.",
     skills: [
@@ -69,7 +69,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <SystemDesignIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🏗️",
     title: "System Design",
     description: "Enterprise architecture, distributed systems and scalable infrastructure.",
     skills: [
@@ -85,7 +85,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <RobotIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🤖",
     title: "AI & Machine Learning",
     description: "Building intelligent applications powered by modern AI.",
     skills: [
@@ -101,7 +101,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <CloudIcon className="h-8 w-8 text-orange-500" />,
+    icon: "☁️",
     title: "Cloud & DevOps",
     description: "Production deployments with CI/CD and containerized infrastructure.",
     skills: [
@@ -117,7 +117,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <RealtimeIcon className="h-8 w-8 text-orange-500" />,
+    icon: "⚡",
     title: "Real-Time Systems",
     description: "Low-latency communication and streaming platforms.",
     skills: [

@@ -1,6 +1,6 @@
 
 
-import {CodeIcon, ReactIcon, BackendIcon, DatabaseIcon, SystemDesignIcon, RobotIcon, CloudIcon,  RealtimeIcon} from "../icon/icon";
+import {CodeIcon, ReactIcon, BackendIcon, DatabaseIcon, SystemDesignIcon} from "../icon/icon";
 
 const TECHNICAL_EXPERTISE = [
   {
@@ -85,7 +85,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <RobotIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🤖",
     title: "AI & Machine Learning",
     description: "Building intelligent applications powered by modern AI.",
     skills: [
@@ -101,7 +101,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <CloudIcon className="h-8 w-8 text-orange-500" />,
+    icon: "☁️",
     title: "Cloud & DevOps",
     description: "Production deployments with CI/CD and containerized infrastructure.",
     skills: [
@@ -117,7 +117,7 @@ const TECHNICAL_EXPERTISE = [
   },
 
   {
-    icon: <RealtimeIcon className="h-8 w-8 text-orange-500" />,
+    icon: "⚡",
     title: "Real-Time Systems",
     description: "Low-latency communication and streaming platforms.",
     skills: [
