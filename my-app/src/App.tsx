@@ -1,28 +1,7 @@
-import React, { useState } from "react";
-import {
-  Main,
-  Container,
-  View,
-  Card,
-  H1,
-  H2,
-  H3,
-  H4,
-  Text,
-  Span,
-  Button,
-  Avatar,
-  Progress,
-  FlatList,
-  Link,
-  Modal,
-  Input,
-  TextArea,
-  Label,
-  Switch,
-  Tooltip,
-  Image
-} from "strivui";
+import React, { useEffect, useState } from "react";
+import { Main } from "strivui";
+
+import Loader from "./component/Loader";
 import Hero from "./component/Hero";
 import Header from "./component/Header";
 import Feature from "./component/Feature";
@@ -34,53 +13,64 @@ import ProjectExperience from "./component/ProjectExperience";
 import LeadershipOwnership from "./component/LeadershipOwnership";
 import CFooter from "./component/Footer";
 
-// Architecture Domains & Core System Principles
-
-
 export default function App() {
   const [activeFilter, setActiveFilter] = useState("ALL");
   const [isTelegraphOpen, setIsTelegraphOpen] = useState(false);
   const [saloonLights, setSaloonLights] = useState(true);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const hideLoader = () => {
+      // Small delay for smoother transition
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    };
 
+    if (document.readyState === "complete") {
+      hideLoader();
+    } else {
+      window.addEventListener("load", hideLoader);
+    }
+
+    return () => {
+      window.removeEventListener("load", hideLoader);
+    };
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
-    
     <Main
-    
-      className={`p-0 m-0 ${
+      className={`min-h-screen p-0 m-0 ${
         saloonLights
           ? "bg-gradient-to-r from-amber-900 via-stone-800 to-stone-700 text-white"
           : "bg-amber-900 text-amber-50"
       }`}
     >
-
-      {/* Saloon Bar Header / Navigation */}
+      {/* Header */}
       <Header
         saloonLights={saloonLights}
         setSaloonLights={setSaloonLights}
         setIsTelegraphOpen={setIsTelegraphOpen}
       />
 
-      {/* Senior Engineer Hero */}
-       <Hero/>
+      {/* Hero */}
+      <Hero />
 
-       <Experience/>
-       <Feature/>
-       <Experience/>
-       <TechnicalArsenal/>
-       <ContactMe/>
-       <TechnicalExpertise/>
-       <ProjectExperience/>
-       <LeadershipOwnership/>
-       <CFooter/>
+      {/* Sections */}
+      <Experience />
+      <Feature />
+      <TechnicalArsenal />
+      <TechnicalExpertise />
+      <ProjectExperience />
+      <LeadershipOwnership />
+      <ContactMe />
 
-  
-
-      {/* Technical Arsenal */}
-   
-      {/* Telegraph Modal */}
-    
+      {/* Footer */}
+      <CFooter />
     </Main>
   );
 }
