@@ -124,7 +124,7 @@ const Header = () => {
               left-0
               h-screen
               w-72
-              bg-stone-950
+              bg-stone-900
               border-r
               border-stone-800
               z-50
