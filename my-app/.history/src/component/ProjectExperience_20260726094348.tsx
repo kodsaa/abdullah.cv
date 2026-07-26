@@ -37,7 +37,7 @@ const projects = [
 
   {
     title: "AI-Powered E-Commerce",
-    icon: <AIPoweredIcon className="h-8 w-8 text-orange-500" />,
+    icon: <AIPoweredIcon className="h-8 w-8 text-cyan-500" />,
     color: "from-cyan-500 to-blue-600",
 
     description:

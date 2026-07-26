@@ -289,7 +289,7 @@ const Experience = () => {
 
         {/* Timeline */}
 
-        <View className="absolute left-5 top-0 bottom-0 w-px bg-stone-800 hidden lg:block" />
+        <View className="absolute left-8 top-0 bottom-0 p-0 w-2 rounded-full bg-white/10 hidden lg:block" />
 
         <View className="space-y-12">
 

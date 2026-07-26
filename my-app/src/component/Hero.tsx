@@ -188,7 +188,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
                 rounded-2xl
                 border
                 border-white/10
-                bg-white/5
+                bg-white/10
                 backdrop-blur-xl
                 p-6
               "

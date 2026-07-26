@@ -50,7 +50,7 @@ const Header = () => {
     <>
       {/* Header */}
       <View className="fixed top-0 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-stone-800">
-        <Container className="max-w-7xl mx-auto h-16 flex items-center justify-between">
+        <Container className="max-w-7xl mx-auto h-12 flex items-center justify-between">
           {/* Logo */}
           <View className="flex flex-row items-center gap-3">
             <Avatar src={syedTown} alt="Syed Abdullah Ali" />
