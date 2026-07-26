@@ -17,7 +17,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
   return (
     <Container
       style={{
-        backgroundImage: `linear-gradient(rgba(233, 176, 115, 0.75), rgba(8,8,8,.85)), url(${imageCTown})`,
+        backgroundImage: `linear-gradient(rgba(98, 58, 15, 0.75), rgba(8,8,8,.85)), url(${imageCTown})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -62,7 +62,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
             text-amber-300
           "
         >
-          Senior Software Engineer • Technical Lead • Full Stack Architect
+          Every successful launch starts with a single line of brave code.
         </Span>
 
         {/* Heading */}

@@ -55,11 +55,11 @@ const Sidebar = ({
         top-0
         right-0
         h-screen
-        w-[360px]
         max-w-full
-        z-[999]
+        z-50
         transition-all
-        duration-500
+        duration-700
+        h-screen
         ${
           open
             ? "translate-x-0 opacity-100"
@@ -73,9 +73,13 @@ const Sidebar = ({
           rounded-none
           border-l
           border-white/10
-          bg-black/80
+          bg-black
           backdrop-blur-3xl
           p-8
+          flex
+          flex-col
+                  overflow-y-auto
+
         "
       >
         {/* Header */}
@@ -113,12 +117,13 @@ const Sidebar = ({
 
           <Select
             value={theme}
-            onChange={(e) => setTheme(e.target.value)}
-          >
-            <option value="dark">🌙 Dark</option>
-            <option value="light">☀ Light</option>
-            <option value="system">💻 System</option>
-          </Select>
+            onChange={setTheme}
+            options={[
+              { label: "🌙 Dark", value: "dark" },
+              { label: "☀ Light", value: "light" },
+              { label: "💻 System", value: "system" },
+            ]}
+          />
 
         </View>
 
@@ -132,13 +137,14 @@ const Sidebar = ({
 
           <Select
             value={timeOfDay}
-            onChange={(e) => setTimeOfDay(e.target.value)}
-          >
-            <option value="sunrise">🌅 Sunrise</option>
-            <option value="day">☀ Day</option>
-            <option value="evening">🌇 Evening</option>
-            <option value="night">🌙 Night</option>
-          </Select>
+            onChange={setTimeOfDay}
+            options={[
+              { label: "🌅 Sunrise", value: "sunrise" },
+              { label: "☀ Day", value: "day" },
+              { label: "🌇 Evening", value: "evening" },
+              { label: "🌙 Night", value: "night" },
+            ]}
+          />
 
         </View>
 
@@ -152,13 +158,14 @@ const Sidebar = ({
 
           <Select
             value={season}
-            onChange={(e) => setSeason(e.target.value)}
-          >
-            <option value="summer">☀ Summer</option>
-            <option value="winter">❄ Winter</option>
-            <option value="rain">🌧 Rain</option>
-            <option value="autumn">🍂 Autumn</option>
-          </Select>
+            onChange={setSeason}
+            options={[
+              { label: "☀ Summer", value: "summer" },
+              { label: "❄ Winter", value: "winter" },
+              { label: "🌧 Rain", value: "rain" },
+              { label: "🍂 Autumn", value: "autumn" },
+            ]}
+          />
 
         </View>
 

@@ -6,11 +6,12 @@ import {
   Link,
   Span,
   View,
+  Image
 } from "strivui";
 
 import Sidebar from "./Sidebar";
 import { useState } from "react";
-
+import syedTown from "../assets/syed.jpeg";
 
 const MENU = [
   {
@@ -57,22 +58,17 @@ const Header = () => {
           top-0
           left-0
           right-0
-          z-50
-          bg-black/70
-          backdrop-blur-2xl
-          border-b
-          border-white/10
+          z-40
+          bg-black
         "
       >
-        <Container className="max-w-7xl mx-auto h-20 flex items-center justify-between px-4">
+        <Container className="max-w-7xl mx-auto h-16 flex items-center justify-between ">
 
           {/* Logo */}
 
           <View className="flex flex-row items-center gap-3">
 
-            <Avatar className="bg-amber-500 text-black">
-              🤠
-            </Avatar>
+            <Avatar src={syedTown} alt="Syed Abdullah Ali" /> 
 
             <View>
 
