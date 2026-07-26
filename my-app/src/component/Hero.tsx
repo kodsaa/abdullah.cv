@@ -100,10 +100,11 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
             mt-8
             max-w-3xl
             text-base
-            sm:text-lg
-            lg:text-xl
+            sm:text-md
+            lg:text-lg
             leading-8
             text-stone-300
+            uppercase
           "
         >
           Senior Software Engineer with 5+ years of experience designing,

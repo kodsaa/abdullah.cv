@@ -4,4 +4,37 @@
 body{
   padding: 0;
   margin: 0;
+  background-color: #0f172a;
+}
+/* Outer container providing 3D depth perspective */
+.page-perspective-container {
+  perspective: 1200px;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #09090b; /* Dark backdrop behind unfolding page */
+}
+
+/* Page wrapper that performs the opening animation */
+.page-open-animation {
+  width: 100%;
+  min-height: 100vh;
+  transform-origin: top center; /* Originates from the top like an opening card */
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  animation: pageOpenEffect 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Keyframes for 3D page unfolding */
+@keyframes pageOpenEffect {
+  0% {
+    opacity: 0;
+    transform: rotateX(-20deg) translateY(30px) scale(0.95);
+    filter: brightness(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0) scale(1);
+    filter: brightness(1);
+  }
 }
