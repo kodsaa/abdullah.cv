@@ -14,8 +14,8 @@ import syedTown from "../assets/syed.jpeg";
 
 const MENU = [
   {
-    label: "About",
-    href: "#about",
+    label: "Home",
+    href: "#home",
   },
   {
     label: "Skills",

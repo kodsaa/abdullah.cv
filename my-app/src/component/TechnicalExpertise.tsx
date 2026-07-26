@@ -327,6 +327,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             </Button>
           ))}
         </View>
+        <Button className="bg-transparent text-amber-500 "> View Occupation →</Button>
       </Card>
     </div>
   );

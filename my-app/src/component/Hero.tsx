@@ -16,6 +16,7 @@ interface HeroProps {
 const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
   return (
     <Container
+       id="home"
       style={{
         backgroundImage: `linear-gradient(rgba(98, 58, 15, 0.75), rgba(8,8,8,.85)), url(${imageCTown})`,
         backgroundSize: "cover",
@@ -30,6 +31,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
         px-5
         sm:px-8
         lg:px-16
+        
       "
     >
       <View
@@ -76,8 +78,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
             text-stone-50
             text-5xl
             sm:text-6xl
-            md:text-7xl
-            xl:text-8xl
+    
           "
         >
           Engineering
@@ -169,7 +170,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
 
         <View
           className="
-            mt-20
+            mt-8
             grid
             grid-cols-2
             lg:grid-cols-4

@@ -12,6 +12,7 @@ import Experience from "./component/Experience";
 import ProjectExperience from "./component/ProjectExperience";
 import LeadershipOwnership from "./component/LeadershipOwnership";
 import CFooter from "./component/Footer";
+import Reveal from "./component/Reveal";
 
 export default function App() {
   const [isTelegraphOpen, setIsTelegraphOpen] = useState(false);
@@ -43,7 +44,7 @@ export default function App() {
 
   return (
     <Main
-      className={`min-h-screen p-0 m-0 ${
+      className={`min-h-screen overflow-hidden p-0 m-0 ${
         saloonLights
           ? "bg-gradient-to-r from-amber-900 via-stone-800 to-stone-700 text-white"
           : "bg-amber-900 text-amber-50"
@@ -57,19 +58,44 @@ export default function App() {
       />
 
       {/* Hero */}
-      <Hero />
+      import Reveal from "./component/Reveal";
 
-      {/* Sections */}
-      <Experience />
-      <Feature />
-      <TechnicalArsenal />
-      <TechnicalExpertise />
-      <ProjectExperience />
-      <LeadershipOwnership />
-      <ContactMe />
+...
 
-      {/* Footer */}
-      <CFooter />
+<Reveal variant="fade-up">
+  <Hero />
+</Reveal>
+
+<Reveal variant="fade-left">
+  <Experience />
+</Reveal>
+
+<Reveal variant="fade-right">
+  <Feature />
+</Reveal>
+
+<Reveal variant="fade-left">
+  <TechnicalArsenal />
+</Reveal>
+
+<Reveal variant="rotate">
+  <TechnicalExpertise />
+</Reveal>
+
+<Reveal variant="fade-right">
+  <ProjectExperience />
+</Reveal>
+
+<Reveal variant="fade-up" >
+  <LeadershipOwnership />
+</Reveal>
+
+<Reveal variant="fade-right" >
+  <ContactMe />
+</Reveal>
+<Reveal variant="fade-up" >
+  <CFooter />
+</Reveal>
     </Main>
   );
 }

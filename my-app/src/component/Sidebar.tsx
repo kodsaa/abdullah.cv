@@ -129,7 +129,7 @@ const Sidebar = ({
 
         {/* Time */}
 
-        <View className="mt-8">
+        <View >
 
           <Text className="mb-3 text-stone-400">
             Time of Day
@@ -150,7 +150,7 @@ const Sidebar = ({
 
         {/* Season */}
 
-        <View className="mt-8">
+        <View >
 
           <Text className="mb-3 text-stone-400">
             Season
@@ -171,33 +171,11 @@ const Sidebar = ({
 
         {/* Switches */}
 
-        <View className="mt-10 flex flex-col gap-6">
+        <View className="mt-10 flex flex-col gap-6 ">
 
           <View className="flex flex-row justify-between items-center">
 
-            <Text>💡 Saloon Lights</Text>
-
-            <Switch
-              checked={saloonLights}
-              onChange={() => setSaloonLights(!saloonLights)}
-            />
-
-          </View>
-
-          <View className="flex flex-row justify-between items-center">
-
-            <Text>🎵 Background Music</Text>
-
-            <Switch
-              checked={music}
-              onChange={() => setMusic(!music)}
-            />
-
-          </View>
-
-          <View className="flex flex-row justify-between items-center">
-
-            <Text>✨ Visual Effects</Text>
+            <Text className="text-amber-300">✨ Visual Effects</Text>
 
             <Switch
               checked={effects}
