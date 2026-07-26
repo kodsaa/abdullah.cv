@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode, type RefObject, type MouseEvent as ReactMouseEvent } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import {
   CodeIcon,
   ReactIcon,
@@ -168,8 +168,6 @@ interface ExpertiseCardProps {
 
 const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   const [ref, visible] = useRevealOnView();
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
 
   // Alternate the slide direction by column so the grid feels like it's
   // being pulled in from both sides rather than just drifting upward.
@@ -180,43 +178,13 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   const delaySteps = [0, 75, 100, 150, 200, 300, 500, 700, 1000];
   const delayStep = delaySteps[Math.min(index, delaySteps.length - 1)];
 
-  // Tracks the cursor over the card and converts its position into a
-  // subtle 3D tilt — the card leans away from wherever the pointer is,
-  // like light catching an angled surface.
-  const handleMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const py = (event.clientY - bounds.top) / bounds.height - 0.5;
-    setTilt({ x: py * -10, y: px * 10 });
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    setTilt({ x: 0, y: 0 });
-  };
-
-  const cardTransform = isHovering
-    ? `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-10px) scale(1.015)`
-    : "perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
-
-  // Fast response while the cursor is actively moving over the card,
-  // but a slower, softer glide back to flat once it leaves — this is
-  // what makes a tilt effect feel fluid instead of rubbery.
-  const transformSpeedClass = isHovering ? "duration-150" : "duration-500";
-
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? `${slideAnimation} animate-delay-${delayStep}` : "opacity-0"
-      }`}
+      className={visible ? `${slideAnimation} animate-delay-${delayStep}` : "opacity-0"}
     >
       <Card
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={handleMouseLeave}
-        style={{ transform: cardTransform }}
-        className={`
+        className="
         group
         relative
         overflow-hidden
@@ -224,13 +192,14 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
         bg-stone-900
         p-6
         sm:p-7
-        transition-transform
-        ${transformSpeedClass}
+        transition-all
+        duration-500
         ease-out
         will-change-transform
         hover:border-amber-500
-        hover:shadow-[0_20px_50px_rgba(245,158,11,.15)]
-        `}
+        hover:-translate-y-2
+        hover:shadow-[0_0_40px_rgba(245,158,11,.12)]
+        "
       >
         {/* Soft ambient glow that sweeps in on hover, purely decorative */}
         <View

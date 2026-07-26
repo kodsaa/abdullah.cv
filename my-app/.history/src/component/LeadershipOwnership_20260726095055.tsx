@@ -2,62 +2,53 @@ import React from "react";
 import { Card, Container, H2, H4, Span, View } from "strivui";
 
 
-import {
-  LeadershipIcon,
-  ArchitectureIcon,
-  MentorshipIcon,
-  StakeholderIcon,
-  AgileDeliveryIcon,
-  EngineeringEstimationIcon,
-  CodeQualityIcon,
-  ProductOwnershipIcon,
-} from "../icon/icon";
+
 
 const leadershipItems = [
   {
-    icon: <LeadershipIcon className="h-8 w-8 text-orange-500" />,
+    icon: "👥",
     title: "Engineering Leadership",
     description:
       "Led engineering teams across multiple enterprise projects while driving technical execution and delivery.",
   },
   {
-    icon: <ArchitectureIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🏗️",
     title: "Architecture & Planning",
     description:
       "Conducted architecture reviews and technical planning for scalable software solutions.",
   },
   {
-    icon: <MentorshipIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🎓",
     title: "Mentorship",
     description:
       "Mentored junior and mid-level engineers through code reviews, technical guidance, and knowledge sharing.",
   },
   {
-    icon: <StakeholderIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🤝",
     title: "Stakeholder Collaboration",
     description:
       "Worked directly with founders, clients, and product teams to transform business ideas into technical solutions.",
   },
   {
-    icon: <AgileDeliveryIcon className="h-8 w-8 text-orange-500" />,
+    icon: "📅",
     title: "Agile Delivery",
     description:
       "Managed sprint planning, project timelines, and cross-functional engineering collaboration.",
   },
   {
-    icon: <EngineeringEstimationIcon className="h-8 w-8 text-orange-500" />,
+    icon: "📊",
     title: "Engineering Estimation",
     description:
       "Estimated engineering effort, resource allocation, and project delivery schedules.",
   },
   {
-    icon: <CodeQualityIcon className="h-8 w-8 text-orange-500" />,
+    icon: "✅",
     title: "Code Quality",
     description:
       "Maintained engineering standards through code reviews, best practices, and continuous improvements.",
   },
   {
-    icon: <ProductOwnershipIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🚀",
     title: "Product Ownership",
     description:
       "Delivered products from concept and architecture through deployment and production support.",

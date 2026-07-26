@@ -196,13 +196,8 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   };
 
   const cardTransform = isHovering
-    ? `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-10px) scale(1.015)`
-    : "perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
-
-  // Fast response while the cursor is actively moving over the card,
-  // but a slower, softer glide back to flat once it leaves — this is
-  // what makes a tilt effect feel fluid instead of rubbery.
-  const transformSpeedClass = isHovering ? "duration-150" : "duration-500";
+    ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-10px) scale(1.015)`
+    : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
 
   return (
     <div
@@ -216,7 +211,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={handleMouseLeave}
         style={{ transform: cardTransform }}
-        className={`
+        className="
         group
         relative
         overflow-hidden
@@ -225,12 +220,12 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
         p-6
         sm:p-7
         transition-transform
-        ${transformSpeedClass}
+        duration-300
         ease-out
         will-change-transform
         hover:border-amber-500
         hover:shadow-[0_20px_50px_rgba(245,158,11,.15)]
-        `}
+        "
       >
         {/* Soft ambient glow that sweeps in on hover, purely decorative */}
         <View

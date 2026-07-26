@@ -319,9 +319,9 @@ export {
   AgileDeliveryIcon,
   EngineeringEstimationIcon,
   CodeQualityIcon,
-  ProductOwnershipIcon,
+  ProductOwnerIcon,
   ArchitectureEngineeringIcon,
   ProductDevelopmentIcon,
   BusinessUnderstandingIcon,
-  ProductOwnerIcon,
+
 };

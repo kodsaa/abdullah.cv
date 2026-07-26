@@ -8,16 +8,12 @@ import {
   View,
 } from "strivui";
 
-import {
-  ArchitectureEngineeringIcon,
-  ProductDevelopmentIcon,
-  BusinessUnderstandingIcon,
-} from "../icon/icon";
+
 
 
 const ENGINEERING_PROFILE = [
   {
-    icon: <ProductDevelopmentIcon className="h-8 w-8 text-orange-500" />,
+    icon: "🏗️",
     title: "Product Development",
     color: "amber",
     items: [
@@ -34,7 +30,7 @@ const ENGINEERING_PROFILE = [
     ],
   },
   {
-    icon: <ArchitectureEngineeringIcon className="h-8 w-8 text-orange-500" />,
+    icon: "⚙️",
     title: "Architecture & Engineering",
     color: "orange",
     items: [
@@ -53,7 +49,7 @@ const ENGINEERING_PROFILE = [
     ],
   },
   {
-    icon: <BusinessUnderstandingIcon className="h-8 w-8 text-orange-500" />,
+    icon: "📈",
     title: "Business Understanding",
     color: "yellow",
     items: [
