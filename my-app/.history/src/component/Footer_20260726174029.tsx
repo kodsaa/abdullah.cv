@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Container,
   H2,
@@ -5,6 +6,7 @@ import {
   Span,
   View,
   Button,
+  Link,
 } from "strivui";
 
 const CFooter = () => {
@@ -23,44 +25,6 @@ const CFooter = () => {
     "LinkedIn",
     "Email",
   ];
-
-  // Where each nav button should scroll to. Button doesn't support
-  // `href`, so navigation happens via onClick + scrollIntoView instead
-  // of turning these into anchor tags.
-  const sectionIds: Record<string, string> = {
-    Experience: "experience",
-    Projects: "projects",
-    Skills: "skills",
-    Contact: "contact",
-  };
-
-  const goToSection = (label: string) => {
-    if (label === "Home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
-    document
-      .getElementById(sectionIds[label])
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // Where each social button should open. Replace these with your
-  // real profile URLs if they ever change.
-  const socialLinks: Record<string, string> = {
-    GitHub: "https://github.com/syedabdullahali",
-    LinkedIn: "https://www.linkedin.com/in/syed-abdullah-ali380/",
-    Email: "mailto:syedabdullahali380@gmail.com",
-  };
-
-  const goToSocial = (label: string) => {
-    const url = socialLinks[label];
-    if (label === "Email") {
-      window.location.href = url;
-    } else {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  };
 
   return (
     <View className="relative bg-black/50 overflow-hidden border-t  backdrop-blur-xl">
@@ -149,19 +113,12 @@ const CFooter = () => {
                   navigation.map((item)=>(
                     <Button
                       key={item}
-                      onClick={() => goToSection(item)}
                       className="
                         justify-start
                         bg-transparent
                         text-gray-400
-                        transition-all
-                        duration-200
                         hover:text-amber-400
-                        hover:translate-x-1
-                        active:scale-95
-                        focus:outline-none
-                        focus:ring-2
-                        focus:ring-amber-400/40
+                        transition
                       "
                     >
                       {item}
@@ -200,7 +157,6 @@ const CFooter = () => {
                   social.map((item)=>(
                     <Button
                       key={item}
-                      onClick={() => goToSocial(item)}
                       className="
                         rounded-xl
                         border
@@ -209,15 +165,9 @@ const CFooter = () => {
                         px-5
                         py-3
                         text-gray-300
-                        transition-all
-                        duration-200
                         hover:border-amber-400/40
                         hover:text-amber-400
-                        hover:scale-105
-                        active:scale-95
-                        focus:outline-none
-                        focus:ring-2
-                        focus:ring-amber-400/40
+                        transition
                       "
                     >
                       {item}

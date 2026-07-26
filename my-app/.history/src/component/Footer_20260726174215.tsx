@@ -28,6 +28,7 @@ const CFooter = () => {
   // `href`, so navigation happens via onClick + scrollIntoView instead
   // of turning these into anchor tags.
   const sectionIds: Record<string, string> = {
+    Home: "home",
     Experience: "experience",
     Projects: "projects",
     Skills: "skills",
@@ -35,11 +36,6 @@ const CFooter = () => {
   };
 
   const goToSection = (label: string) => {
-    if (label === "Home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
     document
       .getElementById(sectionIds[label])
       ?.scrollIntoView({ behavior: "smooth" });
