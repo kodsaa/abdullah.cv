@@ -50,7 +50,7 @@ export default function App() {
     
       className={`p-0 m-0 ${
         saloonLights
-          ? "bg-stone-800 text-stone-100"
+          ? "bg-gradient-to-r from-amber-900 via-stone-800 to-stone-700 text-white"
           : "bg-amber-900 text-amber-50"
       }`}
     >
