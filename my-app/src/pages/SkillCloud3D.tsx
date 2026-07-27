@@ -351,6 +351,7 @@ export default function SkillCloud3D() {
 
   return (
     <div
+    className="mt-16"
       style={{
         width: "100%",
         height: "100vh",

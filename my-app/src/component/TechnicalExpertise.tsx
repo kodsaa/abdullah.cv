@@ -338,11 +338,10 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
 };
 
 const TechnicalExpertise = () => {
-  const [selectedExpertise, setSelectedExpertise] = useState<ExpertiseItem | string>("");
   return (
     <Container id="skills" className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
       <View className="text-center mb-12 sm:mb-16">
-        <Span className="uppercase tracking-[0.4em] text-amber-500 font-mono text-xs sm:text-sm">
+        <Span className="uppercase text-amber-500 font-mono text-xs sm:text-sm">
           Technical Expertise
         </Span>
 

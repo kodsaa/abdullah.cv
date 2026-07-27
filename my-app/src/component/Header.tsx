@@ -49,7 +49,7 @@ const Header = () => {
   return (
     <>
       {/* Header */}
-      <View className="fixed top-0 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-stone-800">
+      <View  className="fixed h-12 p-2 top-0 left-0 right-0 z-50 bg-black-200 backdrop-blur-md border-b border-stone-800">
         <Container className="max-w-7xl mx-auto h-12 flex items-center justify-between">
           {/* Logo */}
           <View className="flex flex-row items-center gap-3">
