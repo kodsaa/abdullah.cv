@@ -15,7 +15,7 @@ const Layout = () => {
       // Small delay for smoother transition
       setTimeout(() => {
         setLoading(false);
-      }, 2000);
+      }, 3000);
     };
 
     if (document.readyState === "complete") {
@@ -37,7 +37,7 @@ const Layout = () => {
     <Main
     className={`min-h-screen overflow-x-hidden p-0 m-0 ${
         saloonLights
-          ? "bg-gradient-to-r from-amber-900 via-stone-800 to-stone-700 text-white"
+          ? "mainContainer_background"
           : "bg-amber-900 text-amber-50"
       }`}
     >

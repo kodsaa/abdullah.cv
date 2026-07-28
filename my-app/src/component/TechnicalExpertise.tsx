@@ -150,7 +150,6 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
   },
 ];
 import { Badge, Button, Card, Container, H2, H3, Modal, Span, Text, View } from "strivui";
-import SkillCloud3D from "../pages/SkillCloud3D";
 
 /**
  * Reveals a card with a fade + rise transition the first time it

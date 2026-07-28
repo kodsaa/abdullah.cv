@@ -113,7 +113,7 @@ export default function ProjectExperience() {
         {projects.map((project) => (
           <Card
             key={project.title}
-            className="group relative overflow-hidden rounded-3xl bg-stone-900 border border-stone-700 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-amber-500"
+            className=" rounded-3xl bg-stone-900"
           >
             <View
               className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${project.color}`}

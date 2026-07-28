@@ -289,7 +289,7 @@ const Experience = () => {
 
         {/* Timeline */}
 
-        <View className="absolute left-8 top-0 bottom-0 p-0 w-2 rounded-full bg-white/10 hidden lg:block" />
+        <View className="absolute left-4 top-0 bottom-0 p-0 w-2 rounded-full bg-white/10 hidden lg:block" />
 
         <View className="space-y-12">
 
@@ -338,14 +338,9 @@ const Experience = () => {
                 className="
                 flex-1
                 rounded-3xl
-                border
-                border-amber-900/30
                 bg-stone-900
                 p-8
-                transition-all
-                duration-300
-                hover:border-amber-500
-                hover:-translate-y-1
+                mb-4
                 "
               >
 
@@ -387,8 +382,6 @@ const Experience = () => {
                         className="
                         rounded-full
                         bg-amber-500/10
-                        border
-                        border-amber-800/30
                         m-0 mb-1
                         text-stone-200
                         text-sm
@@ -411,7 +404,7 @@ const Experience = () => {
                     Business Impact
                   </Text>
 
-                  <View >
+                  <View  className="grid grid-cols-2">
 
                     {job.responsibilities.map((item) => (
 
@@ -419,12 +412,9 @@ const Experience = () => {
                         key={item}
                         className="
                         rounded-full
-                        bg-green-500/10
-                        border
-                        border-green-900/40
                         text-stone-200
                         p-0
-                                                text-sm
+                        mb-1                        text-sm
 
                         "
                       >

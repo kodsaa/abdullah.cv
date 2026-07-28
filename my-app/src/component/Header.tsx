@@ -9,7 +9,7 @@ import {
 } from "strivui";
 
 import Sidebar from "./Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import syedTown from "../assets/syed.jpeg";
 
 const MENU = [
@@ -46,17 +46,47 @@ const Header = () => {
   const [music, setMusic] = useState(true);
   const [effects, setEffects] = useState(true);
 
+  // Scroll listener to toggle header background
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       {/* Header */}
-      <View  className="fixed h-12 p-2 top-0 left-0 right-0 z-50 bg-black-200 backdrop-blur-md border-b border-stone-800">
-        <Container className="max-w-7xl mx-auto h-12 flex items-center justify-between">
+      <View
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+          isScrolled
+            ? "bg-black-200"
+            : "bg-transparent"
+        }`}
+      >
+        <Container className="max-w-7xl mx-auto flex items-center justify-between p-2">
           {/* Logo */}
           <View className="flex flex-row items-center gap-3">
             <Avatar src={syedTown} alt="Syed Abdullah Ali" />
 
             <View>
-              <H3 className="text-white font-bold text-base">
+              <H3
+                className="text-white font-bold text-base"
+                style={{
+                  fontFamily: "serif",
+                  fontStyle: "italic",
+                  fontWeight: 200,
+                  color: "#f5f5f4",
+                }}
+              >
                 Syed Abdullah Ali
               </H3>
 
@@ -67,12 +97,18 @@ const Header = () => {
           </View>
 
           {/* Desktop Navigation */}
-          <View className="hidden lg:flex flex-row items-center gap-8">
+          <View className="hidden lg:flex flex-row items-center gap-8 border px-4 py-2 rounded-full">
             {MENU.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="text-stone-300 hover:text-amber-400 transition"
+                style={{
+                  fontFamily: "serif",
+                  fontStyle: "italic",
+                  fontWeight: 200,
+                  color: "#f5f5f4",
+                }}
               >
                 {item.label}
               </Link>
@@ -81,12 +117,7 @@ const Header = () => {
 
           {/* Right Buttons */}
           <View className="flex flex-row items-center gap-3">
-            <Button
-              href="#contact"
-              className="hidden md:flex bg-amber-500 text-black rounded-xl px-6"
-            >
-              Hire Me
-            </Button>
+     
 
             {/* Mobile Menu */}
             <Button
@@ -183,16 +214,7 @@ const Header = () => {
               ))}
             </View>
 
-            {/* Bottom */}
-            <View className="mt-auto">
-              <Button
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full bg-amber-500 text-black rounded-xl"
-              >
-                Hire Me
-              </Button>
-            </View>
+     
           </View>
         </>
       )}

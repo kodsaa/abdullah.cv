@@ -122,7 +122,6 @@ const EngineeringCard = ({
         overflow: "hidden",
         borderRadius: "16px",
         border: `1px solid ${hovered ? "rgba(245,158,11,0.5)" : "#292524"}`,
-        backgroundColor: "#1c1917",
         padding: "32px",
         transition: "all 0.5s ease-out",
         boxShadow: hovered
@@ -134,6 +133,7 @@ const EngineeringCard = ({
         gap: "32px",
         alignItems: "flex-start",
       }}
+      className="bg-stone-900"
     >
       {/* top glow line */}
       <View
