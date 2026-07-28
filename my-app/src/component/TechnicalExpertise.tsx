@@ -12,112 +12,144 @@ import {
   CloudIcon,
   RealtimeIcon,
 } from "../icon/icon";
-
+import {JavaScriptIcon,TypeScriptIcon,PythonIcon,OOPIcon,AsyncProgrammingIcon,MemoryManagementIcon,PerformanceProfilingIcon} from "../icon/skill"
 interface ExpertiseItem {
   icon: ReactNode;
   title: string;
   description: string;
-  skills: string[];
+  skills: {label:string,icon:ReactNode}[];
 }
 
 const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
   {
     icon: <CodeIcon className="h-8 w-8 text-orange-500" />,
     title: "Programming Languages",
-    description: "High-performance application development with modern and low-level languages.",
+    description:
+      "High-performance application development with modern and low-level languages.",
     skills: [
-      "JavaScript",
-      "TypeScript",
-      "Python",
-      "C",
-      "OOP",
-      "Async Programming",
-      "Memory Management",
-      "Performance Profiling",
+      { label: "JavaScript", icon: <JavaScriptIcon className="w-5 h-5"/> },
+      { label: "TypeScript", icon: <TypeScriptIcon  className="w-5 h-5"/> },
+      { label: "Python", icon: <PythonIcon  className="w-5 h-5"/> },
+      { label: "C", icon: "" },
+      { label: "OOP", icon: <OOPIcon/> },
+      { label: "Async Programming", icon: <AsyncProgrammingIcon  className="w-5 h-5"/> },
+      { label: "Memory Management", icon: <MemoryManagementIcon  className="w-5 h-5"/> },
+      { label: "Performance Profiling", icon: <PerformanceProfilingIcon  className="w-5 h-5"/> },
     ],
   },
   {
     icon: <ReactIcon className="h-8 w-8 text-orange-500" />,
     title: "Frontend Engineering",
-    description: "Modern React ecosystem with enterprise-scale frontend architecture.",
+    description:
+      "Modern React ecosystem with enterprise-scale frontend architecture.",
     skills: [
-      "React",
-      "Next.js",
-      "React Native",
-      "Redux Toolkit",
-      "RTK Query",
-      "React Query",
-      "Tailwind CSS",
-      "StrivUI",
+      { label: "React", icon: "" },
+      { label: "Next.js", icon: "" },
+      { label: "React Native", icon: "" },
+      { label: "Redux Toolkit", icon: "" },
+      { label: "RTK Query", icon: "" },
+      { label: "React Query", icon: "" },
+      { label: "Tailwind CSS", icon: "" },
+      { label: "StrivUI", icon: "" },
     ],
   },
   {
     icon: <BackendIcon className="h-8 w-8 text-orange-500" />,
     title: "Backend Engineering",
-    description: "Scalable backend services and enterprise application architecture.",
+    description:
+      "Scalable backend services and enterprise application architecture.",
     skills: [
-      "Django",
-      "FastAPI",
-      "Flask",
-      "Node.js",
-      "Express",
-      "REST API",
-      "GraphQL",
-      "JWT",
-      "RBAC",
+      { label: "Django", icon: "" },
+      { label: "FastAPI", icon: "" },
+      { label: "Flask", icon: "" },
+      { label: "Node.js", icon: "" },
+      { label: "Express", icon: "" },
+      { label: "REST API", icon: "" },
+      { label: "GraphQL", icon: "" },
+      { label: "JWT", icon: "" },
+      { label: "RBAC", icon: "" },
     ],
   },
   {
     icon: <DatabaseIcon className="h-8 w-8 text-orange-500" />,
     title: "Databases",
-    description: "SQL & NoSQL databases with optimization and scaling strategies.",
+    description:
+      "SQL & NoSQL databases with optimization and scaling strategies.",
     skills: [
-      "PostgreSQL",
-      "MongoDB",
-      "Redis",
-      "MySQL",
-      "Firebase",
-      "Indexing",
-      "Aggregation",
-      "Replication",
+      { label: "PostgreSQL", icon: "" },
+      { label: "MongoDB", icon: "" },
+      { label: "Redis", icon: "" },
+      { label: "MySQL", icon: "" },
+      { label: "Firebase", icon: "" },
+      { label: "Indexing", icon: "" },
+      { label: "Aggregation", icon: "" },
+      { label: "Replication", icon: "" },
     ],
   },
   {
     icon: <SystemDesignIcon className="h-8 w-8 text-orange-500" />,
     title: "System Design",
-    description: "Enterprise architecture, distributed systems and scalable infrastructure.",
+    description:
+      "Enterprise architecture, distributed systems and scalable infrastructure.",
     skills: [
-      "Microservices",
-      "Distributed Systems",
-      "Load Balancing",
-      "Caching",
-      "Queues",
-      "Clean Architecture",
-      "SOLID",
-      "Design Patterns",
+      { label: "Microservices", icon: "" },
+      { label: "Distributed Systems", icon: "" },
+      { label: "Load Balancing", icon: "" },
+      { label: "Caching", icon: "" },
+      { label: "Queues", icon: "" },
+      { label: "Clean Architecture", icon: "" },
+      { label: "SOLID", icon: "" },
+      { label: "Design Patterns", icon: "" },
     ],
   },
   {
     icon: <RobotIcon className="h-8 w-8 text-orange-500" />,
     title: "AI & Machine Learning",
-    description: "Building intelligent applications powered by modern AI.",
-    skills: ["OpenAI", "LangChain", "LangGraph", "PyTorch", "TensorFlow", "LLMs", "RAG", "AI Agents"],
+    description:
+      "Building intelligent applications powered by modern AI.",
+    skills: [
+      { label: "OpenAI", icon: "" },
+      { label: "LangChain", icon: "" },
+      { label: "LangGraph", icon: "" },
+      { label: "PyTorch", icon: "" },
+      { label: "TensorFlow", icon: "" },
+      { label: "LLMs", icon: "" },
+      { label: "RAG", icon: "" },
+      { label: "AI Agents", icon: "" },
+    ],
   },
   {
     icon: <CloudIcon className="h-8 w-8 text-orange-500" />,
     title: "Cloud & DevOps",
-    description: "Production deployments with CI/CD and containerized infrastructure.",
-    skills: ["Docker", "Kubernetes", "GitHub Actions", "AWS", "Nginx", "PM2", "Cloudflare", "CI/CD"],
+    description:
+      "Production deployments with CI/CD and containerized infrastructure.",
+    skills: [
+      { label: "Docker", icon: "" },
+      { label: "Kubernetes", icon: "" },
+      { label: "GitHub Actions", icon: "" },
+      { label: "AWS", icon: "" },
+      { label: "Nginx", icon: "" },
+      { label: "PM2", icon: "" },
+      { label: "Cloudflare", icon: "" },
+      { label: "CI/CD", icon: "" },
+    ],
   },
   {
     icon: <RealtimeIcon className="h-8 w-8 text-orange-500" />,
     title: "Real-Time Systems",
-    description: "Low-latency communication and streaming platforms.",
-    skills: ["WebRTC", "Socket.io", "WebSockets", "Pusher", "Streaming", "Real-Time Sync"],
+    description:
+      "Low-latency communication and streaming platforms.",
+    skills: [
+      { label: "WebRTC", icon: "" },
+      { label: "Socket.io", icon: "" },
+      { label: "WebSockets", icon: "" },
+      { label: "Pusher", icon: "" },
+      { label: "Streaming", icon: "" },
+      { label: "Real-Time Sync", icon: "" },
+    ],
   },
 ];
-
-import { Button, Card, Container, H2, H3, Modal, Span, Text, View } from "strivui";
+import { Badge, Button, Card, Container, H2, H3, Modal, Span, Text, View } from "strivui";
 import SkillCloud3D from "../pages/SkillCloud3D";
 
 /**
@@ -305,19 +337,21 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
         </Text>
 
         <View className="flex flex-wrap gap-2">
-          {item.skills.map((skill: string, skillIndex: number) => (
-            <Button
-              key={skill}
+          {item.skills.map((skill: {label:string,icon:ReactNode}, skillIndex: number) => (
+            <Badge
+
+              key={skill.label}
               className="
               rounded-full
               border
-              border-amber-800/40
-              bg-amber-600
+              border-amber-300
+              text-amber-200
               px-3
-              py-1.5
+              py-2
               text-xs
               transition-all
               duration-300
+              bg-transparent
               hover:bg-amber-500
               hover:text-black
               hover:scale-105
@@ -327,11 +361,11 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
                 transitionDelay: `${index * 90 + 200 + skillIndex * 35}ms`,
               }}
             >
-              {skill}
-            </Button>
+             {skill.icon}  {skill.label}
+            </Badge>
           ))}
         </View>
-        <Button onClick={() => navigate(`/skill/${item.title}`)} className="bg-transparent text-amber-500 "> View Occupation →</Button>
+        <Button onClick={() => navigate(`/skill/${item.title}`)} className="bg-transparent mt-4 text-amber-500 "> View Occupation →</Button>
       </Card>
     </div>
   );
