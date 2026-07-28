@@ -10,8 +10,22 @@ import {
   RobotIcon,
   CloudIcon,
   RealtimeIcon,
+  ReactComponentIcon,
+  TypeScriptIcon,
+  PythonIcon,
+  JavaScriptIcon,
+  NextjsIcon,
+  TailwindCSSIcon,
+  FlaskIcon,
+  NodeJSIcon,
+  MySQLIcon,
+  MongoDBIcon,
+  FirebaseIcon,
+  OpenAIIcon,
+  GithubActionIcon,
+  CloudflareIcon
 } from "../icon/icon";
-import {JavaScriptIcon,TypeScriptIcon,PythonIcon,OOPIcon,AsyncProgrammingIcon,MemoryManagementIcon,PerformanceProfilingIcon} from "../icon/skill"
+import {OOPIcon,AsyncProgrammingIcon,MemoryManagementIcon,PerformanceProfilingIcon} from "../icon/skill"
 interface ExpertiseItem {
   icon: ReactNode;
   title: string;
@@ -26,14 +40,14 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     description:
       "High-performance application development with modern and low-level languages.",
     skills: [
-      { label: "JavaScript", icon: <JavaScriptIcon className="w-5 h-5"/> },
-      { label: "TypeScript", icon: <TypeScriptIcon  className="w-5 h-5"/> },
-      { label: "Python", icon: <PythonIcon  className="w-5 h-5"/> },
+      { label: "JavaScript", icon: <JavaScriptIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "TypeScript", icon: <TypeScriptIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Python", icon: <PythonIcon className="h-5 w-5 text-orange-500" /> },
       { label: "C", icon: "" },
-      { label: "OOP", icon: <OOPIcon/> },
-      { label: "Async Programming", icon: <AsyncProgrammingIcon  className="w-5 h-5"/> },
-      { label: "Memory Management", icon: <MemoryManagementIcon  className="w-5 h-5"/> },
-      { label: "Performance Profiling", icon: <PerformanceProfilingIcon  className="w-5 h-5"/> },
+      { label: "OOP", icon: <OOPIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Async Programming", icon: <AsyncProgrammingIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Memory Management", icon: <MemoryManagementIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Performance Profiling", icon: <PerformanceProfilingIcon className="h-5 w-5 text-orange-500" /> },
     ],
   },
   {
@@ -42,13 +56,13 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     description:
       "Modern React ecosystem with enterprise-scale frontend architecture.",
     skills: [
-      { label: "React", icon: "" },
-      { label: "Next.js", icon: "" },
+      { label: "React", icon: <ReactComponentIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Next.js", icon: <NextjsIcon className="h-5 w-5 text-orange-500" /> },
       { label: "React Native", icon: "" },
       { label: "Redux Toolkit", icon: "" },
       { label: "RTK Query", icon: "" },
       { label: "React Query", icon: "" },
-      { label: "Tailwind CSS", icon: "" },
+      { label: "Tailwind CSS", icon: <TailwindCSSIcon className="h-5 w-5 text-orange-500" /> },
       { label: "StrivUI", icon: "" },
     ],
   },
@@ -60,8 +74,8 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     skills: [
       { label: "Django", icon: "" },
       { label: "FastAPI", icon: "" },
-      { label: "Flask", icon: "" },
-      { label: "Node.js", icon: "" },
+      { label: "Flask", icon: <FlaskIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Node.js", icon: <NodeJSIcon className="h-5 w-5 text-orange-500" /> },
       { label: "Express", icon: "" },
       { label: "REST API", icon: "" },
       { label: "GraphQL", icon: "" },
@@ -76,10 +90,10 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
       "SQL & NoSQL databases with optimization and scaling strategies.",
     skills: [
       { label: "PostgreSQL", icon: "" },
-      { label: "MongoDB", icon: "" },
+      { label: "MongoDB", icon: <MongoDBIcon className="h-5 w-5 text-orange-500" /> },
       { label: "Redis", icon: "" },
-      { label: "MySQL", icon: "" },
-      { label: "Firebase", icon: "" },
+      { label: "MySQL", icon: <MySQLIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Firebase", icon: <FirebaseIcon className="h-5 w-5 text-orange-500" /> },
       { label: "Indexing", icon: "" },
       { label: "Aggregation", icon: "" },
       { label: "Replication", icon: "" },
@@ -107,7 +121,7 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     description:
       "Building intelligent applications powered by modern AI.",
     skills: [
-      { label: "OpenAI", icon: "" },
+      { label: "OpenAI", icon: <OpenAIIcon className="h-5 w-5 text-orange-500" /> },
       { label: "LangChain", icon: "" },
       { label: "LangGraph", icon: "" },
       { label: "PyTorch", icon: "" },
@@ -125,11 +139,11 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     skills: [
       { label: "Docker", icon: "" },
       { label: "Kubernetes", icon: "" },
-      { label: "GitHub Actions", icon: "" },
+      { label: "GitHub Actions", icon: <GithubActionIcon className="h-5 w-5 text-orange-500" /> },
       { label: "AWS", icon: "" },
       { label: "Nginx", icon: "" },
       { label: "PM2", icon: "" },
-      { label: "Cloudflare", icon: "" },
+      { label: "Cloudflare", icon: <CloudflareIcon className="h-5 w-5 text-orange-500" /> },
       { label: "CI/CD", icon: "" },
     ],
   },
@@ -149,6 +163,7 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
   },
 ];
 import { Badge, Button, Card, Container, H2, H3, Modal, Span, Text, View } from "strivui";
+import SkillCloud3D from "../pages/SkillCloud3D";
 
 /**
  * Reveals a card with a fade + rise transition the first time it
