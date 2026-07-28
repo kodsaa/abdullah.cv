@@ -1,5 +1,4 @@
 import Hero from "../component/Hero";
-import Header from "../component/Header";
 import Feature from "../component/Feature";
 import TechnicalArsenal from "../component/TechnicalArsenal";
 import ContactMe from "../component/ContactMe";
@@ -7,7 +6,6 @@ import TechnicalExpertise from "../component/TechnicalExpertise";
 import Experience from "../component/Experience";
 import ProjectExperience from "../component/ProjectExperience";
 import LeadershipOwnership from "../component/LeadershipOwnership";
-import CFooter from "../component/Footer";
 import Reveal from "../component/Reveal";
 
 export default function App() {
@@ -18,7 +16,6 @@ export default function App() {
     <
     >
 
-...
 
 <Reveal variant="fade-up">
   <Hero />

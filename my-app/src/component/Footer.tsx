@@ -5,6 +5,7 @@ import {
   Span,
   View,
   Button,
+  Footer
 } from "strivui";
 
 const CFooter = () => {
@@ -63,7 +64,7 @@ const CFooter = () => {
   };
 
   return (
-    <View className="relative bg-black/50 overflow-hidden border-t  backdrop-blur-xl">
+    <Footer className="relative bg-black/50 overflow-hidden border-t  backdrop-blur-xl w-full ">
 
       {/* Glow */}
       <View className="absolute -top-20 left-1/2 h-60 w-60 -translate-x-1/2 rounded-full bg-amber-400/10 blur-3xl" />
@@ -287,7 +288,7 @@ const CFooter = () => {
         </View>
       </Container>
 
-    </View>
+    </Footer>
   );
 };
 
