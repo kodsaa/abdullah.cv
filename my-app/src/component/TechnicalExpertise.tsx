@@ -327,12 +327,18 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             {item.icon}
           </View>
 
-          <H3 className="text-lg sm:text-xl font-serif text-amber-100 leading-snug">
-            {item.title}
-          </H3>
+      
+              <H3
+          style={{
+            lineHeight: 1.2,
+          }}
+          className="font-serif m-0 p-0 text-amber-200 font-normal"
+        >
+          {item.title}
+        </H3>
         </View>
 
-        <Text className="text-stone-400 text-sm leading-7 mb-6">
+        <Text className="text-stone-200 text-sm leading-7 mb-6">
           {item.description}
         </Text>
 
@@ -345,7 +351,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
               rounded-full
               border
               border-amber-300
-              text-amber-200
+              text-amber-300
               px-3
               py-2
               text-xs
@@ -361,7 +367,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
                 transitionDelay: `${index * 90 + 200 + skillIndex * 35}ms`,
               }}
             >
-             {skill.icon}  {skill.label}
+              {skill.icon}  {skill.label}
             </Badge>
           ))}
         </View>
@@ -375,18 +381,66 @@ const TechnicalExpertise = () => {
   return (
     <Container id="skills" className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
       <View className="text-center mb-12 sm:mb-16">
-        <Span className="uppercase text-amber-500 font-mono text-xs sm:text-sm">
-          Technical Expertise
-        </Span>
 
-        <H2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif text-amber-100">
-          Engineering Excellence
+             <View
+    
+          className="inline-flex items-center gap-2 mb-1"
+        >
+          <Span
+     
+            className="h-px w-8 "
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
+            }}
+          />
+          <Span
+            style={{
+              letterSpacing: "0.35em",
+            }}
+            className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+          >
+           Technical Expertise
+          </Span>
+          <Span
+          className="h-px w-8"
+            style={{
+              background:
+                "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
+            }}
+          />
+        </View>
+
+              <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+          <Span
+            className="font-serif italic font-light ta-heading-shine"
+            data-text="Building Enterprise "
+          >
+            Engineering Excellence
+          </Span>
+      
         </H2>
 
-        <Text className="mt-5 max-w-3xl mx-auto text-stone-400 leading-7 sm:leading-8 text-sm sm:text-base px-2">
-          Building scalable enterprise software through modern architecture,
-          distributed systems, AI integration, and production-ready engineering.
-        </Text>
+
+     <Text className="mt-5 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8 px-2 font-light tracking-wide">
+  Building{" "}
+  <Span className="font-serif italic text-stone-200">
+    scalable enterprise software
+  </Span>{" "}
+  through modern{" "}
+  <Span className="font-serif italic text-stone-200">
+    architecture and distributed systems
+  </Span>
+  , integrating{" "}
+  <Span className="font-serif italic text-stone-200">
+    AI-driven solutions
+  </Span>
+  , and delivering{" "}
+  <Span className="font-serif italic text-amber-200">
+    production-ready engineering
+  </Span>{" "}
+  that powers real-world business operations.
+</Text>
       </View>
 
       <View
