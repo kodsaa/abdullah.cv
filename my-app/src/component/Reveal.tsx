@@ -127,7 +127,7 @@ export default function Reveal({
   return (
     <div
       ref={ref}
-      className={className}
+      className={className + "w-full"}
       style={{
         ...(visible ? visibleStyle : hiddenStyles[variant]),
 
