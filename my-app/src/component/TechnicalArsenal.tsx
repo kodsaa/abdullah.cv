@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import {
-  Card,
   Container,
   H2,
   H3,
@@ -115,7 +114,7 @@ const EngineeringCard = ({
   const reversed = index % 2 === 1;
 
   return (
-    <div
+    <View
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -137,11 +136,9 @@ const EngineeringCard = ({
       }}
     >
       {/* top glow line */}
-      <div
+      <View
+        className="p-0 m-0 absolute top-0 left-0 h-2"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
           height: "2px",
           width: hovered ? "100%" : "0%",
           background: "linear-gradient(to right, #f59e0b, #fb923c, #f59e0b)",
@@ -150,84 +147,58 @@ const EngineeringCard = ({
       />
 
       {/* Left block: icon + title + badge */}
-      <div style={{ flex: "1 1 240px", minWidth: "220px" }}>
-        <div
+      <View className="p-0 m-0" style={{ flex: "1 1 240px", minWidth: "220px" }}>
+        <View
+          className="p-0 m-0 h-12 w-12 rounded-md flex items-center justify-center mb-4"
           style={{
-            height: "48px",
-            width: "48px",
-            borderRadius: "12px",
+
             border: "1px solid rgba(245,158,11,0.4)",
             backgroundColor: "rgba(245,158,11,0.08)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "16px",
             transform: hovered ? "scale(1.05)" : "scale(1)",
             transition: "transform 0.4s ease",
           }}
         >
           {section.icon}
-        </div>
+        </View>
 
-        <h3
+        <H3
           style={{
-            fontSize: "22px",
-            fontFamily: "serif",
-            fontWeight: 700,
-            color: "#fafaf9",
-            margin: 0,
             lineHeight: 1.2,
           }}
+          className="font-serif m-0 p-0 text-amber-200 font-normal"
         >
           {section.title}
-        </h3>
+        </H3>
 
-        <p
-          style={{
-            fontSize: "13px",
-            color: "#a8a29e",
-            marginTop: "6px",
-            marginBottom: "20px",
-          }}
+        <Text
+        className="font-serif font-normal mt-2 mb-5 text-xs text-stone-400"
         >
           Core expertise across {section.items.length}+ specialized areas
-        </p>
+        </Text>
 
-        <div
+        <View
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
             border: "1px solid rgba(245,158,11,0.35)",
             backgroundColor: "rgba(245,158,11,0.08)",
-            borderRadius: "999px",
-            padding: "8px 14px",
           }}
+          className="inline-flex align-center gap-2 rounded-full px-3 py-1 "
         >
-          <span
-            style={{
-              height: "6px",
-              width: "6px",
-              borderRadius: "50%",
-              backgroundColor: "#f59e0b",
-              flexShrink: 0,
-            }}
+          <Span
+    
+            className="shrink-0 bg-amber-500 rounded-xl h-2 w-2 mt-1"
           />
-          <span
-            style={{
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "#fbbf24",
-            }}
+          <Span
+          className=" text-xs text-amber-400 font-normal "
+      
           >
             {section.outcome}
-          </span>
-        </div>
-      </div>
+          </Span>
+        </View>
+      </View>
 
       {/* Right block: skill list */}
-      <div style={{ flex: "2 1 320px", minWidth: "260px" }}>
-        <div
+      <View  style={{ flex: "2 1 320px", minWidth: "260px" }}>
+        <View
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -236,44 +207,36 @@ const EngineeringCard = ({
           }}
         >
           {section.items.map((item) => (
-            <div
+            <Text
               key={item}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-              }}
+              className="flex align-center gap-2 p-0 m-0"
             >
-              <span
-                style={{
-                  color: "#f59e0b",
-                  fontSize: "13px",
-                  flexShrink: 0,
-                }}
+              <Span
+            
+                className="shrink-0 text-amber-400 text-sm"
               >
                 →
-              </span>
-              <span
+              </Span>
+              <Span
                 style={{
-                  fontSize: "14px",
-                  color: "#d6d3d1",
                   lineHeight: 1.5,
                 }}
+                className="text-sm text-stone-100 "
               >
                 {item}
-              </span>
-            </div>
+              </Span>
+            </Text>
           ))}
-        </div>
-      </div>
-    </div>
+        </View>
+      </View>
+    </View>
   );
 };
 
 const StatCard = ({ value, label }: { value: string; label: string }) => {
   const [hovered, setHovered] = useState(false);
   return (
-    <div
+    <View
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -298,28 +261,25 @@ const StatCard = ({ value, label }: { value: string; label: string }) => {
       >
         {value}
       </h2>
-      <div
+      <View
+        className="mt-2 w-16 p-0 m-0"
         style={{
-          marginTop: "8px",
-          marginLeft: "auto",
-          marginRight: "auto",
           height: "1px",
-          width: "24px",
           backgroundColor: "rgba(245,158,11,0.4)",
+          margin:"auto"
         }}
       />
-      <p
+      <Text
+        className="mt-2 text-xs uppercase text-gray-100"
         style={{
-          marginTop: "8px",
-          fontSize: "10px",
-          textTransform: "uppercase",
+
           letterSpacing: "0.2em",
-          color: "#a8a29e",
+
         }}
       >
         {label}
-      </p>
-    </div>
+      </Text>
+    </View>
   );
 };
 
@@ -328,94 +288,52 @@ const TechnicalArsenal = () => {
 
   return (
     <Container className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <style>{`
-        @keyframes textFadeUp {
-          from { opacity: 0; transform: translateY(12px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes shineSweep {
-          0% { background-position: -150% 0; }
-          100% { background-position: 150% 0; }
-        }
-        .ta-heading-shine {
-          position: relative;
-          display: inline-block;
-          color: #d97706;
-        }
-        .ta-heading-shine::before {
-          content: attr(data-text);
-          position: absolute;
-          inset: 0;
-          background-image: linear-gradient(
-            100deg,
-            transparent 35%,
-            #ffffff 50%,
-            transparent 65%
-          );
-          background-size: 250% 100%;
-          background-repeat: no-repeat;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: shineSweep 2s ease-in-out infinite alternate;
-          pointer-events: none;
-        }
-      `}</style>
 
       {/* Heading */}
       <View className="text-center mb-10 lg:mb-16">
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            marginBottom: "4px",
-          }}
+        <View
+    
+          className="inline-flex items-center gap-2 mb-1"
         >
-          <span
+          <Span
+     
+            className="h-px w-8 "
             style={{
-              height: "1px",
-              width: "32px",
               background:
                 "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
             }}
           />
-          <span
+          <Span
             style={{
-              fontSize: "1.5rem",
-              fontWeight: 700,
-              textTransform: "uppercase",
               letterSpacing: "0.35em",
-              color: "#f59e0b",
-              fontFamily: "monospace",
             }}
+            className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
           >
             Engineering Profile
-          </span>
-          <span
+          </Span>
+          <Span
+          className="h-px w-8"
             style={{
-              height: "1px",
-              width: "32px",
               background:
                 "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
             }}
           />
-        </div>
+        </View>
 
         <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
-          <span
+          <Span
             className="font-serif italic font-light ta-heading-shine"
             data-text="Building Enterprise "
           >
             Building Enterprise{" "}
-          </span>
+          </Span>
           <span className="inline-block w-3 sm:w-4" />
-          <span
+          <Span
             className="font-sans font-bold not-italic ta-heading-shine"
             data-text="Software at Scale"
           >
             Software at Scale
-          </span>
+          </Span>
         </H2>
 
         <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
@@ -430,48 +348,39 @@ const TechnicalArsenal = () => {
         >
           <Text className="mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8 px-2 font-light tracking-wide">
             Experienced in{" "}
-            <span className="font-serif italic text-stone-200">
+            <Span className="font-serif italic text-stone-200">
               architecting enterprise platforms
-            </span>
+            </Span>
             , designing{" "}
-            <span className="font-serif italic text-stone-200">
+            <Span className="font-serif italic text-stone-200">
               scalable backend systems
-            </span>
+            </Span>
             , leading engineering initiatives, and delivering{" "}
-            <span className="font-serif italic text-amber-200/90">
+            <Span className="font-serif italic text-amber-200">
               production-ready software
-            </span>{" "}
+            </Span>{" "}
             used across multiple business domains.
           </Text>
         </div>
       </View>
 
       {/* Cards */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-        }}
+      <View
+       className="flex flex-col gap-4"   
       >
         {ENGINEERING_PROFILE.map((section, index) => (
           <EngineeringCard key={section.title} section={section} index={index} />
         ))}
-      </div>
+      </View>
 
       {/* Bottom Stats */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-          gap: "16px",
-          marginTop: "32px",
-        }}
+      <View
+        className="mt-12 lg:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4"
       >
         {STATS.map(([value, label]) => (
           <StatCard key={label} value={value} label={label} />
         ))}
-      </div>
+      </View>
     </Container>
   );
 };

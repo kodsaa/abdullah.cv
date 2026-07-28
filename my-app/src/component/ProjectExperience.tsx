@@ -91,22 +91,54 @@ export default function ProjectExperience() {
   return (
     <Container id="projects" className="max-w-7xl py-28">
 
-      <View className="text-center mb-16">
+    <View className="text-center mb-10 lg:mb-16">
+  <View className="inline-flex items-center gap-2 mb-1">
+    <Span
+      className="h-px w-8"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
+      }}
+    />
+    <Span
+      style={{ letterSpacing: "0.35em" }}
+      className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+    >
+      Portfolio
+    </Span>
+    <Span
+      className="h-px w-8"
+      style={{
+        background:
+          "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
+      }}
+    />
+  </View>
 
-        <Span className="uppercase tracking-[6px] text-amber-500">
-          Portfolio
-        </Span>
+  <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+    <Span
+      className="font-serif italic font-light ta-heading-shine"
+      data-text="Selected Project"
+    >
+      Selected Project{" "}
+    </Span>
 
-        <H2 className="text-5xl font-black mt-3 text-white">
-          Selected Project Experience
-        </H2>
+    <span className="inline-block w-3 sm:w-4" />
 
-        <Span className="text-stone-400 text-lg mt-3 block">
-          Enterprise software engineered for scale, reliability and business
-          impact.
-        </Span>
+    <Span
+      className="font-sans font-bold not-italic ta-heading-shine"
+      data-text="Experience"
+    >
+      Experience
+    </Span>
+  </H2>
 
-      </View>
+  <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
+
+  <Span className="mt-6 block text-stone-400 text-base sm:text-lg max-w-3xl mx-auto leading-8">
+    Enterprise software engineered for scale, reliability and business impact.
+  </Span>
+</View>
 
       <View className="grid md:grid-cols-2 gap-8">
 

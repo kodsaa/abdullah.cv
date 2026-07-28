@@ -353,15 +353,20 @@ const Experience = () => {
                   {job.company}
                 </Text>
 
-                <H3 className="mt-2 text-3xl text-stone-100 font-serif">
-                  {job.role}
-                </H3>
+                      <H3
+          style={{
+            lineHeight: 1.2,
+          }}
+          className="font-serif m-0 p-0 text-amber-200 font-normal"
+        >
+          {job.role}
+        </H3>
 
                 <Text className="mt-2 text-stone-500">
                   {job.location}
                 </Text>
 
-                <Text className="mt-6 text-stone-300 leading-8">
+                <Text className="mt-6 text-stone-300 text-sm">
                   {job.overview}
                 </Text>
 
@@ -373,24 +378,24 @@ const Experience = () => {
                     Key Responsibilities
                   </Text>
 
-                  <View className="flex flex-wrap gap-3">
+                  <View className="">
 
                     {job.achievements.map((item) => (
 
-                      <Span
+                      <Text
                         key={item}
                         className="
                         rounded-full
                         bg-amber-500/10
                         border
                         border-amber-800/30
-                        px-3
-                        py-2
-                        text-amber-300
+                        m-0 mb-1
+                        text-stone-200
+                        text-sm
                         "
                       >
                         {item}
-                      </Span>
+                      </Text>
 
                     ))}
 
@@ -400,30 +405,31 @@ const Experience = () => {
 
                 {/* Impact */}
 
-                <View className="mt-8">
+                <View >
 
                   <Text className="text-xs uppercase tracking-widest text-amber-500 mb-3">
                     Business Impact
                   </Text>
 
-                  <View className="flex flex-wrap gap-3">
+                  <View >
 
                     {job.responsibilities.map((item) => (
 
-                      <Span
+                      <Text
                         key={item}
                         className="
                         rounded-full
                         bg-green-500/10
                         border
                         border-green-900/40
-                        text-green-300
-                        px-3
-                        py-2
+                        text-stone-200
+                        p-0
+                                                text-sm
+
                         "
                       >
                         ✓ {item}
-                      </Span>
+                      </Text>
 
                     ))}
 

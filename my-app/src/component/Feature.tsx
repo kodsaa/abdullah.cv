@@ -40,7 +40,7 @@ const PRODUCTION_SYSTEMS: SystemItem[] = [
   },
   {
     id: "3",
-    title: "⚡ StrivUI Cross-Platform Framework",
+    title: "StrivUI Cross-Platform Framework",
     bounty: "Design System Architecture",
     status: "OPEN SOURCE",
     type: "FRAMEWORK",
@@ -117,6 +117,7 @@ const SystemCard = ({ item, index }: { item: SystemItem; index: number }) => {
   return (
     <div
       ref={ref}
+      className="ta-system-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -208,31 +209,30 @@ const SystemCard = ({ item, index }: { item: SystemItem; index: number }) => {
         </span>
       </div>
 
-      <h3
+      {/* same component + same classes as TechnicalArsenal's card title,
+          including default_h3 — that base class is what actually carries
+          the font, and plain <h3> was missing it */}
+      <H3
+        className="default_h3 font-serif m-0 p-0 text-amber-200 font-normal"
         style={{
           fontSize: "24px",
-          fontFamily: "Georgia, serif",
-          fontWeight: 700,
-          color: "#fef3c7",
-          margin: 0,
           marginBottom: "10px",
           lineHeight: 1.3,
         }}
       >
         {item.title}
-      </h3>
+      </H3>
 
-      <p
+      <Text
+        className="default_text  font-normal text-stone-300"
         style={{
           fontSize: "14px",
-          color: "#d6d3d1",
           lineHeight: 1.7,
           marginBottom: "24px",
-          fontWeight: 300,
         }}
       >
         {item.desc}
-      </p>
+      </Text>
 
       <div
         style={{
@@ -307,17 +307,30 @@ const Feature = () => {
           >
             Production Architecture
           </Span>
+
+          {/* Heading now uses the same font-serif italic / ta-heading-shine
+              treatment as TechnicalArsenal's H2, so both sections feel
+              part of the same site */}
           <H2
             style={{
               fontSize: "40px",
-              fontFamily: "Georgia, serif",
-              fontWeight: 700,
-              color: "#fef3c7",
               marginTop: "6px",
               lineHeight: 1.2,
             }}
           >
-            Featured Systems
+            <Span
+              className="font-serif italic font-light ta-heading-shine"
+              data-text="Featured "
+            >
+              Featured{" "}
+            </Span>
+            <span className="inline-block w-2" />
+            <Span
+              className="font-sans font-bold not-italic ta-heading-shine"
+              data-text="Systems"
+            >
+              Systems
+            </Span>
           </H2>
         </View>
 
