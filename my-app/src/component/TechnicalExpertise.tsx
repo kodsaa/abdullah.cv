@@ -164,6 +164,7 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
 ];
 import { Badge, Button, Card, Container, H2, H3, Modal, Span, Text, View } from "strivui";
 import SkillCloud3D from "../pages/SkillCloud3D";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Reveals a card with a fade + rise transition the first time it
@@ -217,6 +218,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   const [ref, visible] = useRevealOnView();
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const navigate =  useNavigate()
 
   // Alternate the slide direction by column so the grid feels like it's
   // being pulled in from both sides rather than just drifting upward.
