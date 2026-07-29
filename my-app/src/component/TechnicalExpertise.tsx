@@ -26,6 +26,12 @@ import {
   CloudflareIcon
 } from "../icon/icon";
 import {OOPIcon,AsyncProgrammingIcon,MemoryManagementIcon,PerformanceProfilingIcon} from "../icon/skill"
+
+
+
+
+
+
 interface ExpertiseItem {
   icon: ReactNode;
   title: string;
@@ -215,6 +221,8 @@ interface ExpertiseCardProps {
 }
 
 const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
+
+  const [hovered, setHovered] = useState(false);
   const [ref, visible] = useRevealOnView();
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -249,33 +257,55 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
     : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
 
   return (
-    <div
+    <div 
       ref={ref}
       className={`transition-all duration-700 ease-out ${
         visible ? `${slideAnimation} animate-delay-${delayStep}` : "opacity-0"
       }`}
     >
-      <Card
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={handleMouseLeave}
-        style={{ transform: cardTransform }}
-        className="
-        group
-        relative
-        overflow-hidden
-        rounded-3xl
-        bg-stone-900
-        p-6
-        sm:p-7
-        transition-transform
-        duration-300
-        ease-out
-        will-change-transform
-        hover:border-amber-500
-        hover:shadow-[0_20px_50px_rgba(245,158,11,.15)]
-        "
-      >
+     <Card
+  onMouseMove={handleMouseMove}
+  onMouseEnter={(e) => {
+    setHovered(true);
+    setIsHovering(true);
+  }}
+  onMouseLeave={() => {
+    setHovered(false);
+    handleMouseLeave();
+  }}
+  style={{
+    transform: cardTransform,
+    border: `1px solid ${
+      hovered
+        ? "rgba(245,158,11,0.4)"
+        : "rgba(120,53,15,0.2)"
+    }`,
+    transition: "all .3s ease",
+  }}
+  className="
+    group
+    relative
+    overflow-hidden
+    rounded-3xl
+    bg-stone-900
+    p-6
+    sm:p-7
+    will-change-transform
+  "
+>
+        {/* Top glow line - left to right on hover */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            height: "2px",
+            width: hovered ? "100%" : "0%",
+            background: "linear-gradient(to right, #f59e0b, #fb923c, #f59e0b)",
+            transition: "width 0.7s ease-out",
+          }}
+        />
+
         {/* Soft ambient glow that sweeps in on hover, purely decorative */}
         <View
           className="
@@ -388,46 +418,50 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
 const TechnicalExpertise = () => {
   return (
     <Container className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
-      <View className="text-center mb-12 sm:mb-16">
+     <View className="text-center mb-12 sm:mb-16">
+  <View className="inline-flex items-center gap-2 mb-1">
+    <Span
+      className="h-px w-8"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
+      }}
+    />
 
-             <View
-    
-          className="inline-flex items-center gap-2 mb-1"
-        >
-          <Span
-     
-            className="h-px w-8 "
-            style={{
-              background:
-                "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
-            }}
-          />
-          <Span
-            style={{
-              letterSpacing: "0.35em",
-            }}
-            className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
-          >
-           Technical Expertise
-          </Span>
-          <Span
-          className="h-px w-8"
-            style={{
-              background:
-                "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
-            }}
-          />
-        </View>
+    <Span
+      className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+      style={{ letterSpacing: "0.35em" }}
+    >
+      Technical Expertise
+    </Span>
 
-              <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
-          <Span
-            className="font-serif italic font-light ta-heading-shine"
-            data-text="Building Enterprise "
-          >
-            Engineering Excellence
-          </Span>
-      
-        </H2>
+    <Span
+      className="h-px w-8"
+      style={{
+        background:
+          "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
+      }}
+    />
+  </View>
+
+  <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+    <Span
+      className="font-serif italic font-light ta-heading-shine"
+      data-text="Engineering"
+    >
+      Engineering
+    </Span>
+
+    <span className="inline-block w-3 sm:w-4" />
+
+    <Span
+      className="font-sans font-bold not-italic ta-heading-shine"
+      data-text="Excellence"
+    >
+      Excellence
+    </Span>
+  </H2>
+
 
 
      <Text className="mt-5 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8 px-2 font-light tracking-wide">
