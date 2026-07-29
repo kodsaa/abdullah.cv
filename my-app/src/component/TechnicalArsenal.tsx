@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import {
+  Card,
   Container,
   H2,
   H3,
@@ -20,7 +21,6 @@ const ENGINEERING_PROFILE = [
     icon: <ProductDevelopmentIcon className="h-8 w-8 text-orange-500" />,
     title: "Product Development",
     color: "amber",
-    outcome: "Faster shipping, fewer bugs, and production-ready platforms.",
     items: [
       "Enterprise SaaS Platforms",
       "ERP Solutions",
@@ -38,7 +38,6 @@ const ENGINEERING_PROFILE = [
     icon: <ArchitectureEngineeringIcon className="h-8 w-8 text-orange-500" />,
     title: "Architecture & Engineering",
     color: "orange",
-    outcome: "Scalable systems built to handle growth without rewrites.",
     items: [
       "Software Architecture",
       "System Design",
@@ -58,7 +57,6 @@ const ENGINEERING_PROFILE = [
     icon: <BusinessUnderstandingIcon className="h-8 w-8 text-orange-500" />,
     title: "Business Understanding",
     color: "yellow",
-    outcome: "Clear roadmaps, aligned stakeholders, and on-time delivery.",
     items: [
       "Requirement Gathering",
       "Product Discovery",
@@ -105,181 +103,252 @@ const useScrollAnimate = () => {
 
 const EngineeringCard = ({
   section,
-  index,
 }: {
   section: (typeof ENGINEERING_PROFILE)[number];
-  index: number;
 }) => {
   const [hovered, setHovered] = useState(false);
-  const reversed = index % 2 === 1;
 
   return (
-    <View
+    <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         position: "relative",
         overflow: "hidden",
-        borderRadius: "16px",
-        border: `1px solid ${hovered ? "rgba(245,158,11,0.5)" : "#292524"}`,
-        padding: "32px",
-        transition: "all 0.5s ease-out",
+        borderRadius: "20px",
+        border: `1px solid ${hovered ? "rgba(245,158,11,0.45)" : "#292524"}`,
+        backgroundColor: "#1c1917",
+        transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+        transform: hovered ? "translateY(-6px)" : "translateY(0)",
         boxShadow: hovered
-          ? "0 20px 50px -15px rgba(245,158,11,.2)"
+          ? "0 25px 55px -20px rgba(245,158,11,.28)"
           : "none",
-        display: "flex",
-        flexDirection: reversed ? "row-reverse" : "row",
-        flexWrap: "wrap",
-        gap: "32px",
-        alignItems: "flex-start",
       }}
-      className="bg-stone-900"
     >
-      {/* top glow line */}
-      <View
-        className="p-0 m-0 absolute top-0 left-0 h-2"
+      {/* diagonal accent band, top-right */}
+      <div
         style={{
-          height: "2px",
-          width: hovered ? "100%" : "0%",
-          background: "linear-gradient(to right, #f59e0b, #fb923c, #f59e0b)",
-          transition: "width 0.7s ease-out",
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: "90px",
+          height: "90px",
+          overflow: "hidden",
+          pointerEvents: "none",
         }}
-      />
-
-      {/* Left block: icon + title + badge */}
-      <View className="p-0 m-0" style={{ flex: "1 1 240px", minWidth: "220px" }}>
-        <View
-          className="p-0 m-0 h-12 w-12 rounded-md flex items-center justify-center mb-4"
+      >
+        <div
           style={{
+            position: "absolute",
+            top: "14px",
+            right: "-38px",
+            width: "140px",
+            height: hovered ? "34px" : "0px",
+            background: "linear-gradient(90deg, #f59e0b, #fb923c)",
+            transform: "rotate(45deg)",
+            transition: "height 0.4s ease-out",
+            opacity: 0.9,
+          }}
+        />
+      </div>
 
-            border: "1px solid rgba(245,158,11,0.4)",
-            backgroundColor: "rgba(245,158,11,0.08)",
-            transform: hovered ? "scale(1.05)" : "scale(1)",
+      {/* header */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "14px",
+          padding: "24px 20px 18px",
+        }}
+      >
+        <div
+          style={{
+            height: "52px",
+            width: "52px",
+            borderRadius: "16px",
+            backgroundColor: "rgba(245,158,11,0.1)",
+            border: "1px solid rgba(245,158,11,0.25)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            transform: hovered ? "rotate(-6deg) scale(1.05)" : "rotate(0deg) scale(1)",
             transition: "transform 0.4s ease",
           }}
         >
           {section.icon}
-        </View>
+        </div>
 
-        <H3
-          style={{
-            lineHeight: 1.2,
-          }}
-          className="font-serif m-0 p-0 text-amber-200 font-normal"
-        >
-          {section.title}
-        </H3>
-
-        <Text
-        className="font-serif font-normal mt-2 mb-5 text-xs text-stone-400"
-        >
-          Core expertise across {section.items.length}+ specialized areas
-        </Text>
-
-        <View
-          style={{
-            border: "1px solid rgba(245,158,11,0.35)",
-            backgroundColor: "rgba(245,158,11,0.08)",
-          }}
-          className="inline-flex align-center gap-2 rounded-full px-3 py-1 "
-        >
-          <Span
-    
-            className="shrink-0 bg-amber-500 rounded-xl h-2 w-2 mt-1"
-          />
-          <Span
-          className=" text-xs text-amber-400 font-normal "
-      
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <h3
+            style={{
+              fontSize: "19px",
+              fontFamily: "serif",
+              color: "#fef3c7",
+              lineHeight: 1.25,
+              margin: 0,
+            }}
           >
-            {section.outcome}
-          </Span>
-        </View>
-      </View>
+            {section.title}
+          </h3>
+          <span
+            style={{
+              fontSize: "10px",
+              textTransform: "uppercase",
+              letterSpacing: "0.15em",
+              color: "#78716c",
+              fontFamily: "ui-monospace, SF Mono, Menlo, monospace",
+            }}
+          >
+            {section.items.length} core skills
+          </span>
+        </div>
+      </div>
 
-      {/* Right block: skill list */}
-      <View  style={{ flex: "2 1 320px", minWidth: "260px" }}>
-        <View
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            rowGap: "10px",
-            columnGap: "24px",
-          }}
-        >
-          {section.items.map((item) => (
-            <Text
-              key={item}
-              className="flex align-center gap-2 p-0 m-0"
-            >
-              <Span
-            
-                className="shrink-0 text-amber-400 text-sm"
-              >
-                →
-              </Span>
-              <Span
-                style={{
-                  lineHeight: 1.5,
-                }}
-                className="text-sm text-stone-100 "
-              >
-                {item}
-              </Span>
-            </Text>
-          ))}
-        </View>
-      </View>
-    </View>
+      <div
+        style={{
+          height: "1px",
+          margin: "0 20px",
+          background:
+            "linear-gradient(to right, rgba(245,158,11,0.25), transparent)",
+        }}
+      />
+
+      {/* Skills as chips */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "8px",
+          padding: "20px",
+        }}
+      >
+        {section.items.map((item, i) => (
+          <SkillChip key={item} item={item} index={i} parentHovered={hovered} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const SkillChip = ({
+  item,
+  index,
+  parentHovered,
+}: {
+  item: string;
+  index: number;
+  parentHovered: boolean;
+}) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        borderRadius: "8px",
+        border: `1px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.35)"}`,
+        backgroundColor: hovered ? "rgba(245,158,11,0.12)" : "rgba(41,37,36,0.5)",
+        color: hovered ? "#fef3c7" : "#a8a29e",
+        padding: "6px 12px",
+        fontSize: "12.5px",
+        lineHeight: 1.4,
+        transition: "all 0.25s ease, opacity 0.4s ease, transform 0.4s ease",
+        opacity: parentHovered ? 1 : 0.85,
+        transform: parentHovered ? "translateY(0)" : "translateY(0)",
+        transitionDelay: `${index * 25}ms`,
+        cursor: "default",
+      }}
+    >
+      {item}
+    </span>
   );
 };
 
 const StatCard = ({ value, label }: { value: string; label: string }) => {
   const [hovered, setHovered] = useState(false);
   return (
-    <View
+    <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
+        position: "relative",
+        overflow: "hidden",
         backgroundColor: "#1c1917",
         border: `1px solid ${
           hovered ? "rgba(245,158,11,0.4)" : "rgba(120,53,15,0.2)"
         }`,
-        borderRadius: "12px",
-        padding: "16px",
+        borderRadius: "16px",
+        padding: "20px 16px",
         textAlign: "center",
-        transition: "all 0.3s ease",
+        transition: "all 0.35s ease",
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
       }}
     >
+      {/* corner ticks */}
+      <span
+        style={{
+          position: "absolute",
+          top: "8px",
+          left: "8px",
+          width: "10px",
+          height: "10px",
+          borderTop: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
+          borderLeft: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
+          transition: "border-color 0.35s ease",
+        }}
+      />
+      <span
+        style={{
+          position: "absolute",
+          bottom: "8px",
+          right: "8px",
+          width: "10px",
+          height: "10px",
+          borderBottom: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
+          borderRight: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
+          transition: "border-color 0.35s ease",
+        }}
+      />
+
       <h2
         style={{
-          fontSize: "28px",
+          fontSize: "30px",
           fontWeight: 700,
+          fontFamily: "serif",
           color: "#fbbf24",
           margin: 0,
+          letterSpacing: "-0.02em",
         }}
       >
         {value}
       </h2>
-      <View
-        className="mt-2 w-16 p-0 m-0"
+      <div
         style={{
-          height: "1px",
-          backgroundColor: "rgba(245,158,11,0.4)",
-          margin:"auto"
+          marginTop: "10px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          height: "2px",
+          width: hovered ? "36px" : "20px",
+          background: "linear-gradient(to right, #f59e0b, #fb923c)",
+          transition: "width 0.4s ease",
         }}
       />
-      <Text
-        className="mt-2 text-xs uppercase text-gray-100"
+      <p
         style={{
-
+          marginTop: "10px",
+          fontSize: "10px",
+          textTransform: "uppercase",
           letterSpacing: "0.2em",
-
+          color: "#a8a29e",
+          fontFamily: "ui-monospace, SF Mono, Menlo, monospace",
         }}
       >
         {label}
-      </Text>
-    </View>
+      </p>
+    </div>
   );
 };
 
@@ -288,52 +357,94 @@ const TechnicalArsenal = () => {
 
   return (
     <Container className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <style>{`
+        @keyframes textFadeUp {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shineSweep {
+          0% { background-position: -150% 0; }
+          100% { background-position: 150% 0; }
+        }
+        .ta-heading-shine {
+          position: relative;
+          display: inline-block;
+          color: #d97706;
+        }
+        .ta-heading-shine::before {
+          content: attr(data-text);
+          position: absolute;
+          inset: 0;
+          background-image: linear-gradient(
+            100deg,
+            transparent 35%,
+            #ffffff 50%,
+            transparent 65%
+          );
+          background-size: 250% 100%;
+          background-repeat: no-repeat;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shineSweep 2s ease-in-out infinite alternate;
+          pointer-events: none;
+        }
+      `}</style>
 
       {/* Heading */}
       <View className="text-center mb-10 lg:mb-16">
-        <View
-    
-          className="inline-flex items-center gap-2 mb-1"
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            marginBottom: "4px",
+          }}
         >
-          <Span
-     
-            className="h-px w-8 "
+          <span
             style={{
+              height: "1px",
+              width: "32px",
               background:
                 "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
             }}
           />
-          <Span
+          <span
             style={{
+              fontSize: "1.5rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
               letterSpacing: "0.35em",
+              color: "#f59e0b",
+              fontFamily: "monospace",
             }}
-            className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
           >
             Engineering Profile
-          </Span>
-          <Span
-          className="h-px w-8"
+          </span>
+          <span
             style={{
+              height: "1px",
+              width: "32px",
               background:
                 "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
             }}
           />
-        </View>
+        </div>
 
         <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
-          <Span
+          <span
             className="font-serif italic font-light ta-heading-shine"
             data-text="Building Enterprise "
           >
             Building Enterprise{" "}
-          </Span>
+          </span>
           <span className="inline-block w-3 sm:w-4" />
-          <Span
+          <span
             className="font-sans font-bold not-italic ta-heading-shine"
             data-text="Software at Scale"
           >
             Software at Scale
-          </Span>
+          </span>
         </H2>
 
         <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
@@ -348,39 +459,48 @@ const TechnicalArsenal = () => {
         >
           <Text className="mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8 px-2 font-light tracking-wide">
             Experienced in{" "}
-            <Span className="font-serif italic text-stone-200">
+            <span className="font-serif italic text-stone-200">
               architecting enterprise platforms
-            </Span>
+            </span>
             , designing{" "}
-            <Span className="font-serif italic text-stone-200">
+            <span className="font-serif italic text-stone-200">
               scalable backend systems
-            </Span>
+            </span>
             , leading engineering initiatives, and delivering{" "}
-            <Span className="font-serif italic text-amber-200">
+            <span className="font-serif italic text-amber-200/90">
               production-ready software
-            </Span>{" "}
+            </span>{" "}
             used across multiple business domains.
           </Text>
         </div>
       </View>
 
       {/* Cards */}
-      <View
-       className="flex flex-col gap-4"   
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "20px",
+        }}
       >
-        {ENGINEERING_PROFILE.map((section, index) => (
-          <EngineeringCard key={section.title} section={section} index={index} />
+        {ENGINEERING_PROFILE.map((section) => (
+          <EngineeringCard key={section.title} section={section} />
         ))}
-      </View>
+      </div>
 
       {/* Bottom Stats */}
-      <View
-        className="mt-12 lg:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4"
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+          gap: "16px",
+          marginTop: "32px",
+        }}
       >
         {STATS.map(([value, label]) => (
           <StatCard key={label} value={value} label={label} />
         ))}
-      </View>
+      </div>
     </Container>
   );
 };

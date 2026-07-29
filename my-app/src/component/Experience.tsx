@@ -185,13 +185,7 @@ export const EXPERIENCE = [
       "Built reusable application components.",
     ],
 
-    technologies: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "JWT",
-    ],
+    technologies: ["React", "Node.js", "Express", "MongoDB", "JWT"],
   },
 
   {
@@ -253,190 +247,136 @@ export const EXPERIENCE = [
       "Built a strong foundation in software engineering.",
     ],
 
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
-    ],
+    technologies: ["HTML", "CSS", "JavaScript", "React"],
   },
 ];
 
 const Experience = () => {
   return (
-    <Container id="experience" className="max-w-7xl mx-auto py-24 px-6">
-
+    <Container id="experience" className="max-w-7xl mx-auto py-20 sm:py-24 px-4 sm:px-6">
       {/* Heading */}
-
-      <View className="text-center mb-20">
-
-        <Span className="uppercase tracking-[0.35em] text-xs text-amber-500">
-          Career Journey
-        </Span>
-
-        <H2 className="mt-3 text-5xl font-serif text-amber-100">
-          Professional Experience
-        </H2>
-
-        <Text className="mt-5 max-w-3xl mx-auto text-stone-400 leading-8">
-          Building enterprise software, leading engineering teams, and delivering
-          scalable products that create measurable business value.
-        </Text>
-
-      </View>
-
-      <View className="relative">
-
-        {/* Timeline */}
-
-        <View className="absolute left-4 top-0 bottom-0 p-0 w-2 rounded-full bg-white/10 hidden lg:block" />
-
-        <View className="space-y-12">
-
-          {EXPERIENCE?.map((job, index) => (
-
-            <View
-              key={index}
-              className="relative flex flex-col lg:flex-row gap-8"
-            >
-
-              {/* Timeline Dot */}
-
-              <View
-                className="
-                hidden
-                lg:flex
-                absolute
-                left-2
-                top-6
-                h-6
-                w-6
-                rounded-full
-                bg-amber-500
-                border-4
-                border-stone-950
-                "
-              />
-
-              {/* Date */}
-
-              <View className="w-60 pl-10">
-
-                <Text className="text-amber-400 font-semibold">
-                  {job.period}
-                </Text>
-
-                <Text className="text-stone-500 text-sm">
-                  {job.employmentType}
-                </Text>
-
-              </View>
-
-              {/* Card */}
-
-              <Card
-                className="
-                flex-1
-                rounded-3xl
-                bg-stone-900
-                p-8
-                mb-4
-                "
-              >
-
-                <Text className="text-amber-500 text-sm uppercase tracking-widest">
-                  {job.company}
-                </Text>
-
-                      <H3
-          style={{
-            lineHeight: 1.2,
-          }}
-          className="font-serif m-0 p-0 text-amber-200 font-normal"
-        >
-          {job.role}
-        </H3>
-
-                <Text className="mt-2 text-stone-500">
-                  {job.location}
-                </Text>
-
-                <Text className="mt-6 text-stone-300 text-sm">
-                  {job.overview}
-                </Text>
-
-                {/* Highlights */}
-
-                <View className="mt-8">
-
-                  <Text className="text-xs uppercase tracking-widest text-amber-500 mb-3">
-                    Key Responsibilities
-                  </Text>
-
-                  <View className="">
-
-                    {job.achievements.map((item) => (
-
-                      <Text
-                        key={item}
-                        className="
-                        rounded-full
-                        bg-amber-500/10
-                        m-0 mb-1
-                        text-stone-200
-                        text-sm
-                        "
-                      >
-                        {item}
-                      </Text>
-
-                    ))}
-
-                  </View>
-
-                </View>
-
-                {/* Impact */}
-
-                <View >
-
-                  <Text className="text-xs uppercase tracking-widest text-amber-500 mb-3">
-                    Business Impact
-                  </Text>
-
-                  <View  className="grid grid-cols-2">
-
-                    {job.responsibilities.map((item) => (
-
-                      <Text
-                        key={item}
-                        className="
-                        rounded-full
-                        text-stone-200
-                        p-0
-                        mb-1                        text-sm
-
-                        "
-                      >
-                        ✓ {item}
-                      </Text>
-
-                    ))}
-
-                  </View>
-
-                </View>
-
-              </Card>
-
-            </View>
-
-          ))}
-
+      <View className="text-center mb-16 sm:mb-20">
+        <View className="inline-flex items-center gap-2 mb-1">
+          <Span
+            className="h-px w-8"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
+            }}
+          />
+          <Span
+            className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+            style={{ letterSpacing: "0.35em" }}
+          >
+            Career Journey
+          </Span>
+          <Span
+            className="h-px w-8"
+            style={{
+              background:
+                "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
+            }}
+          />
         </View>
 
+        <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+          <Span
+            className="font-serif italic font-light ta-heading-shine"
+            data-text="Professional"
+          >
+            Professional
+          </Span>
+          <span className="inline-block w-3 sm:w-4" />
+          <Span
+            className="font-sans font-bold not-italic ta-heading-shine"
+            data-text="Experience"
+          >
+            Experience
+          </Span>
+        </H2>
+
+        <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
+
+        <Text className="mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8">
+          Building enterprise software, leading engineering teams, and
+          delivering scalable products that create measurable business
+          value.
+        </Text>
       </View>
 
+      {/* Ledger */}
+      <View className="exp-ledger">
+        {EXPERIENCE.map((job, index) => {
+          const isCurrent = job.period.toLowerCase().includes("present");
+          return (
+            <View key={index} className="exp-entry">
+              {/* Marker column */}
+              <View className="exp-marker-col">
+                <span className={`exp-marker ${isCurrent ? "exp-marker--current" : ""}`}>
+                  {String(EXPERIENCE.length - index).padStart(2, "0")}
+                </span>
+                <span className="exp-marker-line" />
+              </View>
+
+              {/* Content */}
+              <Card className="exp-card">
+                <View className="exp-card-head">
+                  <View>
+                    <Text className="exp-company">{job.company}</Text>
+                    <H3 className="exp-role">{job.role}</H3>
+                    <Text className="exp-location">{job.location}</Text>
+                  </View>
+
+                  <View className="exp-meta">
+                    <span className={`exp-period ${isCurrent ? "exp-period--current" : ""}`}>
+                      {job.period}
+                    </span>
+                    <span className="exp-type">{job.employmentType}</span>
+                  </View>
+                </View>
+
+                <Text className="exp-overview">{job.overview}</Text>
+
+                <View className="exp-columns">
+                  {/* Achievements */}
+                  <View className="exp-col">
+                    <Text className="exp-col-label">Key Achievements</Text>
+                    <View className="flex flex-col gap-2">
+                      {job.achievements.map((item) => (
+                        <View key={item} className="exp-pill">
+                          {item}
+                        </View>
+                      ))}
+                    </View>
+                  </View>
+
+                  {/* Responsibilities */}
+                  <View className="exp-col">
+                    <Text className="exp-col-label">Core Responsibilities</Text>
+                    <View className="flex flex-col gap-2">
+                      {job.responsibilities.slice(0, 5).map((item) => (
+                        <View key={item} className="exp-check-row">
+                          <span className="exp-check-mark">✓</span>
+                          <span className="exp-check-text">{item}</span>
+                        </View>
+                      ))}
+                    </View>
+                  </View>
+                </View>
+
+                {/* Technologies */}
+                <View className="exp-tech-row">
+                  {job.technologies.map((tech) => (
+                    <span key={tech} className="exp-tech-chip">
+                      {tech}
+                    </span>
+                  ))}
+                </View>
+              </Card>
+            </View>
+          );
+        })}
+      </View>
     </Container>
   );
 };
