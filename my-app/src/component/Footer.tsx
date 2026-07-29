@@ -5,29 +5,16 @@ import {
   Span,
   View,
   Button,
-  Footer
+  Footer,
 } from "strivui";
 
 const CFooter = () => {
   const year = new Date().getFullYear();
 
-  const navigation = [
-    "Home",
-    "Experience",
-    "Projects",
-    "Skills",
-    "Contact",
-  ];
+  const navigation = ["Home", "Experience", "Projects", "Skills", "Contact"];
 
-  const social = [
-    "GitHub",
-    "LinkedIn",
-    "Email",
-  ];
+  const social = ["GitHub", "LinkedIn", "Email"];
 
-  // Where each nav button should scroll to. Button doesn't support
-  // `href`, so navigation happens via onClick + scrollIntoView instead
-  // of turning these into anchor tags.
   const sectionIds: Record<string, string> = {
     Experience: "experience",
     Projects: "projects",
@@ -40,14 +27,11 @@ const CFooter = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-
     document
       .getElementById(sectionIds[label])
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Where each social button should open. Replace these with your
-  // real profile URLs if they ever change.
   const socialLinks: Record<string, string> = {
     GitHub: "https://github.com/syedabdullahali",
     LinkedIn: "https://www.linkedin.com/in/syed-abdullah-ali380/",
@@ -64,230 +48,103 @@ const CFooter = () => {
   };
 
   return (
-    <Footer className="relative bg-black/50 overflow-hidden border-t  backdrop-blur-xl w-full ">
+    <Footer className="ft-shell">
+      <span className="ft-topline" />
+      <span className="ft-ghost-text">SA</span>
+      <View className="ft-grid" />
+      <View className="ft-orb" />
 
-      {/* Glow */}
-      <View className="absolute -top-20 left-1/2 h-60 w-60 -translate-x-1/2 rounded-full bg-amber-400/10 blur-3xl" />
-
-      <Container>
-        <View className="py-14">
-
-          {/* Main Footer */}
-          <View className="
-            grid 
-            grid-cols-1 
-            gap-10
-            sm:grid-cols-2
-            lg:grid-cols-3
-          ">
-
-
+      <Container className="relative z-10">
+        <View className="py-16">
+          <View className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-12">
             {/* Brand */}
-            <View className="space-y-5">
+            <View className="lg:col-span-5 space-y-5">
+              <View className="ft-status">
+                <span className="ft-status-dot" />
+                <Span className="text-[11px] font-mono tracking-widest text-amber-400 uppercase">
+                  Available for work
+                </Span>
+              </View>
 
-              <H2 className="
-                text-2xl
-                font-black
-                tracking-widest
-                text-amber-400
-              ">
-                SYED ABDULLAH ALI
+              <H2 className="ft-brand">
+                Syed Abdullah <span className="ft-brand-accent">Ali</span>
               </H2>
 
-
-              <Text className="
-                max-w-md
-                text-sm
-                leading-7
-                text-gray-400
-              ">
+              <Text className="max-w-md text-sm leading-7 text-stone-400">
                 Senior Software Engineer specializing in enterprise
                 platforms, scalable architecture, AI-powered systems,
                 cloud infrastructure, and modern product engineering.
               </Text>
 
-
-              <View className="
-                inline-flex
-                w-fit
-                rounded-full
-                border
-                border-amber-400/20
-                bg-amber-400/10
-                px-4
-                py-2
-              ">
-                <Span className="text-xs text-amber-300">
+              <View className="ft-badge">
+                <Span className="text-xs text-amber-300 font-mono">
                   Full Stack Architect
                 </Span>
               </View>
-
             </View>
-
-
 
             {/* Navigation */}
-            <View className="space-y-5">
+            <View className="lg:col-span-3 space-y-5">
+              <Span className="ft-col-label">Navigation</Span>
 
-              <Span className="
-                text-xs
-                font-bold
-                uppercase
-                tracking-[0.3em]
-                text-white
-              ">
-                Navigation
-              </Span>
-
-
-              <View className="
-                grid
-                grid-cols-2
-                gap-3
-              ">
-
-                {
-                  navigation.map((item)=>(
-                    <Button
-                      key={item}
-                      onClick={() => goToSection(item)}
-                      className="
-                        justify-start
-                        bg-transparent
-                        text-gray-400
-                        transition-all
-                        duration-200
-                        hover:text-amber-400
-                        hover:translate-x-1
-                        active:scale-95
-                        focus:outline-none
-                        focus:ring-2
-                        focus:ring-amber-400/40
-                      "
-                    >
-                      {item}
-                    </Button>
-                  ))
-                }
-
+              <View className="flex flex-col gap-1">
+                {navigation.map((item, i) => (
+                  <button
+                    key={item}
+                    onClick={() => goToSection(item)}
+                    className="ft-nav-link"
+                  >
+                    <span className="ft-nav-index">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="ft-nav-text">{item}</span>
+                    <span className="ft-nav-arrow">→</span>
+                  </button>
+                ))}
               </View>
-
             </View>
 
-
-
-
             {/* Connect */}
-            <View className="space-y-5">
+            <View className="lg:col-span-4 space-y-5">
+              <Span className="ft-col-label">Connect</Span>
 
-              <Span className="
-                text-xs
-                font-bold
-                uppercase
-                tracking-[0.3em]
-                text-white
-              ">
-                Connect
-              </Span>
-
-
-              <View className="
-                flex
-                flex-wrap
-                gap-3
-              ">
-
-                {
-                  social.map((item)=>(
-                    <Button
-                      key={item}
-                      onClick={() => goToSocial(item)}
-                      className="
-                        rounded-xl
-                        border
-                        border-white/10
-                        bg-white/5
-                        px-5
-                        py-3
-                        text-gray-300
-                        transition-all
-                        duration-200
-                        hover:border-amber-400/40
-                        hover:text-amber-400
-                        hover:scale-105
-                        active:scale-95
-                        focus:outline-none
-                        focus:ring-2
-                        focus:ring-amber-400/40
-                      "
-                    >
-                      {item}
-                    </Button>
-                  ))
-                }
-
+              <View className="flex flex-col gap-3">
+                {social.map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => goToSocial(item)}
+                    className="ft-social-btn"
+                  >
+                    <span className="ft-social-dot" />
+                    <span className="ft-social-text">{item}</span>
+                    <span className="ft-social-arrow">↗</span>
+                  </button>
+                ))}
               </View>
 
-
-              <Text className="
-                text-sm
-                leading-6
-                text-gray-500
-              ">
+              <Text className="text-sm leading-6 text-stone-500 pt-2">
                 Building enterprise software that scales with
                 businesses worldwide.
               </Text>
-
-
             </View>
-
-
           </View>
 
-
-
           {/* Bottom */}
-          <View className="
-            mt-12
-            flex
-            flex-col
-            gap-4
-            border-t
-            border-white/10
-            pt-6
-
-            sm:flex-row
-            sm:items-center
-            sm:justify-between
-          ">
-
-
-            <Span className="
-              text-center
-              text-xs
-              text-gray-500
-              sm:text-left
-            ">
+          <View className="ft-bottom">
+            <Span className="text-xs text-stone-500">
               © {year} Syed Abdullah Ali. All rights reserved.
             </Span>
 
-
-            <Span className="
-              text-center
-              text-xs
-              text-gray-500
-              sm:text-right
-            ">
-              React • TypeScript • StrivUI
-            </Span>
-
-
+            <View className="ft-stack-strip">
+              <span className="ft-stack-item">React</span>
+              <span className="ft-stack-sep">•</span>
+              <span className="ft-stack-item">TypeScript</span>
+              <span className="ft-stack-sep">•</span>
+              <span className="ft-stack-item">StrivUI</span>
+            </View>
           </View>
-
-
         </View>
       </Container>
-
     </Footer>
   );
 };

@@ -1,13 +1,13 @@
+"use client";
+
 import {
-  Button,
-  Card,
-  Container,
-  H2,
-  H3,
-  Span,
-  View,
-  Badge
-} from "strivui";
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type MouseEvent as ReactMouseEvent,
+} from "react";
+import { Button, Card, Container, H2, H3, Span, View, Badge } from "strivui";
 import {
   ERPIcon,
   CRMPlatformIcon,
@@ -15,83 +15,155 @@ import {
   RealtimeMarketplaceIcon,
 } from "../icon/icon";
 
-const projects = [
+interface Project {
+  title: string;
+  icon: ReactNode;
+  description: string;
+  technologies: string[];
+}
+
+const projects: Project[] = [
   {
     title: "Enterprise ERP Platform",
-    icon:  <ERPIcon className="h-8 w-8 text-orange-500" />,
-    color: "from-amber-600 to-orange-700",
-
+    icon: <ERPIcon className="h-8 w-8 text-orange-500" />,
     description:
       "Designed and developed enterprise-grade ERP modules covering HR, Payroll, Attendance, Inventory, Operations, Sales, Finance, Reporting, workflow automation, secure RBAC, and real-time analytics.",
-
-    technologies: [
-      "React",
-      "Django",
-      "FastAPI",
-      "PostgreSQL",
-      "Redis",
-      "Docker",
-    ],
+    technologies: ["React", "Django", "FastAPI", "PostgreSQL", "Redis", "Docker"],
   },
-
   {
     title: "AI-Powered E-Commerce",
     icon: <AIPoweredIcon className="h-8 w-8 text-orange-500" />,
-    color: "from-cyan-500 to-blue-600",
-
     description:
       "Developed an AI-driven commerce ecosystem including customer portal, vendor portal, admin dashboard, React Native applications, inventory, payments, AI recommendations and intelligent automation.",
-
-    technologies: [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "AI",
-      "React Native",
-      "Stripe",
-    ],
+    technologies: ["React", "Node.js", "MongoDB", "AI", "React Native", "Stripe"],
   },
-
   {
     title: "CRM Platform",
-    icon:<CRMPlatformIcon className="h-8 w-8 text-orange-500" />,
-    color: "from-purple-500 to-fuchsia-700",
-
+    icon: <CRMPlatformIcon className="h-8 w-8 text-orange-500" />,
     description:
       "Created a modern CRM supporting customer lifecycle management, lead tracking, workflow automation, reporting, communication history and enterprise role management.",
-
-    technologies: [
-      "React",
-      "Node",
-      "MongoDB",
-      "Redis",
-      "Socket.io",
-    ],
+    technologies: ["React", "Node", "MongoDB", "Redis", "Socket.io"],
   },
-
   {
     title: "Real-Time Marketplace",
     icon: <RealtimeMarketplaceIcon className="h-8 w-8 text-orange-500" />,
-    color: "from-emerald-500 to-green-700",
-
     description:
       "Engineered scalable marketplace and booking platforms using real-time communication, WebSockets, distributed services, secure authentication and high-performance APIs.",
-
-    technologies: [
-      "React",
-      "Node.js",
-      "Socket.io",
-      "MongoDB",
-      "Express",
-    ],
+    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
   },
 ];
+
+// Scroll-reveal: adds .pe-in-view the first time the card enters the
+// viewport, matching the .pe-reveal CSS transition below.
+const useRevealOnView = () => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(node);
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, visible] as const;
+};
+
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  const [ref, visible] = useRevealOnView();
+
+  // Combines a subtle 3D tilt with a cursor-tracked spotlight: the
+  // card leans toward the pointer, and a soft amber glow follows it
+  // underneath the surface — the one bold interactive moment here.
+  const handleMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+    const el = event.currentTarget;
+    const bounds = el.getBoundingClientRect();
+    const px = (event.clientX - bounds.left) / bounds.width;
+    const py = (event.clientY - bounds.top) / bounds.height;
+
+    el.style.setProperty("--mx", `${px * 100}%`);
+    el.style.setProperty("--my", `${py * 100}%`);
+    el.style.transform = `perspective(1000px) rotateX(${(py - 0.5) * -6}deg) rotateY(${(px - 0.5) * 6}deg) translateY(-6px)`;
+  };
+
+  const handleMouseLeave = (event: ReactMouseEvent<HTMLDivElement>) => {
+    event.currentTarget.style.transform =
+      "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={`pe-reveal ${visible ? "pe-in-view" : ""}`}
+      style={{ transitionDelay: visible ? `${index * 120}ms` : "0ms" }}
+    >
+      <div
+        className="pe-card-outer"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <Card className="pe-card">
+          <span className="pe-spotlight" />
+          <span className="pe-accent-bar" />
+
+          <View className="pe-card-top">
+            <View className="pe-icon">{project.icon}</View>
+            <Span className="pe-tag">Enterprise</Span>
+          </View>
+
+          <H3 className="pe-card-title">{project.title}</H3>
+
+          <Span className="pe-card-desc">{project.description}</Span>
+
+          <View className="pe-badges">
+            {project.technologies.map((tech, techIndex) => (
+              <Badge
+                key={tech}
+                className="pe-badge"
+                style={{ ["--i" as string]: techIndex }}
+              >
+                {tech}
+              </Badge>
+            ))}
+          </View>
+
+          <Button className="pe-cta">
+            View Architecture <span className="pe-cta-arrow">→</span>
+          </Button>
+        </Card>
+      </div>
+    </div>
+  );
+};
 
 export default function ProjectExperience() {
   return (
     <Container id="projects" className="max-w-7xl py-28">
+      {/*
+        Plain CSS, no Tailwind — injected once via a <style> tag so
+        this whole section stays a single self-contained file.
+        Palette matches the rest of the site: amber/orange accents on
+        stone-900/black, no off-theme hues.
+      */}
+     
 
-    <View className="text-center mb-10 lg:mb-16">
+    <View className="text-center mb-12 sm:mb-16">
   <View className="inline-flex items-center gap-2 mb-1">
     <Span
       className="h-px w-8"
@@ -100,12 +172,14 @@ export default function ProjectExperience() {
           "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
       }}
     />
+
     <Span
-      style={{ letterSpacing: "0.35em" }}
       className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+      style={{ letterSpacing: "0.35em" }}
     >
       Portfolio
     </Span>
+
     <Span
       className="h-px w-8"
       style={{
@@ -120,7 +194,7 @@ export default function ProjectExperience() {
       className="font-serif italic font-light ta-heading-shine"
       data-text="Selected Project"
     >
-      Selected Project{" "}
+      Selected Project
     </Span>
 
     <span className="inline-block w-3 sm:w-4" />
@@ -133,69 +207,15 @@ export default function ProjectExperience() {
     </Span>
   </H2>
 
-  <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
-
-  <Span className="mt-6 block text-stone-400 text-base sm:text-lg max-w-3xl mx-auto leading-8">
+  <Span className="mt-6 block text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto leading-relaxed">
     Enterprise software engineered for scale, reliability and business impact.
   </Span>
 </View>
 
-      <View className="grid md:grid-cols-2 gap-8">
-
-        {projects.map((project) => (
-          <Card
-            key={project.title}
-            className=" rounded-3xl bg-stone-900"
-          >
-            <View
-              className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${project.color}`}
-            />
-
-            <View className="p-8">
-
-              <View className="flex justify-between items-center mb-5">
-
-                <View className="text-5xl">
-                  {project.icon}
-                </View>
-
-                <Span color="success">
-                  Enterprise
-                </Span>
-
-              </View>
-
-              <H3 className="text-white mb-4">
-                {project.title}
-              </H3>
-
-              <Span className="leading-7 text-stone-300">
-                {project.description}
-              </Span>
-
-              <View className="flex flex-wrap gap-2 mt-8">
-
-                {project.technologies.map((tech) => (
-                  <Badge
-                    key={tech}
-                    className="bg-stone-800 text-amber-800 border-amber-700"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
-
-              </View>
-
-              <Button
-                className="mt-8 text-amber-400 hover:text-white"
-              >
-                View Architecture →
-              </Button>
-
-            </View>
-          </Card>
+      <View className="pe-grid">
+        {projects.map((project, index) => (
+          <ProjectCard key={project.title} project={project} index={index} />
         ))}
-
       </View>
     </Container>
   );
