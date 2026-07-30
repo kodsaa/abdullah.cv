@@ -8,7 +8,7 @@ interface Testimonial {
   message: string;
   initials: string;
 }
-
+  
 const TESTIMONIALS: Testimonial[] = [
   {
     name: "Veeramreddy Amarnathreddy",
