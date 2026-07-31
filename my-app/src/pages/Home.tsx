@@ -8,11 +8,13 @@ import ProjectExperience from "../component/ProjectExperience";
 import LeadershipOwnership from "../component/LeadershipOwnership";
 import Testimonials from "../component/Testimonials";
 import Reveal from "../component/Reveal";
+import FeatureTest from "../component/Feature";
 
 export default function App() {
   return (
     <>
       <Reveal variant="fade-up">
+
         <Hero />
       </Reveal>
 
@@ -47,6 +49,7 @@ export default function App() {
       <Reveal variant="fade-right">
         <ContactMe />
       </Reveal>
+      
     </>
   );
 }

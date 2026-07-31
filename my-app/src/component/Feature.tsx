@@ -1,81 +1,144 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from "react";
 import {
   Container,
-  View,
-  Card,
   H2,
   H3,
-  Text,
   Span,
+  Text,
+  View,
 } from "strivui";
 
-interface SystemItem {
-  id: string;
-  title: string;
-  bounty: string;
-  status: string;
-  type: string;
-  desc: string;
-  tech: string[];
-}
+import {
+  ArchitectureEngineeringIcon,
+  ProductDevelopmentIcon,
+  BusinessUnderstandingIcon,
+  CodeIcon,
+} from "../icon/icon";
 
-const PRODUCTION_SYSTEMS: SystemItem[] = [
+export const ENGINEERING_PROFILE = [
   {
-    id: "1",
-    title: "Enterprise HRMS & Resource Management Engine",
-    bounty: "Enterprise Scale • Multi-Role Access",
-    status: "PROD / DEPLOYED",
-    type: "ENTERPRISE",
-    desc: "Designed scalable, role-based architecture for Manager, HR, Finance, and Employee portals. Architected transaction boundaries for payroll, leave tracking, and complex timesheet processing.",
-    tech: ["Django", "React.js", "Redux Toolkit", "PostgreSQL"],
+    id: "ALL",
+    label: "ALL SYSTEMS",
   },
+
   {
-    id: "2",
-    title: "Zero-Downtime Legacy Data Migration Engine",
-    bounty: "High Concurrency • ETL",
-    status: "MISSION CRITICAL",
-    type: "BACKEND",
-    desc: "Engineered robust Excel-to-DB migration pipelines to import thousands of employee records and leave models into relational schema without data loss or downtime.",
-    tech: ["Python", "Django ORM", "PostgreSQL", "Bulk Ops"],
+    id: "APPLICATIONS",
+    label: "APPLICATIONS",
+    icon: <ProductDevelopmentIcon className="h-8 w-8 text-orange-500" />,
+    title: "Application Systems",
+    color: "amber",
+    outcome:
+      "Complete software platforms focused on solving real-world business problems.",
+    items: [
+      "Human Resource Management System (HRMS)",
+      "Enterprise Resource Planning (ERP)",
+      "Customer Relationship Management (CRM)",
+      "Marketplace Platform",
+      "Website Builder CMS",
+      "Fleet & Rental Platform",
+      "E-Commerce Solutions",
+      "Business Management Applications",
+      "No-Code Platforms",
+      "Booking & Reservation Systems",
+    ],
   },
+
   {
-    id: "3",
-    title: "StrivUI Cross-Platform Framework",
-    bounty: "Design System Architecture",
-    status: "OPEN SOURCE",
-    type: "FRAMEWORK",
-    desc: "Cross-platform UI component library bridging web (React) and mobile (React Native) with strict utility-first styling and unified API surfaces.",
-    tech: ["TypeScript", "React", "React Native", "SCSS"],
+    id: "CORE",
+    label: "CORE SYSTEMS",
+    icon: <ArchitectureEngineeringIcon className="h-8 w-8 text-orange-500" />,
+    title: "Core System Modules",
+    color: "orange",
+    outcome:
+      "The foundational systems powering scalable and maintainable applications.",
+    items: [
+      "Authentication System",
+      "Role-Based Access Control (RBAC)",
+      "Notification Center",
+      "Real-Time Event Engine",
+      "File Management Service",
+      "Search & Filter Engine",
+      "JWT & OAuth Authentication",
+      "Cloud Storage Integration",
+      "Real-Time Collaboration",
+      "Secure Session Management",
+    ],
+  },
+
+  {
+    id: "AUTOMATION",
+    label: "AUTOMATION",
+    icon: <BusinessUnderstandingIcon className="h-8 w-8 text-orange-500" />,
+    title: "Automation & Processing Systems",
+    color: "yellow",
+    outcome:
+      "Automating repetitive workflows and large-scale data operations.",
+    items: [
+      "Data Migration Engine",
+      "Import & Export Service",
+      "Workflow Automation",
+      "Report Generation",
+      "Background Job Scheduler",
+      "Excel & CSV Processing",
+      "PDF Generation",
+      "Business Process Automation",
+      "Task Scheduling",
+      "Bulk Data Processing",
+    ],
+  },
+
+  {
+    id: "PLATFORM",
+    label: "PLATFORM",
+    icon: <CodeIcon className="h-8 w-8 text-orange-500" />,
+    title: "Frameworks & Platform Tools",
+    color: "stone",
+    outcome:
+      "Reusable tools and developer platforms that accelerate product development.",
+    items: [
+      "StrivUI Framework",
+      "Component Design System",
+      "Developer CLI Tools",
+      "Deployment Toolkit",
+      "Cross-Platform UI Library",
+      "Reusable Components",
+      "CI/CD Automation",
+      "Docker Deployment",
+      "GitHub Actions",
+      "Developer Productivity Tools",
+    ],
   },
 ];
 
-const FILTERS = ["ALL", "ENTERPRISE", "BACKEND", "FRAMEWORK"];
 
-// ---- Scroll-triggered visibility hook ----
-const useScrollAnimate = (threshold = 0.15) => {
+const useScrollAnimate = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold }
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
     );
+
     observer.observe(el);
     return () => observer.disconnect();
-  }, [threshold]);
+  }, []);
 
   return { ref, isVisible };
 };
 
-const FilterChip = ({
-  type,
+const FilterTab = ({
+  label,
   active,
   onClick,
 }: {
-  type: string;
+  label: string;
   active: boolean;
   onClick: () => void;
 }) => {
@@ -89,11 +152,11 @@ const FilterChip = ({
         fontFamily: "monospace",
         fontSize: "11px",
         letterSpacing: "0.05em",
-        padding: "8px 14px",
+        padding: "10px 18px",
         borderRadius: "8px",
         border: active
           ? "1px solid #d97706"
-          : `1px solid ${hovered ? "rgba(245,158,11,0.4)" : "transparent"}`,
+          : `1px solid ${hovered ? "rgba(245,158,11,0.4)" : "rgba(120,53,15,0.3)"}`,
         background: active
           ? "linear-gradient(135deg, #f59e0b, #d97706)"
           : "#1c1917",
@@ -105,49 +168,49 @@ const FilterChip = ({
         boxShadow: active ? "0 8px 20px -6px rgba(245,158,11,0.5)" : "none",
       }}
     >
-      {type}
+      {label}
     </button>
   );
 };
 
-const SystemCard = ({ item, index }: { item: SystemItem; index: number }) => {
+const EngineeringCard = ({
+  section,
+  index,
+}: {
+  section: (typeof ENGINEERING_PROFILE)[number];
+  index: number;
+}) => {
   const [hovered, setHovered] = useState(false);
-  const { ref, isVisible } = useScrollAnimate();
+  const reversed = index % 2 === 1;
+
+  if (section.id === "ALL") return null;
 
   return (
-    <div
-      ref={ref}
-      className="ta-system-card"
+    <View
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(160deg, #1c1917 0%, #16130f 100%)",
-        border: `1px solid ${hovered ? "#d97706" : "rgba(120,53,15,0.5)"}`,
         borderRadius: "16px",
-        padding: "28px",
-        marginBottom: "22px",
-        transition:
-          "border-color 0.4s ease, box-shadow 0.4s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease",
+        border: `1px solid ${hovered ? "rgba(245,158,11,0.5)" : "#292524"}`,
+        padding: "32px",
+        transition: "all 0.5s ease-out",
         boxShadow: hovered
-          ? "0 24px 55px -20px rgba(245,158,11,.28)"
-          : "0 8px 20px -12px rgba(0,0,0,.5)",
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible
-          ? hovered
-            ? "translateY(-4px)"
-            : "translateY(0)"
-          : "translateY(24px)",
-        transitionDelay: isVisible ? `${index * 90}ms` : "0ms",
+          ? "0 20px 50px -15px rgba(245,158,11,.2)"
+          : "none",
+        display: "flex",
+        flexDirection: reversed ? "row-reverse" : "row",
+        flexWrap: "wrap",
+        gap: "32px",
+        alignItems: "flex-start",
       }}
+      className="bg-stone-900"
     >
       {/* top glow line */}
-      <div
+      <View
+        className="p-0 m-0 absolute top-0 left-0 h-2"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
           height: "2px",
           width: hovered ? "100%" : "0%",
           background: "linear-gradient(to right, #f59e0b, #fb923c, #f59e0b)",
@@ -155,210 +218,210 @@ const SystemCard = ({ item, index }: { item: SystemItem; index: number }) => {
         }}
       />
 
-      {/* faint corner glow */}
-      <div
+      {/* Left block: icon + title + badge */}
+      <View className="p-0 m-0" style={{ flex: "1 1 240px", minWidth: "220px" }}>
+        <View
+          className="p-0 m-0 h-12 w-12 rounded-md flex items-center justify-center mb-4"
+          style={{
+            border: "1px solid rgba(245,158,11,0.4)",
+            backgroundColor: "rgba(245,158,11,0.08)",
+            transform: hovered ? "scale(1.05)" : "scale(1)",
+            transition: "transform 0.4s ease",
+          }}
+        >
+          {section.icon}
+        </View>
+
+        <H3
+          style={{ lineHeight: 1.2 }}
+          className="font-serif m-0 p-0 text-amber-200 font-normal"
+        >
+          {section.title}
+        </H3>
+
+        <Text className="font-serif font-normal mt-2 mb-5 text-xs text-stone-400">
+          Core expertise across {section.items?.length}+ specialized areas
+        </Text>
+
+        <View
+          style={{
+            border: "1px solid rgba(245,158,11,0.35)",
+            backgroundColor: "rgba(245,158,11,0.08)",
+          }}
+          className="inline-flex align-center gap-2 rounded-full px-3 py-1"
+        >
+          <Span className="shrink-0 bg-amber-500 rounded-xl h-2 w-2 mt-1" />
+          <Span className="text-xs text-amber-400 font-normal">
+            {section.outcome}
+          </Span>
+        </View>
+      </View>
+
+      {/* Right block: skill list */}
+      <View style={{ flex: "2 1 320px", minWidth: "260px" }}>
+        <View
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            rowGap: "10px",
+            columnGap: "24px",
+          }}
+        >
+          {section.items?.map((item) => (
+            <Text key={item} className="flex align-center gap-2 p-0 m-0">
+              <Span className="shrink-0 text-amber-400 text-sm">→</Span>
+              <Span style={{ lineHeight: 1.5 }} className="text-sm text-stone-100">
+                {item}
+              </Span>
+            </Text>
+          ))}
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const StatCard = ({ value, label }: { value: string; label: string }) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <View
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: "#1c1917",
+        border: `1px solid ${
+          hovered ? "rgba(245,158,11,0.4)" : "rgba(120,53,15,0.2)"
+        }`,
+        borderRadius: "12px",
+        padding: "16px",
+        textAlign: "center",
+        transition: "all 0.3s ease",
+        transform: hovered ? "translateY(-4px)" : "translateY(0)",
+      }}
+    >
+      <h2
         style={{
-          position: "absolute",
-          top: "-60px",
-          right: "-60px",
-          width: "180px",
-          height: "180px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)",
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.5s ease",
-          pointerEvents: "none",
+          fontSize: "28px",
+          fontWeight: 700,
+          color: "#fbbf24",
+          margin: 0,
+        }}
+      >
+        {value}
+      </h2>
+      <View
+        className="mt-2 w-16 p-0 m-0"
+        style={{
+          height: "1px",
+          backgroundColor: "rgba(245,158,11,0.4)",
+          margin: "auto",
         }}
       />
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          marginBottom: "18px",
-          flexWrap: "wrap",
-          gap: "8px",
-        }}
-      >
-        <span
-          style={{
-            fontSize: "11px",
-            fontFamily: "monospace",
-            fontWeight: 700,
-            padding: "5px 10px",
-            borderRadius: "6px",
-            background: "rgba(120,53,15,0.25)",
-            border: "1px solid rgba(180,83,9,0.4)",
-            color: "#fbbf24",
-            letterSpacing: "0.04em",
-          }}
-        >
-          {item.status}
-        </span>
-        <span
-          style={{
-            fontSize: "11px",
-            fontFamily: "monospace",
-            color: "#a8a29e",
-          }}
-        >
-          {item.bounty}
-        </span>
-      </div>
-
-      {/* same component + same classes as TechnicalArsenal's card title,
-          including default_h3 — that base class is what actually carries
-          the font, and plain <h3> was missing it */}
-      <H3
-        className="default_h3 font-serif m-0 p-0 text-amber-200 font-normal"
-        style={{
-          fontSize: "24px",
-          marginBottom: "10px",
-          lineHeight: 1.3,
-        }}
-      >
-        {item.title}
-      </H3>
-
       <Text
-        className="default_text  font-normal text-stone-300"
-        style={{
-          fontSize: "14px",
-          lineHeight: 1.7,
-          marginBottom: "24px",
-        }}
+        className="mt-2 text-xs uppercase text-gray-100"
+        style={{ letterSpacing: "0.2em" }}
       >
-        {item.desc}
+        {label}
       </Text>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          gap: "8px",
-          paddingTop: "18px",
-          borderTop: "1px solid rgba(41,37,36,0.8)",
-        }}
-      >
-        {item.tech.map((t, idx) => (
-          <span
-            key={idx}
-            style={{
-              fontSize: "11px",
-              fontFamily: "monospace",
-              background: "#0c0a09",
-              color: "#a8a29e",
-              padding: "5px 10px",
-              borderRadius: "6px",
-              border: "1px solid #292524",
-              transition: "border-color 0.3s ease, color 0.3s ease",
-            }}
-          >
-            #{t}
-          </span>
-        ))}
-      </div>
-    </div>
+    </View>
   );
 };
 
 const Feature = () => {
-  const [activeFilter, setActiveFilter] = useState("ALL");
+  const [activeTab, setActiveTab] = useState("ALL");
+  const { ref: textRef, isVisible: textVisible } = useScrollAnimate();
 
-  const filteredSystems =
-    activeFilter === "ALL"
-      ? PRODUCTION_SYSTEMS
-      : PRODUCTION_SYSTEMS.filter((item) => item.type === activeFilter);
+  const activeSections =
+    activeTab === "ALL"
+      ? ENGINEERING_PROFILE.filter((item) => item.id !== "ALL")
+      : ENGINEERING_PROFILE.filter((item) => item.id === activeTab);
 
   return (
-    <Container
-      id="systems"
-      style={{
-        padding: "80px 24px",
-        maxWidth: "72rem",
-        marginLeft: "auto",
-        marginRight: "auto",
-      }}
-    >
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          marginBottom: "40px",
-          gap: "20px",
-        }}
-      >
-        <View>
-          <Span
-            style={{
-              color: "#f59e0b",
-              fontFamily: "monospace",
-              fontSize: "12px",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-            }}
-          >
-            Production Architecture
-          </Span>
-
-          {/* Heading now uses the same font-serif italic / ta-heading-shine
-              treatment as TechnicalArsenal's H2, so both sections feel
-              part of the same site */}
-          <H2
-            style={{
-              fontSize: "40px",
-              marginTop: "6px",
-              lineHeight: 1.2,
-            }}
-          >
-            <Span
-              className="font-serif italic font-light ta-heading-shine"
-              data-text="Featured "
+    <Container className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      {/* Heading */}
+     
+          <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                marginBottom: "40px",
+                gap: "20px",
+              }}
             >
-              Featured{" "}
-            </Span>
-            <span className="inline-block w-2" />
-            <Span
-              className="font-sans font-bold not-italic ta-heading-shine"
-              data-text="Systems"
-            >
-              Systems
-            </Span>
-          </H2>
-        </View>
+              <View>
+                <Span
+                  style={{
+                    color: "#f59e0b",
+                    fontFamily: "monospace",
+                    fontSize: "12px",
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Production Architecture
+                </Span>
+      
+                {/* Heading now uses the same font-serif italic / ta-heading-shine
+                    treatment as TechnicalArsenal's H2, so both sections feel
+                    part of the same site */}
+                <H2
+                  style={{
+                    fontSize: "40px",
+                    marginTop: "6px",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  <Span
+                    className="font-serif italic font-light ta-heading-shine"
+                    data-text="Featured "
+                  >
+                    Featured{" "}
+                  </Span>
+                  <span className="inline-block w-2" />
+                  <Span
+                    className="font-sans font-bold not-italic ta-heading-shine"
+                    data-text="Systems"
+                  >
+                    Systems
+                  </Span>
+                </H2>
+              </View>
+      
+              {/* Filter Chips */}
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "8px",
+                  flexWrap: "wrap",
+                }}
+              >
+                     {ENGINEERING_PROFILE.map((item) => (
+          <FilterTab
+            key={item.id}
+            label={item.label}
+            active={activeTab === item.id}
+            onClick={() => setActiveTab(item.id)}
+          />
+        ))}
+              </View>
+            </View>
 
-        {/* Filter Chips */}
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "8px",
-            flexWrap: "wrap",
-          }}
-        >
-          {FILTERS.map((type) => (
-            <FilterChip
-              key={type}
-              type={type}
-              active={activeFilter === type}
-              onClick={() => setActiveFilter(type)}
-            />
-          ))}
-        </View>
+      {/* Dynamic Tab Cards Content */}
+      <View className="flex flex-col gap-6">
+        {activeSections.map((section, index) => (
+          <EngineeringCard
+            key={section.id}
+            section={section}
+            index={index}
+          />
+        ))}
       </View>
 
-      <div>
-        {filteredSystems.map((item, index) => (
-          <SystemCard key={item.id} item={item} index={index} />
-        ))}
-      </div>
+  
     </Container>
   );
 };

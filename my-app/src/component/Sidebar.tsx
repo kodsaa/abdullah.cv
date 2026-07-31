@@ -119,55 +119,41 @@ const Sidebar = ({
             value={theme}
             onChange={setTheme}
             options={[
-              { label: "🌙 Dark", value: "dark" },
-              { label: "☀ Light", value: "light" },
-              { label: "💻 System", value: "system" },
+              { label: "Obsidian", value: "obsidian" },
+              { label: "Midnight", value: "midnight" },
+              { label: "Carbon", value: "carbon" },
+              { label: "Titanium", value: "titanium" },
+              { label: "Steel", value: "steel" },
+              { label: "Quartz", value: "quartz" },
+              { label: "Sandstone", value: "sandstone" },
+              { label: "Aurora", value: "aurora" },
+              { label: "Nebula", value: "nebula" },
+              { label: "Solarized", value: "solarized" },
+              { label: "High Contrast", value: "contrast" },
+              { label: "System Default", value: "system" },
             ]}
           />
-
         </View>
 
         {/* Time */}
 
-        <View >
+   <View>
+  <Text className="mb-3 text-stone-400">
+    Language
+  </Text>
 
-          <Text className="mb-3 text-stone-400">
-            Time of Day
-          </Text>
-
-          <Select
-            value={timeOfDay}
+  <Select
+value={timeOfDay}
             onChange={setTimeOfDay}
-            options={[
-              { label: "🌅 Sunrise", value: "sunrise" },
-              { label: "☀ Day", value: "day" },
-              { label: "🌇 Evening", value: "evening" },
-              { label: "🌙 Night", value: "night" },
-            ]}
-          />
-
-        </View>
-
+    options={[
+      { label: "🇺🇸 English", value: "en" },
+      { label: "🇵🇰 اردو (Urdu)", value: "ur" },
+      { label: "🇸🇦 العربية (Arabic)", value: "ar" },
+      { label: "🇮🇳 हिन्दी (Hindi)", value: "hi" },
+    ]}
+  />
+</View>
         {/* Season */}
-
-        <View >
-
-          <Text className="mb-3 text-stone-400">
-            Season
-          </Text>
-
-          <Select
-            value={season}
-            onChange={setSeason}
-            options={[
-              { label: "☀ Summer", value: "summer" },
-              { label: "❄ Winter", value: "winter" },
-              { label: "🌧 Rain", value: "rain" },
-              { label: "🍂 Autumn", value: "autumn" },
-            ]}
-          />
-
-        </View>
 
         {/* Switches */}
 
@@ -175,7 +161,7 @@ const Sidebar = ({
 
           <View className="flex flex-row justify-between items-center">
 
-            <Text className="text-amber-300">✨ Visual Effects</Text>
+            <Text className="text-stone-400 m-0 p-0  "> Thunder Effects</Text>
 
             <Switch
               checked={effects}
@@ -183,6 +169,17 @@ const Sidebar = ({
             />
 
           </View>
+             <View className="flex flex-row justify-between items-center">
+
+            <Text className="text-stone-400 m-0 p-0 "> Water Effects</Text>
+
+            <Switch
+              checked={effects}
+              onChange={() => setEffects(!effects)}
+            />
+
+          </View>
+
 
         </View>
 
