@@ -1,35 +1,3 @@
 .sora-font {
   font-family: "Sora", sans-serif;
 }
-.water-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #0f4c81 0%, #051923 100%);
-}
-
-/* Base distorted water layer */
-.water-surface {
-  position: absolute;
-  inset: -20px;
-  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover;
-  filter: url(#water-turbulence);
-  opacity: 0.85;
-}
-
-/* Cursor-following ripple highlight */
-.water-ripple {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(0,150,255,0.1) 40%, transparent 70%);
-  /* Transform controlled by CSS variables */
-  transform: translate(calc(var(--x, 50vw) - 125px), calc(var(--y, 50vh) - 125px)) scale(1);
-  mix-blend-mode: overlay;
-  transition: transform 0.15s ease-out;
-}

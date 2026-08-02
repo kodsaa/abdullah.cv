@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import {
   Button,
   Card,
@@ -30,6 +31,8 @@ interface SidebarProps {
 
   effects: boolean;
   setEffects: (value: boolean) => void;
+
+  children:ReactNode
 }
 
 const Sidebar = ({
@@ -47,6 +50,7 @@ const Sidebar = ({
   setMusic,
   effects,
   setEffects,
+  children
 }: SidebarProps) => {
   return (
     <View
@@ -60,6 +64,7 @@ const Sidebar = ({
         transition-all
         duration-700
         h-screen
+        w-80
         ${
           open
             ? "translate-x-0 opacity-100"
@@ -73,7 +78,7 @@ const Sidebar = ({
           rounded-none
           border-l
           border-white/10
-          bg-black
+          theme_sidebar_bg
           backdrop-blur-3xl
           p-8
           flex
@@ -117,6 +122,7 @@ const Sidebar = ({
 
           <Select
             value={theme}
+            className="bg-amber-900 text-amber-50"
             onChange={setTheme}
             options={[
               { label: "Obsidian", value: "obsidian" },
@@ -157,29 +163,18 @@ value={timeOfDay}
 
         {/* Switches */}
 
-        <View className="mt-10 flex flex-col gap-6 ">
+        <View className="mt-10 ">
 
-          <View className="flex flex-row justify-between items-center">
+            <Text className="text-stone-400 ">Effects</Text>
 
-            <Text className="text-stone-400 m-0 p-0  "> Thunder Effects</Text>
 
-            <Switch
-              checked={effects}
-              onChange={() => setEffects(!effects)}
-            />
-
-          </View>
-             <View className="flex flex-row justify-between items-center">
-
-            <Text className="text-stone-400 m-0 p-0 "> Water Effects</Text>
+            {/* <Text className="text-stone-400 m-0 p-0 "> Water Effects</Text>
 
             <Switch
               checked={effects}
               onChange={() => setEffects(!effects)}
-            />
-
-          </View>
-
+            /> */}
+            {children}
 
         </View>
 
@@ -190,8 +185,7 @@ value={timeOfDay}
           <Button
             className="
               w-full
-              bg-amber-500
-              text-black
+              theme_button-highlight
               rounded-xl
               py-3
             "

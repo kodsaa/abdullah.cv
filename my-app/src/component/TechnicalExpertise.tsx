@@ -390,8 +390,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
               border
               border-amber-300
               text-amber-300
-              px-3
-              py-2
+              p-2
               text-xs
               transition-all
               duration-300

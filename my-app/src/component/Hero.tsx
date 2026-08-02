@@ -12,6 +12,68 @@ import {
 interface HeroProps {
   setIsTelegraphOpen: (value: boolean) => void;
 }
+const themeColors = {
+  obsidian: {
+    primary: 0xf59e0b,
+    secondary: 0xfbbf24,
+    particle: 0xfcd34d,
+  },
+  midnight: {
+    primary: 0x3b82f6,
+    secondary: 0x60a5fa,
+    particle: 0x93c5fd,
+  },
+  carbon: {
+    primary: 0xef4444,
+    secondary: 0xf87171,
+    particle: 0xfca5a5,
+  },
+  titanium: {
+    primary: 0x06b6d4,
+    secondary: 0x67e8f9,
+    particle: 0xa5f3fc,
+  },
+  steel: {
+    primary: 0x38bdf8,
+    secondary: 0x7dd3fc,
+    particle: 0xbae6fd,
+  },
+  quartz: {
+    primary: 0x8b5cf6,
+    secondary: 0xc4b5fd,
+    particle: 0xddd6fe,
+  },
+  sandstone: {
+    primary: 0xb45309,
+    secondary: 0xfbbf24,
+    particle: 0xfde68a,
+  },
+  aurora: {
+    primary: 0x10b981,
+    secondary: 0x2dd4bf,
+    particle: 0x99f6e4,
+  },
+  nebula: {
+    primary: 0xa855f7,
+    secondary: 0xd8b4fe,
+    particle: 0xe9d5ff,
+  },
+  solarized: {
+    primary: 0xb58900,
+    secondary: 0x2aa198,
+    particle: 0xeee8d5,
+  },
+  contrast: {
+    primary: 0xffff00,
+    secondary: 0xffffff,
+    particle: 0xffffff,
+  },
+  system: {
+  primary: 0xffe082,
+  secondary: 0xfbbf24,
+  particle: 0xfcd34d,
+},
+} as const;
 
 const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -34,10 +96,31 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
     setTilt({ x: 0, y: 0 });
   };
 
+const [theme, setTheme] = useState(
+  document.documentElement.dataset.theme ?? "system"
+);
+
+useEffect(() => {
+  const observer = new MutationObserver(() => {
+    setTheme(document.documentElement.dataset.theme ?? "system");
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
+  return () => observer.disconnect();
+}, []);
+
   // --- Three.js Scene Setup ---
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
+
+    const colors =
+  themeColors[theme as keyof typeof themeColors] ??
+  themeColors.system;
 
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
@@ -57,10 +140,12 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
     // 2. 3D Wireframe Icosahedron (Geometric Accent)
     const geometry = new THREE.IcosahedronGeometry(1.6, 1);
     const material = new THREE.MeshStandardMaterial({
-      color: 0xf59e0b,
-      wireframe: true,
-      roughness: 0.3,
-      metalness: 0.8,
+       color: colors.primary,
+  emissive: colors.primary,
+  emissiveIntensity: 0.1,
+  wireframe: true,
+  roughness: 0.3,
+  metalness: 0.8,
     });
     const mainPoly = new THREE.Mesh(geometry, material);
     mainPoly.position.set(2.2, 0.2, -1);
@@ -69,7 +154,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
     // Inner Core Solid Sphere
     const coreGeo = new THREE.SphereGeometry(0.8, 16, 16);
     const coreMat = new THREE.MeshBasicMaterial({
-      color: 0xfbbf24,
+      color: colors.secondary,
       wireframe: true,
       transparent: true,
       opacity: 0.3,
@@ -94,7 +179,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
     );
 
     const particlesMat = new THREE.PointsMaterial({
-      color: 0xfcd34d,
+      color:  colors.particle,
       size: 0.035,
       transparent: true,
       opacity: 0.6,
@@ -108,7 +193,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xf59e0b, 2, 50);
+    const pointLight = new THREE.PointLight(colors.primary, 4, 80);
     pointLight.position.set(3, 3, 3);
     scene.add(pointLight);
 
@@ -174,7 +259,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
         container.removeChild(renderer.domElement);
       }
     };
-  }, []);
+  }, [theme]);
 
   return (
     <Container
@@ -182,50 +267,27 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        position: "relative",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0 24px",
-        backgroundColor: "#080707",
-        color: "#f5f5f4",
         perspective: "1000px",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
       }}
-      className="max-w-full p-0 m-0"
+      className="relative max-w-full p-0 m-0 theme_hero-container flex align-items-center justify-center relative min-h-screen"
     >
       {/* --- THREE.JS CANVAS MOUNT POINT --- */}
       <div
         ref={mountRef}
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
+        className="absolute inset-0 z-10 pointer-events-none"
+   
       />
 
       {/* Radial Lighting Overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 2,
-          background:
-            "radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.1) 0%, rgba(8,7,7,0.8) 75%)",
-          pointerEvents: "none",
-        }}
+      <View
+        className="absolute inset-0 pointer-events-none theme_overlay-hero"
+     
       />
 
       {/* --- CONTENT LAYER --- */}
       <View
+        className="relative z-10 w-full max-w-5xl pt-32 pb-20 "
         style={{
-          position: "relative",
-          zIndex: 10,
-          width: "100%",
           maxWidth: "1280px",
           paddingTop: "120px",
           paddingBottom: "80px",
@@ -235,52 +297,23 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
         }}
       >
         {/* Status Badge */}
-        <View style={{ display: "flex", alignItems: "center", transform: "translateZ(30px)" }}>
+        <View className="flex align-item-center" style={{ transform: "translateZ(30px)" }}>
           <Span
+            className="theme_quote_color text-xs inline-flex align-item-center gap-2 rounded-full border  px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest  shadow-lg backdrop-blur-md"
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              borderRadius: "9999px",
-              border: "1px solid rgba(245, 158, 11, 0.4)",
-              backgroundColor: "rgba(245, 158, 11, 0.08)",
-              backdropFilter: "blur(16px)",
-              padding: "8px 20px",
-              fontSize: "11px",
-              fontFamily: "monospace",
-              fontWeight: 700,
-              textTransform: "uppercase",
               letterSpacing: "0.25em",
-              color: "#fbbf24",
-              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)",
             }}
           >
             <Span
-              style={{
-                position: "relative",
-                display: "flex",
-                width: "13px",
-                height: "13px",
-              }}
+
+              className="w-3 h-3 flex relative"
             >
               <Span
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "50%",
-                  backgroundColor: "#f59e0b",
-                  animation: "ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite",
-                  opacity: 0.75,
-                }}
+                className="theme_indicator_hero absolute inset-0 rounded-full animate-ping opacity-75"
+      
               />
               <Span
-                style={{
-                  position: "relative",
-                  width: "13px",
-                  height: "13px",
-                  borderRadius: "50%",
-                  backgroundColor: "#f59e0b",
-                }}
+                className="theme_indicator_hero relative rounded-full w-3 h-3"
               />
             </Span>
             Every launch starts with a single line of brave code.
@@ -301,51 +334,33 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
           className="text-6xl"
         >
           <Span
-            style={{
-              fontFamily: "serif",
-              fontStyle: "italic",
-              fontWeight: 200,
-              color: "#f5f5f4",
-            }}
+            className="italic font-light font-serif theme_hero-text-heading"
             
           >
             Engineering{" "}
           </Span>
           <br />
           <Span
-            style={{
-              fontFamily: "sans-serif",
-              fontWeight: 900,
-              background:
-                "linear-gradient(135deg, #ffffff 0%, #fef3c7 40%, #f59e0b 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              textShadow: "0 10px 30px rgba(245, 158, 11, 0.3)",
-            }}
+            className="theme_hero-text-heading-gradient font-extrabold serif"
           >
             Scalable Systems
           </Span>
           <br />
           <Span
-            style={{
-              fontFamily: "sans-serif",
-              fontWeight: 800,
-              color: "#d6d3d1",
-              fontSize: "0.85em",
-            }}
+            className="theme_hero-text-heading-secondary font-extrabold serif"
           >
-            For Enterprise Scale
+            For Digital World Scale
           </Span>
         </H1>
 
         {/* Description */}
         <Text
+          className="theme_paragraph_secondary "
           style={{
             marginTop: "32px",
             maxWidth: "700px",
             fontSize: "17px",
             lineHeight: 1.8,
-            color: "#a8a29e",
             fontFamily: "sans-serif",
             fontWeight: 400,
             letterSpacing: "0.01em",
@@ -370,10 +385,9 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
         >
           <Button
             onClick={() => setIsTelegraphOpen(true)}
+            className="border bg-transparent rounded-xl overflow-hidden py-5 px-10 theme_hero-button"
             style={{
               borderRadius: "14px",
-              background: "linear-gradient(135deg, #fbbf24 0%, #d97706 100%)",
-              color: "#080707",
               fontWeight: 800,
               padding: "18px 36px",
               fontSize: "15px",
@@ -381,7 +395,6 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
               letterSpacing: "0.05em",
               border: "none",
               cursor: "pointer",
-              boxShadow: "0 15px 35px -5px rgba(245, 158, 11, 0.5)",
             }}
           >
             Let's Connect →
@@ -389,23 +402,8 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
 
           <Button
             href="#projects"
-            variant="outline"
-            style={{
-              borderRadius: "14px",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              backgroundColor: "rgba(28, 25, 23, 0.6)",
-              backdropFilter: "blur(20px)",
-              color: "#f5f5f4",
-              fontWeight: 600,
-              padding: "18px 36px",
-              fontSize: "15px",
-              fontFamily: "sans-serif",
-              cursor: "pointer",
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            className="border bg-transparent rounded-xl overflow-hidden py-5 px-10"
+      
           >
             Explore Technical Work
           </Button>
@@ -413,11 +411,8 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
 
         {/* Metric Cards */}
         <View
+          className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           style={{
-            marginTop: "80px",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "20px",
             transformStyle: "preserve-3d",
           }}
         >
@@ -429,50 +424,35 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
           ].map(([number, label, detail, depth]) => (
             <View
               key={label as string}
+              className="theme_card-hero relative flex flex-col items-start justify-center rounded-xl border  p-8 backdrop-blur-3xl shadow-lg"
               style={{
                 position: "relative",
-                borderRadius: "20px",
-                border: "1px solid rgba(245, 158, 11, 0.25)",
-                backgroundColor: "rgba(18, 16, 15, 0.75)",
-                backdropFilter: "blur(24px)",
-                padding: "28px",
-                overflow: "hidden",
                 transformStyle: "preserve-3d",
                 transform: `translateZ(${depth}px)`,
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.6)",
               }}
             >
-              <div
+              <View 
+                 className="absolute top-0 left-0 right-0 theme_card-hero-overlay"
                 style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
                   height: "2px",
-                  background:
-                    "linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.8), transparent)",
                 }}
               />
 
               <Text
+                className="theme_primary_highlight_hero text-4xl font-extrabold m-0"
                 style={{
-                  fontSize: "42px",
-                  fontWeight: 900,
-                  color: "#f59e0b",
                   fontFamily: "monospace",
                   lineHeight: 1,
-                  margin: 0,
                   letterSpacing: "-0.03em",
-                  textShadow: "0 5px 15px rgba(245, 158, 11, 0.4)",
                 }}
               >
                 {number}
               </Text>
 
               <Text
+                className="theme_paragraph"
                 style={{
                   marginTop: "12px",
-                  color: "#f5f5f4",
                   fontSize: "14px",
                   fontFamily: "sans-serif",
                   fontWeight: 700,
@@ -483,9 +463,9 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
               </Text>
 
               <Text
+                className="theme_paragraph_secondary"
                 style={{
                   marginTop: "4px",
-                  color: "#78716c",
                   fontSize: "12px",
                   fontFamily: "monospace",
                   margin: "4px 0 0 0",
@@ -498,14 +478,7 @@ const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
         </View>
       </View>
 
-      <style>{`
-        @keyframes ping {
-          75%, 100% {
-            transform: scale(2.2);
-            opacity: 0;
-          }
-        }
-      `}</style>
+
     </Container>
   );
 };

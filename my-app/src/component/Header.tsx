@@ -8,7 +8,6 @@ import {
   View,
 } from "strivui";
 
-import Sidebar from "./Sidebar";
 import { useEffect, useState } from "react";
 import syedTown from "../assets/syed.jpeg";
 
@@ -35,16 +34,8 @@ const MENU = [
   },
 ];
 
-const Header = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+const Header = ({setSidebarOpen}:{setSidebarOpen:()=>void}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const [saloonLights, setSaloonLights] = useState(true);
-  const [season, setSeason] = useState("summer");
-  const [timeOfDay, setTimeOfDay] = useState("day");
-  const [theme, setTheme] = useState("dark");
-  const [music, setMusic] = useState(true);
-  const [effects, setEffects] = useState(true);
 
   // Scroll listener to toggle header background
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,7 +59,7 @@ const Header = () => {
       <View
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           isScrolled
-            ? "bg-black-200"
+            ? "theme_header_bg"
             : "bg-transparent"
         }`}
       >
@@ -79,35 +70,27 @@ const Header = () => {
 
             <View>
               <H3
-                className="text-white font-bold text-base"
-                style={{
-                  fontFamily: "serif",
-                  fontStyle: "italic",
-                  fontWeight: 200,
-                  color: "#f5f5f4",
-                }}
+                className="text-white font-normal font-serif text-base theme_paragraph  italic"
+       
               >
                 Syed Abdullah Ali
               </H3>
 
-              <Span className="text-xs text-stone-400">
+              <Span className="text-xs theme_paragraph_secondary">
                 Senior Software Engineer
               </Span>
             </View>
           </View>
 
           {/* Desktop Navigation */}
-          <View className="hidden lg:flex flex-row items-center gap-8 border px-4 py-2 rounded-full">
+          <View className="hidden lg:flex flex-row items-center gap-8 border theme_border px-4 py-2 rounded-full">
             {MENU.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-stone-300 hover:text-amber-400 transition"
+                className="theme_paragraph theme_paragraph_hover transition font-normal italic "
                 style={{
                   fontFamily: "serif",
-                  fontStyle: "italic",
-                  fontWeight: 200,
-                  color: "#f5f5f4",
                 }}
               >
                 {item.label}
@@ -130,7 +113,7 @@ const Header = () => {
             {/* Settings */}
             <Button
               onClick={() => setSidebarOpen(true)}
-              className="rounded-xl bg-stone-900 border border-stone-700 w-11 h-11 text-xl hover:bg-stone-800"
+              className="rounded-xl bg-white/10 border border-stone-700 w-11 h-11 text-xl theme_paragraph theme_border transition"
             >
               ⚙
             </Button>
@@ -220,22 +203,7 @@ const Header = () => {
       )}
 
       {/* Settings Sidebar */}
-      <Sidebar
-        open={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-        season={season}
-        setSeason={setSeason}
-        timeOfDay={timeOfDay}
-        setTimeOfDay={setTimeOfDay}
-        saloonLights={saloonLights}
-        setSaloonLights={setSaloonLights}
-        theme={theme}
-        setTheme={setTheme}
-        music={music}
-        setMusic={setMusic}
-        effects={effects}
-        setEffects={setEffects}
-      />
+ 
     </>
   );
 };
