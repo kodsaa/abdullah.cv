@@ -97,37 +97,6 @@ body{
 
 
 
- @keyframes textFadeUp {
-          from { opacity: 0; transform: translateY(12px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes shineSweep {
-          0% { background-position: -150% 0; }
-          100% { background-position: 150% 0; }
-        }
-        .ta-heading-shine {
-          position: relative;
-          display: inline-block;
-          color: #d97706;
-        }
-        .ta-heading-shine::before {
-          content: attr(data-text);
-          position: absolute;
-          inset: 0;
-          background-image: linear-gradient(
-            100deg,
-            transparent 35%,
-            #ffffff 50%,
-            transparent 65%
-          );
-          background-size: 250% 100%;
-          background-repeat: no-repeat;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: shineSweep 2s ease-in-out infinite alternate;
-          pointer-events: none;
-        }
 
 
 /* ===== Project Experience Section ===== */
@@ -227,22 +196,9 @@ body{
   position: relative;
   border-radius: 8px;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, #16140f 0%, #0a0908 100%);
-  background-image:
-    linear-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 158, 11, 0.05) 1px, transparent 1px),
-    linear-gradient(180deg, #16140f 0%, #0a0908 100%);
-  background-size: 28px 28px, 28px 28px, 100% 100%;
-  border: 1px solid rgba(120, 53, 15, 0.35);
   padding: 2.25rem 2rem;
   height: 100%;
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.pe-card-outer:hover .pe-card {
-  border-color: rgba(120, 53, 15, 0.35);
-  box-shadow: 0 25px 60px -25px rgba(245, 158, 11, 0.2);
 }
 
 /* Corner brackets - the signature interactive touch, like a camera
@@ -255,7 +211,6 @@ body{
   position: absolute;
   width: 22px;
   height: 22px;
-  border: 2px solid #f59e0b;
   opacity: 0.45;
   transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
   pointer-events: none;
@@ -288,11 +243,6 @@ body{
 .pe-spotlight {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    360px circle at var(--mx) var(--my),
-    rgba(245, 158, 11, 0.08),
-    transparent 65%
-  );
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -309,7 +259,6 @@ body{
   left: 0;
   height: 2px;
   width: 0%;
-  background: linear-gradient(90deg, #f59e0b, #ea580c);
   transition: width 0.6s ease-out;
 }
 
@@ -333,13 +282,10 @@ body{
   width: 3.75rem;
   height: 3.75rem;
   border-radius: 4px;
-  background: rgba(245, 158, 11, 0.06);
-  border: 1px solid rgba(245, 158, 11, 0.25);
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .pe-card-outer:hover .pe-icon {
-  border-color: rgba(245, 158, 11, 0.6);
   transform: translateY(-2px);
 }
 
@@ -354,9 +300,7 @@ body{
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  color: #fbbf24;
   background: transparent;
-  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .pe-tag::before {
@@ -364,13 +308,11 @@ body{
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #f59e0b;
 }
 
 .pe-card-title {
   position: relative;
   z-index: 1;
-  color: #fef3c7;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.5rem;
   margin-bottom: 0.9rem;
@@ -380,7 +322,6 @@ body{
   position: relative;
   z-index: 1;
   display: block;
-  color: #a8a29e;
   line-height: 1.8;
   font-size: 0.92rem;
 }
@@ -399,16 +340,10 @@ body{
   border-radius: 3px;
   font-size: 0.72rem;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  color: #78716c;
   background: transparent;
-  border: 1px solid rgba(120, 53, 15, 0.3);
   transition: border-color 0.25s ease, color 0.25s ease;
 }
 
-.pe-badge:hover {
-  border-color: #f59e0b;
-  color: #fef3c7;
-}
 
 .pe-cta {
   position: relative;
@@ -420,7 +355,6 @@ body{
   background: none;
   border: none;
   padding: 0;
-  color: #78716c;
   font-size: 0.85rem;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
   letter-spacing: 0.03em;
@@ -429,9 +363,7 @@ body{
   transition: color 0.3s ease;
 }
 
-.pe-card-outer:hover .pe-cta {
-  color: #fbbf24;
-}
+
 
 .pe-cta-arrow {
   display: inline-block;
@@ -1226,8 +1158,6 @@ body{
   flex: 1;
   position: relative;
   border-radius: 20px;
-  background: #18150f;
-  border: 1px solid rgba(120, 53, 15, 0.25);
   padding: 1.75rem 1.5rem;
   transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }

@@ -112,12 +112,12 @@ const EngineeringCard = ({
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="theme_card_background"
       style={{
         position: "relative",
         overflow: "hidden",
         borderRadius: "20px",
         border: `1px solid ${hovered ? "rgba(245,158,11,0.45)" : "#292524"}`,
-        backgroundColor: "#1c1917",
         transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
         boxShadow: hovered
@@ -273,10 +273,10 @@ const StatCard = ({ value, label }: { value: string; label: string }) => {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="theme_card_background"
       style={{
         position: "relative",
         overflow: "hidden",
-        backgroundColor: "#1c1917",
         border: `1px solid ${
           hovered ? "rgba(245,158,11,0.4)" : "rgba(120,53,15,0.2)"
         }`,
@@ -357,39 +357,6 @@ const TechnicalArsenal = () => {
 
   return (
     <Container className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <style>{`
-        @keyframes textFadeUp {
-          from { opacity: 0; transform: translateY(12px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes shineSweep {
-          0% { background-position: -150% 0; }
-          100% { background-position: 150% 0; }
-        }
-        .ta-heading-shine {
-          position: relative;
-          display: inline-block;
-          color: #d97706;
-        }
-        .ta-heading-shine::before {
-          content: attr(data-text);
-          position: absolute;
-          inset: 0;
-          background-image: linear-gradient(
-            100deg,
-            transparent 35%,
-            #ffffff 50%,
-            transparent 65%
-          );
-          background-size: 250% 100%;
-          background-repeat: no-repeat;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: shineSweep 2s ease-in-out infinite alternate;
-          pointer-events: none;
-        }
-      `}</style>
 
       {/* Heading */}
       <View className="text-center mb-10 lg:mb-16">
@@ -401,33 +368,17 @@ const TechnicalArsenal = () => {
             marginBottom: "4px",
           }}
         >
-          <span
-            style={{
-              height: "1px",
-              width: "32px",
-              background:
-                "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
-            }}
+          <Span
+            className="h-px w-8 theme_section_main_heading_dash"
           />
-          <span
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.35em",
-              color: "#f59e0b",
-              fontFamily: "monospace",
-            }}
+           <Span
+            className="uppercase tracking-widest font-mono font-bold text-3xl theme_section_main_heading"
+            style={{ letterSpacing: "0.35em" }}
           >
-            Engineering Profile
-          </span>
-          <span
-            style={{
-              height: "1px",
-              width: "32px",
-              background:
-                "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
-            }}
+             Engineering Profile
+          </Span>
+          <Span
+            className="h-px w-8 theme_section_main_heading_dash"
           />
         </div>
 
@@ -457,17 +408,17 @@ const TechnicalArsenal = () => {
               : { opacity: 0 }
           }
         >
-          <Text className="mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8 px-2 font-light tracking-wide">
+          <Text className="mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg theme_section_paragraph leading-7 lg:leading-8 px-2 font-light tracking-wide">
             Experienced in{" "}
-            <span className="font-serif italic text-stone-200">
+            <span className="font-serif italic theme_section_paragraph_highlight">
               architecting enterprise platforms
             </span>
             , designing{" "}
-            <span className="font-serif italic text-stone-200">
+            <span className="font-serif italic theme_section_paragraph_highlight">
               scalable backend systems
             </span>
             , leading engineering initiatives, and delivering{" "}
-            <span className="font-serif italic text-amber-200/90">
+            <span className="font-serif italic theme_section_paragraph_highlight_secondary">
               production-ready software
             </span>{" "}
             used across multiple business domains.

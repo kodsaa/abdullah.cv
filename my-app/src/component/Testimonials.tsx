@@ -149,14 +149,11 @@ const Testimonials = () => {
         <View>
           <View className="inline-flex items-center gap-2 mb-2">
             <Span
-              className="h-px w-8"
-              style={{
-                background:
-                  "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
-              }}
+              className="h-px w-8  theme_section_main_heading_dash"
+              
             />
             <Span
-              className="uppercase tracking-widest text-amber-400 font-mono font-bold text-xs sm:text-sm"
+              className="uppercase tracking-widest text-amber-400 font-mono font-bold text-xs sm:text-sm  theme_section_main_heading"
               style={{ letterSpacing: "0.35em" }}
             >
               Testimonials

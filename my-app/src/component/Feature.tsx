@@ -205,7 +205,7 @@ const EngineeringCard = ({
         gap: "32px",
         alignItems: "flex-start",
       }}
-      className="bg-stone-900"
+      className="theme_card_background"
     >
       {/* top glow line */}
       <View
@@ -353,8 +353,8 @@ const Feature = () => {
             >
               <View>
                 <Span
+                  className="theme_section_main_heading"
                   style={{
-                    color: "#f59e0b",
                     fontFamily: "monospace",
                     fontSize: "12px",
                     letterSpacing: "0.2em",

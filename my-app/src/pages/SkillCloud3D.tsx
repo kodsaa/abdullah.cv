@@ -1,7 +1,172 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, Line, Stars } from "@react-three/drei";
 import * as THREE from "three";
+
+// Dynamic Theme Configuration Map
+const THEME_STYLES: Record<
+  string,
+  {
+    background: string;
+    navBg: string;
+    navBorder: string;
+    textColor: string;
+    activeTextColor: string;
+    labelColor: string;
+    starsFade: boolean;
+    ambientIntensity: number;
+    coreColor?: string;
+    accentColor?: string;
+  }
+> = {
+  obsidian: {
+    background: "linear-gradient(180deg, #050505 0%, #0c0d10 50%, #020202 100%)",
+    navBg: "rgba(18, 18, 20, 0.85)",
+    navBorder: "rgba(255, 255, 255, 0.12)",
+    textColor: "#e4e4e7",
+    activeTextColor: "#ffffff",
+    labelColor: "#ffffff",
+    starsFade: true,
+    ambientIntensity: 0.35,
+    coreColor: "#6366f1",
+    accentColor: "#818cf8",
+  },
+  midnight: {
+    background: "radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0f172a 50%, #020617 100%)",
+    navBg: "rgba(15, 23, 42, 0.85)",
+    navBorder: "rgba(99, 102, 241, 0.25)",
+    textColor: "#cbd5e1",
+    activeTextColor: "#ffffff",
+    labelColor: "#f8fafc",
+    starsFade: true,
+    ambientIntensity: 0.4,
+    coreColor: "#38bdf8",
+    accentColor: "#60a5fa",
+  },
+  carbon: {
+    background: "radial-gradient(circle at center, #27272a 0%, #18181b 50%, #09090b 100%)",
+    navBg: "rgba(24, 24, 27, 0.85)",
+    navBorder: "rgba(255, 255, 255, 0.15)",
+    textColor: "#d4d4d8",
+    activeTextColor: "#ffffff",
+    labelColor: "#f4f4f5",
+    starsFade: true,
+    ambientIntensity: 0.35,
+    coreColor: "#a1a1aa",
+    accentColor: "#e4e4e7",
+  },
+  titanium: {
+    background: "linear-gradient(135deg, #1c1917 0%, #27414a 50%, #0c0a09 100%)",
+    navBg: "rgba(41, 37, 36, 0.85)",
+    navBorder: "rgba(214, 211, 209, 0.2)",
+    textColor: "#e7e5e4",
+    activeTextColor: "#ffffff",
+    labelColor: "#f5f5f4",
+    starsFade: true,
+    ambientIntensity: 0.4,
+    coreColor: "#f97316",
+    accentColor: "#fb923c",
+  },
+  steel: {
+    background: "radial-gradient(circle at top, #1e293b 0%, #34456a 60%, #020617 100%)",
+    navBg: "rgba(30, 41, 59, 0.85)",
+    navBorder: "rgba(148, 163, 184, 0.25)",
+    textColor: "#cbd5e1",
+    activeTextColor: "#0f172a",
+    labelColor: "#f8fafc",
+    starsFade: true,
+    ambientIntensity: 0.4,
+    coreColor: "#0ea5e9",
+    accentColor: "#38bdf8",
+  },
+  quartz: {
+    background: "linear-gradient(180deg, #2e1065 0%, #3b0764 50%, #18022d 100%)",
+    navBg: "rgba(59, 7, 100, 0.85)",
+    navBorder: "rgba(192, 132, 252, 0.3)",
+    textColor: "#e9d5ff",
+    activeTextColor: "#ffffff",
+    labelColor: "#f3e8ff",
+    starsFade: true,
+    ambientIntensity: 0.45,
+    coreColor: "#c084fc",
+    accentColor: "#e879f9",
+  },
+  sandstone: {
+    background: `
+      radial-gradient(circle at 50% 45%, rgba(255,191,36,0.12) 0%, transparent 18%),
+      radial-gradient(circle at 20% 20%, rgba(180,83,9,0.15) 0%, transparent 30%),
+      radial-gradient(circle at 80% 25%, rgba(120,53,15,0.12) 0%, transparent 35%),
+      linear-gradient(180deg, #000000 0%, #0B0603 12%, #140A05 28%, #221108 45%, #31180C 62%, #050302 100%)
+    `,
+    navBg: "rgba(20, 12, 8, 0.85)",
+    navBorder: "rgba(245, 158, 11, 0.25)",
+    textColor: "#fde68a",
+    activeTextColor: "#000000",
+    labelColor: "#fef3c7",
+    starsFade: true,
+    ambientIntensity: 0.3,
+    coreColor: "#f59e0b",
+    accentColor: "#fbbf24",
+  },
+  aurora: {
+    background: "radial-gradient(circle at 50% 20%, #064e3b 0%, #022c22 50%, #020617 100%)",
+    navBg: "rgba(6, 78, 59, 0.85)",
+    navBorder: "rgba(52, 211, 153, 0.3)",
+    textColor: "#a7f3d0",
+    activeTextColor: "#022c22",
+    labelColor: "#ecfdf5",
+    starsFade: true,
+    ambientIntensity: 0.4,
+    coreColor: "#10b981",
+    accentColor: "#34d399",
+  },
+  nebula: {
+    background: "radial-gradient(circle at 70% 30%, #4c0f50 0%, #300e63 40%, #090514 100%)",
+    navBg: "rgba(76, 29, 149, 0.85)",
+    navBorder: "rgba(232, 121, 249, 0.3)",
+    textColor: "#f5d0fe",
+    activeTextColor: "#ffffff",
+    labelColor: "#fae8ff",
+    starsFade: true,
+    ambientIntensity: 0.45,
+    coreColor: "#ec4899",
+    accentColor: "#f472b6",
+  },
+  solarized: {
+    background: "radial-gradient(circle at center, #073642 0%, #002b36 70%, #001e26 100%)",
+    navBg: "rgba(7, 54, 66, 0.85)",
+    navBorder: "rgba(42, 161, 152, 0.3)",
+    textColor: "#93a1a1",
+    activeTextColor: "#002b36",
+    labelColor: "#fdf6e3",
+    starsFade: true,
+    ambientIntensity: 0.35,
+    coreColor: "#2aa198",
+    accentColor: "#859900",
+  },
+  contrast: {
+    background: "#000000",
+    navBg: "rgba(0, 0, 0, 0.95)",
+    navBorder: "#ffffff",
+    textColor: "#ffffff",
+    activeTextColor: "#000000",
+    labelColor: "#ffffff",
+    starsFade: false,
+    ambientIntensity: 0.5,
+    coreColor: "#ffffff",
+    accentColor: "#ffffff",
+  },
+  system: {
+    background: "radial-gradient(circle at center, #1e170c 0%, #280f08 100%)",
+    navBg: "rgba(24, 24, 27, 0.85)",
+    navBorder: "rgba(255, 255, 255, 0.15)",
+    textColor: "#e4e4e7",
+    activeTextColor: "#000000",
+    labelColor: "#ffffff",
+    starsFade: true,
+    ambientIntensity: 0.35,
+  },
+};
 
 const skillsData = [
   {
@@ -117,62 +282,39 @@ const skillsData = [
   },
 ];
 
-// Custom Shader Material for realistic planetary atmosphere glow
-const AtmosphereShader = {
-  uniforms: {
-    color: { value: new THREE.Color("#3b82f6") },
-  },
-  vertexShader: `
-    varying vec3 vNormal;
-    void main() {
-      vNormal = normalize(normalMatrix * normal);
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 color;
-    varying vec3 vNormal;
-    void main() {
-      float intensity = pow(0.6 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
-      gl_FragColor = vec4(color, 1.0) * intensity;
-    }
-  `,
-};
-
-// Procedural Canvas Texture Generator for realistic surfaces
-function generatePlanetTexture(baseColorHex: string, skillIndex: number) {
+function generatePlanetTexture(baseColorHex: string, themeAccentHex: string | undefined, skillIndex: number) {
   const canvas = document.createElement("canvas");
   canvas.width = 512;
   canvas.height = 256;
   const ctx = canvas.getContext("2d")!;
 
   const base = new THREE.Color(baseColorHex);
-  const dark = base.clone().multiplyScalar(0.35);
-  const light = base.clone().lerp(new THREE.Color("#ffffff"), 0.35);
+  const blendedBase = themeAccentHex 
+    ? base.clone().lerp(new THREE.Color(themeAccentHex), 0.45)
+    : base;
 
-  // Surface base gradient
+  const dark = blendedBase.clone().multiplyScalar(0.35);
+  const light = blendedBase.clone().lerp(new THREE.Color("#ffffff"), 0.4);
+
   const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
   grad.addColorStop(0, `#${dark.getHexString()}`);
-  grad.addColorStop(0.5, `#${base.getHexString()}`);
+  grad.addColorStop(0.5, `#${blendedBase.getHexString()}`);
   grad.addColorStop(1, `#${dark.getHexString()}`);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Surface details (Gas bands, terrestrial noise, or craters)
   ctx.fillStyle = `#${light.getHexString()}`;
-  ctx.globalAlpha = 0.25;
+  ctx.globalAlpha = 0.3;
 
   const styleType = skillIndex % 3;
 
   if (styleType === 0) {
-    // Gas giant horizontal atmospheric bands
     for (let y = 0; y < canvas.height; y += 8 + (skillIndex % 5)) {
       if (Math.sin(y * 0.05) > 0) {
         ctx.fillRect(0, y, canvas.width, 4 + (skillIndex % 6));
       }
     }
   } else if (styleType === 1) {
-    // Terrestrial continents and landmass patterns
     for (let i = 0; i < 40; i++) {
       const cx = (Math.sin(i * 12.3 + skillIndex) * 0.5 + 0.5) * canvas.width;
       const cy = (Math.cos(i * 4.7 + skillIndex) * 0.5 + 0.5) * canvas.height;
@@ -182,7 +324,6 @@ function generatePlanetTexture(baseColorHex: string, skillIndex: number) {
       ctx.fill();
     }
   } else {
-    // Cratered rocky surface
     for (let i = 0; i < 65; i++) {
       const cx = Math.random() * canvas.width;
       const cy = Math.random() * canvas.height;
@@ -195,11 +336,10 @@ function generatePlanetTexture(baseColorHex: string, skillIndex: number) {
     }
   }
 
-  // Polar ice caps
-  ctx.globalAlpha = 0.65;
+  ctx.globalAlpha = 0.7;
   ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, canvas.width, 16);
-  ctx.fillRect(0, canvas.height - 16, canvas.width, 16);
+  ctx.fillRect(0, 0, canvas.width, 14);
+  ctx.fillRect(0, canvas.height - 14, canvas.width, 14);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.wrapS = THREE.RepeatWrapping;
@@ -207,47 +347,73 @@ function generatePlanetTexture(baseColorHex: string, skillIndex: number) {
   return texture;
 }
 
-// Realistic Planet Component
-function Planet({ name, level, color, radius, speed, initialAngle, index }: any) {
+function Planet({
+  name,
+  level,
+  color,
+  themeAccent,
+  radius,
+  speed,
+  initialAngle,
+  index,
+  labelColor,
+}: any) {
   const orbitGroupRef = useRef<THREE.Group>(null!);
   const planetMeshRef = useRef<THREE.Mesh>(null!);
 
   const planetSize = 0.22 + (level / 100) * 0.25;
 
-  // Generate procedural surface texture
-  const surfaceTexture = useMemo(() => generatePlanetTexture(color, index), [color, index]);
+  const surfaceTexture = useMemo(
+    () => generatePlanetTexture(color, themeAccent, index),
+    [color, themeAccent, index]
+  );
+
+  const blendedOrbitColor = useMemo(() => {
+    if (!themeAccent) return color;
+    return `#${new THREE.Color(color).lerp(new THREE.Color(themeAccent), 0.5).getHexString()}`;
+  }, [color, themeAccent]);
 
   useFrame((_, delta) => {
-    // Orbital rotation around Sun
     if (orbitGroupRef.current) {
       orbitGroupRef.current.rotation.y += speed * delta;
     }
-    // Axial self-rotation
     if (planetMeshRef.current) {
       planetMeshRef.current.rotation.y += (speed * 2.5 + 0.2) * delta;
     }
   });
 
-  // Precompute orbit line geometry
   const points = useMemo(() => {
     const pts = [];
     for (let i = 0; i <= 64; i++) {
       const theta = (i / 64) * Math.PI * 2;
-      pts.push(new THREE.Vector3(Math.cos(theta) * radius, 0, Math.sin(theta) * radius));
+      pts.push(
+        new THREE.Vector3(
+          Math.cos(theta) * radius,
+          0,
+          Math.sin(theta) * radius
+        )
+      );
     }
     return pts;
   }, [radius]);
 
   return (
     <>
-      {/* Orbit Ring */}
-      <Line points={points} color={color} opacity={0.18} transparent lineWidth={1} />
-
-      {/* Orbiting Axis Group */}
+      <Line
+        points={points}
+        color={blendedOrbitColor}
+        opacity={0.3}
+        transparent
+        lineWidth={1}
+      />
       <group ref={orbitGroupRef}>
-        <group position={[Math.cos(initialAngle) * radius, 0, Math.sin(initialAngle) * radius]}>
-          
-          {/* Planet Mesh with 23.5-degree Axial Tilt */}
+        <group
+          position={[
+            Math.cos(initialAngle) * radius,
+            0,
+            Math.sin(initialAngle) * radius,
+          ]}
+        >
           <group rotation={[0.41, 0, 0.15]}>
             <mesh ref={planetMeshRef}>
               <sphereGeometry args={[planetSize, 64, 64]} />
@@ -259,30 +425,12 @@ function Planet({ name, level, color, radius, speed, initialAngle, index }: any)
                 bumpScale={0.02}
               />
             </mesh>
-
-            {/* Atmosphere Glow Layer */}
-            {/* <mesh scale={[1.12, 1.12, 1.12]}>
-              <sphereGeometry args={[planetSize, 32, 32]} />
-              <shaderMaterial
-                attach="material"
-                args={[
-                  {
-                    ...AtmosphereShader,
-                    uniforms: { color: { value: new THREE.Color(color) } },
-                    blending: THREE.AdditiveBlending,
-                    side: THREE.BackSide,
-                    transparent: true,
-                  },
-                ]}
-              />
-            </mesh> */}
           </group>
 
-          {/* Planet Label */}
           <Text
             position={[0, planetSize + 0.35, 0]}
             fontSize={0.18}
-            color="#ffffff"
+            color={labelColor || "#ffffff"}
             anchorX="center"
             anchorY="middle"
             outlineWidth={0.02}
@@ -296,9 +444,25 @@ function Planet({ name, level, color, radius, speed, initialAngle, index }: any)
   );
 }
 
-// Central Sun Component
-function SolarSun({ name, color }: { name: string; color: string }) {
+function SolarSun({
+  name,
+  categoryColor,
+  themeCoreColor,
+  labelColor,
+}: {
+  name: string;
+  categoryColor: string;
+  themeCoreColor?: string;
+  labelColor: string;
+}) {
   const sunMeshRef = useRef<THREE.Mesh>(null!);
+
+  const blendedCoreColor = useMemo(() => {
+    if (!themeCoreColor) return categoryColor;
+    const catCol = new THREE.Color(categoryColor);
+    const themeCol = new THREE.Color(themeCoreColor);
+    return `#${catCol.lerp(themeCol, 0.5).getHexString()}`;
+  }, [categoryColor, themeCoreColor]);
 
   useFrame((_, delta) => {
     if (sunMeshRef.current) {
@@ -311,20 +475,19 @@ function SolarSun({ name, color }: { name: string; color: string }) {
       <mesh ref={sunMeshRef}>
         <sphereGeometry args={[0.85, 32, 32]} />
         <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={1.2}
+          color={blendedCoreColor}
+          emissive={blendedCoreColor}
+          emissiveIntensity={1.3}
           roughness={0.2}
         />
       </mesh>
 
-      {/* Sun Atmosphere Outer Glow */}
-      <mesh scale={[1.18, 1.18, 1.18]}>
+      <mesh scale={[1.22, 1.22, 1.22]}>
         <sphereGeometry args={[0.85, 32, 32]} />
         <meshBasicMaterial
-          color={color}
+          color={blendedCoreColor}
           transparent
-          opacity={0.25}
+          opacity={0.3}
           side={THREE.BackSide}
         />
       </mesh>
@@ -332,7 +495,7 @@ function SolarSun({ name, color }: { name: string; color: string }) {
       <Text
         position={[0, 1.35, 0]}
         fontSize={0.35}
-        color="#ffffff"
+        color={labelColor || "#ffffff"}
         anchorX="center"
         outlineWidth={0.03}
         outlineColor="#000000"
@@ -345,35 +508,45 @@ function SolarSun({ name, color }: { name: string; color: string }) {
 
 export default function SkillCloud3D() {
   const [activeTab, setActiveTab] = useState<string>("Frontend");
+  const [theme, setTheme] = useState<string>(
+    document.documentElement.dataset.theme ?? "system"
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setTheme(document.documentElement.dataset.theme ?? "system");
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const activeThemeConfig = THEME_STYLES[theme] || THEME_STYLES.system;
 
   const selectedCategory =
     skillsData.find((cat) => cat.category === activeTab) || skillsData[0];
 
+  const activeCategoryColor = useMemo(() => {
+    if (!activeThemeConfig.accentColor) return selectedCategory.color;
+    return `#${new THREE.Color(selectedCategory.color)
+      .lerp(new THREE.Color(activeThemeConfig.accentColor), 0.3)
+      .getHexString()}`;
+  }, [selectedCategory.color, activeThemeConfig.accentColor]);
+
   return (
     <div
-    className="mt-16"
       style={{
         width: "100%",
+        marginTop: "60px",
         height: "100vh",
         position: "relative",
         overflow: "hidden",
-        background: `
-          radial-gradient(circle at 50% 45%, rgba(255,191,36,0.12) 0%, transparent 18%),
-          radial-gradient(circle at 20% 20%, rgba(180,83,9,0.15) 0%, transparent 30%),
-          radial-gradient(circle at 80% 25%, rgba(120,53,15,0.12) 0%, transparent 35%),
-          radial-gradient(circle at 50% 80%, rgba(92,41,12,0.15) 0%, transparent 45%),
-          radial-gradient(circle at center, rgba(255,210,120,0.03) 0%, transparent 60%),
-          linear-gradient(
-            180deg,
-            #000000 0%,
-            #0B0603 12%,
-            #140A05 28%,
-            #221108 45%,
-            #31180C 62%,
-            #1A0D06 82%,
-            #050302 100%
-          )
-        `,
+        background: activeThemeConfig.background,
+        transition: "background 0.5s ease-in-out",
       }}
     >
       {/* Category Navigation Bar */}
@@ -386,63 +559,95 @@ export default function SkillCloud3D() {
           zIndex: 10,
           display: "flex",
           gap: "8px",
-          background: "rgba(20, 12, 8, 0.85)",
+          background: activeThemeConfig.navBg,
           padding: "8px 12px",
           borderRadius: "12px",
-          border: "1px solid rgba(255, 255, 255, 0.12)",
-          backdropFilter: "blur(10px)",
+          border: `1px solid ${activeThemeConfig.navBorder}`,
+          backdropFilter: "blur(12px)",
           maxWidth: "92%",
           overflowX: "auto",
+          transition: "all 0.3s ease",
         }}
       >
-        {skillsData.map((cat) => (
-          <button
-            key={cat.category}
-            onClick={() => setActiveTab(cat.category)}
-            style={{
-              padding: "8px 16px",
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "13px",
-              whiteSpace: "nowrap",
-              transition: "all 0.3s ease",
-              background: activeTab === cat.category ? '#c08122' : "transparent",
-              color: activeTab === cat.category ? "#000000" : "#fff",
-            }}
-          >
-            {cat.category}
-          </button>
-        ))}
+        {skillsData.map((cat) => {
+          const isActive = activeTab === cat.category;
+          return (
+            <button
+              key={cat.category}
+              onClick={() => setActiveTab(cat.category)}
+              style={{
+                padding: "8px 16px",
+                borderRadius: "8px",
+                border: "none",
+                cursor: "pointer",
+                fontWeight: 600,
+                fontSize: "13px",
+                whiteSpace: "nowrap",
+                transition: "all 0.3s ease",
+                background: isActive ? activeCategoryColor : "transparent",
+                color: isActive
+                  ? activeThemeConfig.activeTextColor
+                  : activeThemeConfig.textColor,
+                boxShadow:
+                  isActive && activeThemeConfig.accentColor
+                    ? `0 0 12px ${activeThemeConfig.accentColor}44`
+                    : "none",
+              }}
+            >
+              {cat.category}
+            </button>
+          );
+        })}
       </div>
 
-      {/* 3D Canvas Context */}
+      {/* 3D Scene Canvas */}
       <Canvas camera={{ position: [0, 8, 13], fov: 45 }}>
-        <ambientLight intensity={0.3} />
-        {/* Point light located at the center Sun so planets reflect day/night light correctly */}
-        <pointLight position={[0, 0, 0]} intensity={3} color={selectedCategory.color} distance={30} />
+        <ambientLight intensity={activeThemeConfig.ambientIntensity} />
+        <pointLight
+          position={[0, 0, 0]}
+          intensity={3.5}
+          color={activeThemeConfig.coreColor || selectedCategory.color}
+          distance={32}
+        />
         <directionalLight position={[5, 10, 5]} intensity={0.5} />
 
-        <Stars radius={100} depth={50} count={2500} factor={4} saturation={0} fade speed={1} />
+        <Stars
+          radius={100}
+          depth={50}
+          count={2500}
+          factor={4}
+          saturation={0}
+          fade={activeThemeConfig.starsFade}
+          speed={1}
+        />
 
-        <SolarSun name={selectedCategory.category} color={selectedCategory.color} />
+        {/* Dynamic Energy Core (Sun) */}
+        <SolarSun
+          name={selectedCategory.category}
+          categoryColor={selectedCategory.color}
+          themeCoreColor={activeThemeConfig.coreColor}
+          labelColor={activeThemeConfig.labelColor}
+        />
 
+        {/* Dynamic Planets & Orbits */}
         {selectedCategory.skills.map((skill, idx) => {
           const orbitRadius = 2.4 + idx * 0.95;
           const orbitSpeed = 0.35 / (idx + 1);
-          const startAngle = (idx / selectedCategory.skills.length) * Math.PI * 2;
+          const startAngle =
+            (idx / selectedCategory.skills.length) * Math.PI * 2;
 
           return (
             <Planet
-              key={skill.name}
+              key={`${theme}-${skill.name}`}
               index={idx}
               name={skill.name}
               level={skill.level}
               color={selectedCategory.color}
+              themeAccent={activeThemeConfig.accentColor}
               radius={orbitRadius}
               speed={orbitSpeed}
               initialAngle={startAngle}
+              labelColor={activeThemeConfig.labelColor}
             />
           );
         })}

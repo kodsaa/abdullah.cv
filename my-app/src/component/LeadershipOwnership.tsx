@@ -14,49 +14,49 @@ import {
 
 const leadershipItems = [
   {
-    icon: <LeadershipIcon className="h-6 w-6 text-orange-500" />,
+    icon: <LeadershipIcon className="h-6 w-6 theme-icon" />,
     title: "Engineering Leadership",
     description:
       "Led engineering teams across multiple enterprise projects while driving technical execution and delivery.",
   },
   {
-    icon: <ArchitectureIcon className="h-6 w-6 text-orange-500" />,
+    icon: <ArchitectureIcon className="h-6 w-6 theme-icon" />,
     title: "Architecture & Planning",
     description:
       "Conducted architecture reviews and technical planning for scalable software solutions.",
   },
   {
-    icon: <MentorshipIcon className="h-6 w-6 text-orange-500" />,
+    icon: <MentorshipIcon className="h-6 w-6 theme-icon" />,
     title: "Mentorship",
     description:
       "Mentored junior and mid-level engineers through code reviews, technical guidance, and knowledge sharing.",
   },
   {
-    icon: <StakeholderIcon className="h-6 w-6 text-orange-500" />,
+    icon: <StakeholderIcon className="h-6 w-6 theme-icon" />,
     title: "Stakeholder Collaboration",
     description:
       "Worked directly with founders, clients, and product teams to transform business ideas into technical solutions.",
   },
   {
-    icon: <AgileDeliveryIcon className="h-6 w-6 text-orange-500" />,
+    icon: <AgileDeliveryIcon className="h-6 w-6 theme-icon" />,
     title: "Agile Delivery",
     description:
       "Managed sprint planning, project timelines, and cross-functional engineering collaboration.",
   },
   {
-    icon: <EngineeringEstimationIcon className="h-6 w-6 text-orange-500" />,
+    icon: <EngineeringEstimationIcon className="h-6 w-6 theme-icon" />,
     title: "Engineering Estimation",
     description:
       "Estimated engineering effort, resource allocation, and project delivery schedules.",
   },
   {
-    icon: <CodeQualityIcon className="h-6 w-6 text-orange-500" />,
+    icon: <CodeQualityIcon className="h-6 w-6 theme-icon" />,
     title: "Code Quality",
     description:
       "Maintained engineering standards through code reviews, best practices, and continuous improvements.",
   },
   {
-    icon: <ProductOwnershipIcon className="h-6 w-6 text-orange-500" />,
+    icon: <ProductOwnershipIcon className="h-6 w-6 theme-icon" />,
     title: "Product Ownership",
     description:
       "Delivered products from concept and architecture through deployment and production support.",
@@ -69,24 +69,16 @@ export default function LeadershipOwnership() {
       <View className="text-center mb-12 sm:mb-16">
         <View className="inline-flex items-center gap-2 mb-1">
           <Span
-            className="h-px w-8"
-            style={{
-              background:
-                "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
-            }}
+            className="h-px w-8 theme_section_main_heading_dash"
           />
           <Span
-            className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+            className="uppercase tracking-widest theme_section_main_heading font-mono font-bold text-3xl"
             style={{ letterSpacing: "0.35em" }}
           >
             Leadership
           </Span>
           <Span
-            className="h-px w-8"
-            style={{
-              background:
-                "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
-            }}
+            className="h-px w-8 theme_section_main_heading_dash"
           />
         </View>
 
@@ -108,7 +100,7 @@ export default function LeadershipOwnership() {
 
         <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
 
-        <Span className="mt-6 block text-base sm:text-lg text-stone-400 max-w-3xl mx-auto leading-relaxed">
+        <Span className="mt-6 block text-base sm:text-lg  max-w-3xl mx-auto leading-relaxed theme_section_paragraph">
           Leading teams, designing scalable systems, and delivering
           enterprise software from idea to production.
         </Span>
@@ -116,18 +108,18 @@ export default function LeadershipOwnership() {
 
       <View className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-7">
         {leadershipItems.map((item) => (
-          <div key={item.title} className="lo-stack">
-            <div className="lo-stack-shadow" />
-            <div className="lo-card">
+          <View key={item.title} className="lo-stack ">
+            <View className="lo-stack-shadow" />
+            <View className="lo-card theme_card_background">
               <View className="lo-icon">{item.icon}</View>
 
               <H4 className="lo-title">{item.title}</H4>
 
-              <span className="lo-divider" />
+              <Span className="lo-divider" />
 
               <Span className="lo-desc">{item.description}</Span>
-            </div>
-          </div>
+            </View>
+          </View>
         ))}
       </View>
     </Container>

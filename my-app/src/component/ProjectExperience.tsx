@@ -25,28 +25,28 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Enterprise ERP Platform",
-    icon: <ERPIcon className="h-8 w-8 text-orange-500" />,
+    icon: <ERPIcon className="h-8 w-8 theme-icon" />,
     description:
       "Designed and developed enterprise-grade ERP modules covering HR, Payroll, Attendance, Inventory, Operations, Sales, Finance, Reporting, workflow automation, secure RBAC, and real-time analytics.",
     technologies: ["React", "Django", "FastAPI", "PostgreSQL", "Redis", "Docker"],
   },
   {
     title: "AI-Powered E-Commerce",
-    icon: <AIPoweredIcon className="h-8 w-8 text-orange-500" />,
+    icon: <AIPoweredIcon className="h-8 w-8 theme-icon" />,
     description:
       "Developed an AI-driven commerce ecosystem including customer portal, vendor portal, admin dashboard, React Native applications, inventory, payments, AI recommendations and intelligent automation.",
     technologies: ["React", "Node.js", "MongoDB", "AI", "React Native", "Stripe"],
   },
   {
     title: "CRM Platform",
-    icon: <CRMPlatformIcon className="h-8 w-8 text-orange-500" />,
+    icon: <CRMPlatformIcon className="h-8 w-8 theme-icon" />,
     description:
       "Created a modern CRM supporting customer lifecycle management, lead tracking, workflow automation, reporting, communication history and enterprise role management.",
     technologies: ["React", "Node", "MongoDB", "Redis", "Socket.io"],
   },
   {
     title: "Real-Time Marketplace",
-    icon: <RealtimeMarketplaceIcon className="h-8 w-8 text-orange-500" />,
+    icon: <RealtimeMarketplaceIcon className="h-8 w-8 theme-icon" />,
     description:
       "Engineered scalable marketplace and booking platforms using real-time communication, WebSockets, distributed services, secure authentication and high-performance APIs.",
     technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
@@ -166,27 +166,20 @@ export default function ProjectExperience() {
     <View className="text-center mb-12 sm:mb-16">
   <View className="inline-flex items-center gap-2 mb-1">
     <Span
-      className="h-px w-8"
-      style={{
-        background:
-          "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
-      }}
-    />
+            className="h-px w-8 theme_section_main_heading_dash"
+          />
 
     <Span
-      className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+      className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl  theme_section_main_heading"
       style={{ letterSpacing: "0.35em" }}
     >
       Portfolio
     </Span>
+    
 
     <Span
-      className="h-px w-8"
-      style={{
-        background:
-          "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
-      }}
-    />
+            className="h-px w-8 theme_section_main_heading_dash"
+          />
   </View>
 
   <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
@@ -207,7 +200,7 @@ export default function ProjectExperience() {
     </Span>
   </H2>
 
-  <Span className="mt-6 block text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+  <Span className="mt-6 block text-base sm:text-lg  max-w-3xl mx-auto leading-relaxed theme_section_paragraph">
     Enterprise software engineered for scale, reliability and business impact.
   </Span>
 </View>

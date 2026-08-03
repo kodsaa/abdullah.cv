@@ -10,6 +10,7 @@ import {
 
 import { useEffect, useState } from "react";
 import syedTown from "../assets/syed.jpeg";
+import { useLocation } from "react-router-dom";
 
 const MENU = [
   {
@@ -39,26 +40,33 @@ const Header = ({setSidebarOpen}:{setSidebarOpen:()=>void}) => {
 
   // Scroll listener to toggle header background
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const isSkillPage = location.pathname.startsWith("/skill");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+useEffect(() => {
+
+
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 20);
+  };
+
+  // Set initial state based on current scroll position
+  handleScroll();
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
 
   return (
     <>
       {/* Header */}
       <View
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          isScrolled
+          isScrolled  || isSkillPage
             ? "theme_header_bg"
             : "bg-transparent"
         }`}

@@ -33,6 +33,7 @@ import {OOPIcon,AsyncProgrammingIcon,MemoryManagementIcon,PerformanceProfilingIc
 
 
 interface ExpertiseItem {
+  id:string;
   icon: ReactNode;
   title: string;
   description: string;
@@ -41,47 +42,50 @@ interface ExpertiseItem {
 
 const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
   {
-    icon: <CodeIcon className="h-8 w-8 text-orange-500" />,
+    id:"programming-languages",
+    icon: <CodeIcon className="h-8 w-8 theme-icon" />,
     title: "Programming Languages",
     description:
       "High-performance application development with modern and low-level languages.",
     skills: [
-      { label: "JavaScript", icon: <JavaScriptIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "TypeScript", icon: <TypeScriptIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "Python", icon: <PythonIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "JavaScript", icon: <JavaScriptIcon className="h-5 w-5 " /> },
+      { label: "TypeScript", icon: <TypeScriptIcon className="h-5 w-5 " /> },
+      { label: "Python", icon: <PythonIcon className="h-5 w-5 " /> },
       { label: "C", icon: "" },
-      { label: "OOP", icon: <OOPIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "Async Programming", icon: <AsyncProgrammingIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "Memory Management", icon: <MemoryManagementIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "Performance Profiling", icon: <PerformanceProfilingIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "OOP", icon: <OOPIcon className="h-5 w-5 " /> },
+      { label: "Async Programming", icon: <AsyncProgrammingIcon className="h-5 w-5 " /> },
+      { label: "Memory Management", icon: <MemoryManagementIcon className="h-5 w-5 " /> },
+      { label: "Performance Profiling", icon: <PerformanceProfilingIcon className="h-5 w-5 " /> },
     ],
   },
   {
-    icon: <ReactIcon className="h-8 w-8 text-orange-500" />,
+    id:"frontend-engineering",
+    icon: <ReactIcon className="h-8 w-8 theme-icon" />,
     title: "Frontend Engineering",
     description:
       "Modern React ecosystem with enterprise-scale frontend architecture.",
     skills: [
-      { label: "React", icon: <ReactComponentIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "Next.js", icon: <NextjsIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "React", icon: <ReactComponentIcon className="h-5 w-5" /> },
+      { label: "Next.js", icon: <NextjsIcon className="h-5 w-5" /> },
       { label: "React Native", icon: "" },
       { label: "Redux Toolkit", icon: "" },
       { label: "RTK Query", icon: "" },
       { label: "React Query", icon: "" },
-      { label: "Tailwind CSS", icon: <TailwindCSSIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Tailwind CSS", icon: <TailwindCSSIcon className="h-5 w-5" /> },
       { label: "StrivUI", icon: "" },
     ],
   },
   {
-    icon: <BackendIcon className="h-8 w-8 text-orange-500" />,
+    id:"backend-engineering",
+    icon: <BackendIcon className="h-8 w-8 theme-icon" />,
     title: "Backend Engineering",
     description:
       "Scalable backend services and enterprise application architecture.",
     skills: [
       { label: "Django", icon: "" },
       { label: "FastAPI", icon: "" },
-      { label: "Flask", icon: <FlaskIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "Node.js", icon: <NodeJSIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Flask", icon: <FlaskIcon className="h-5 w-5 " /> },
+      { label: "Node.js", icon: <NodeJSIcon className="h-5 w-5 " /> },
       { label: "Express", icon: "" },
       { label: "REST API", icon: "" },
       { label: "GraphQL", icon: "" },
@@ -90,23 +94,25 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     ],
   },
   {
-    icon: <DatabaseIcon className="h-8 w-8 text-orange-500" />,
+    id:"databases",
+    icon: <DatabaseIcon className="h-8 w-8 theme-icon" />,
     title: "Databases",
     description:
       "SQL & NoSQL databases with optimization and scaling strategies.",
     skills: [
       { label: "PostgreSQL", icon: "" },
-      { label: "MongoDB", icon: <MongoDBIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "MongoDB", icon: <MongoDBIcon className="h-5 w-5" /> },
       { label: "Redis", icon: "" },
-      { label: "MySQL", icon: <MySQLIcon className="h-5 w-5 text-orange-500" /> },
-      { label: "Firebase", icon: <FirebaseIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "MySQL", icon: <MySQLIcon className="h-5 w-5" /> },
+      { label: "Firebase", icon: <FirebaseIcon className="h-5 w-5" /> },
       { label: "Indexing", icon: "" },
       { label: "Aggregation", icon: "" },
       { label: "Replication", icon: "" },
     ],
   },
   {
-    icon: <SystemDesignIcon className="h-8 w-8 text-orange-500" />,
+    id:"system-design",
+    icon: <SystemDesignIcon className="h-8 w-8 theme-icon" />,
     title: "System Design",
     description:
       "Enterprise architecture, distributed systems and scalable infrastructure.",
@@ -122,12 +128,13 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     ],
   },
   {
-    icon: <RobotIcon className="h-8 w-8 text-orange-500" />,
+    id:"ai-machine-learning",
+    icon: <RobotIcon className="h-8 w-8 theme-icon" />,
     title: "AI & Machine Learning",
     description:
       "Building intelligent applications powered by modern AI.",
     skills: [
-      { label: "OpenAI", icon: <OpenAIIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "OpenAI", icon: <OpenAIIcon className="h-5 w-5" /> },
       { label: "LangChain", icon: "" },
       { label: "LangGraph", icon: "" },
       { label: "PyTorch", icon: "" },
@@ -138,23 +145,25 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     ],
   },
   {
-    icon: <CloudIcon className="h-8 w-8 text-orange-500" />,
+    id:"cloud-devops",
+    icon: <CloudIcon className="h-8 w-8 theme-icon" />,
     title: "Cloud & DevOps",
     description:
       "Production deployments with CI/CD and containerized infrastructure.",
     skills: [
       { label: "Docker", icon: "" },
       { label: "Kubernetes", icon: "" },
-      { label: "GitHub Actions", icon: <GithubActionIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "GitHub Actions", icon: <GithubActionIcon className="h-5 w-5" /> },
       { label: "AWS", icon: "" },
       { label: "Nginx", icon: "" },
       { label: "PM2", icon: "" },
-      { label: "Cloudflare", icon: <CloudflareIcon className="h-5 w-5 text-orange-500" /> },
+      { label: "Cloudflare", icon: <CloudflareIcon className="h-5 w-5" /> },
       { label: "CI/CD", icon: "" },
     ],
   },
   {
-    icon: <RealtimeIcon className="h-8 w-8 text-orange-500" />,
+    id:"real-time-systems",
+    icon: <RealtimeIcon className="h-8 w-8 theme-icon" />,
     title: "Real-Time Systems",
     description:
       "Low-latency communication and streaming platforms.",
@@ -168,8 +177,7 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     ],
   },
 ];
-import { Badge, Button, Card, Container, H2, H3, Modal, Span, Text, View } from "strivui";
-import SkillCloud3D from "../pages/SkillCloud3D";
+import { Badge, Button, Card, Container, H2, H3, Span, Text, View } from "strivui";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -287,7 +295,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
     relative
     overflow-hidden
     rounded-3xl
-    bg-stone-900
+    theme_card_background
     p-6
     sm:p-7
     will-change-transform
@@ -386,16 +394,21 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
 
               key={skill.label}
               className="
-              rounded-full
+              rounded-md
+              inline-flex
+              items-center
+              gap-2
+              font-mono
+              tracking-wide
+              uppercase
               border
-              border-amber-300
-              text-amber-300
+              border-silver-500
+              text-silver-500
               p-2
               text-xs
               transition-all
               duration-300
               bg-transparent
-              hover:bg-amber-500
               hover:text-black
               hover:scale-105
               hover:animate-pop
@@ -408,7 +421,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             </Badge>
           ))}
         </View>
-        <Button onClick={() => navigate(`/skill/${item.title}`)} className="bg-transparent mt-4 text-amber-500 "> View Occupation →</Button>
+        <Button onClick={() => navigate(`/skill/${item.id}`)} className="bg-transparent mt-4 text-amber-500 "> View Occupation →</Button>
       </Card>
     </div>
   );
@@ -420,26 +433,18 @@ const TechnicalExpertise = () => {
      <View className="text-center mb-12 sm:mb-16">
   <View className="inline-flex items-center gap-2 mb-1">
     <Span
-      className="h-px w-8"
-      style={{
-        background:
-          "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
-      }}
+      className="h-px w-8  theme_section_main_heading_dash"
     />
 
     <Span
-      className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+      className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl  theme_section_main_heading"
       style={{ letterSpacing: "0.35em" }}
     >
       Technical Expertise
     </Span>
 
     <Span
-      className="h-px w-8"
-      style={{
-        background:
-          "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
-      }}
+      className="h-px w-8  theme_section_main_heading_dash"
     />
   </View>
 
@@ -463,21 +468,21 @@ const TechnicalExpertise = () => {
 
 
 
-     <Text className="mt-5 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8 px-2 font-light tracking-wide">
+     <Text className="mt-5 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg theme_section_paragraph leading-7 lg:leading-8 px-2 font-light tracking-wide">
   Building{" "}
-  <Span className="font-serif italic text-stone-200">
+  <Span className="font-serif italic theme_section_paragraph_highlight">
     scalable enterprise software
   </Span>{" "}
   through modern{" "}
-  <Span className="font-serif italic text-stone-200">
+  <Span className="font-serif italic theme_section_paragraph_highlight">
     architecture and distributed systems
   </Span>
   , integrating{" "}
-  <Span className="font-serif italic text-stone-200">
+  <Span className="font-serif italic theme_section_paragraph_highlight">
     AI-driven solutions
   </Span>
   , and delivering{" "}
-  <Span className="font-serif italic text-amber-200">
+  <Span className="font-serif italic theme_section_paragraph_highlight_secondary">
     production-ready engineering
   </Span>{" "}
   that powers real-world business operations.

@@ -258,24 +258,16 @@ const Experience = () => {
       <View className="text-center mb-16 sm:mb-20">
         <View className="inline-flex items-center gap-2 mb-1">
           <Span
-            className="h-px w-8"
-            style={{
-              background:
-                "linear-gradient(to right, transparent, rgba(245,158,11,0.7))",
-            }}
+            className="h-px w-8 theme_section_main_heading_dash"
           />
           <Span
-            className="uppercase tracking-widest text-amber-400 font-mono font-bold text-3xl"
+            className="uppercase tracking-widest font-mono font-bold text-3xl theme_section_main_heading"
             style={{ letterSpacing: "0.35em" }}
           >
             Career Journey
           </Span>
           <Span
-            className="h-px w-8"
-            style={{
-              background:
-                "linear-gradient(to left, transparent, rgba(245,158,11,0.7))",
-            }}
+            className="h-px w-8 theme_section_main_heading_dash"
           />
         </View>
 
@@ -297,7 +289,7 @@ const Experience = () => {
 
         <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
 
-        <Text className="mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8">
+        <Text className="theme_section_paragraph mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-stone-400 leading-7 lg:leading-8">
           Building enterprise software, leading engineering teams, and
           delivering scalable products that create measurable business
           value.
@@ -309,7 +301,7 @@ const Experience = () => {
         {EXPERIENCE.map((job, index) => {
           const isCurrent = job.period.toLowerCase().includes("present");
           return (
-            <View key={index} className="exp-entry">
+            <View key={index} className="exp-entry ">
               {/* Marker column */}
               <View className="exp-marker-col">
                 <span className={`exp-marker ${isCurrent ? "exp-marker--current" : ""}`}>
@@ -319,7 +311,7 @@ const Experience = () => {
               </View>
 
               {/* Content */}
-              <Card className="exp-card">
+              <Card className="exp-card theme_card_background">
                 <View className="exp-card-head">
                   <View>
                     <Text className="exp-company">{job.company}</Text>
