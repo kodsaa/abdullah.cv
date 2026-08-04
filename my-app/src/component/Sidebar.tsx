@@ -105,7 +105,7 @@ const Sidebar = ({
 
           <Button
             onClick={onClose}
-            className="rounded-full w-10 h-10 bg-stone-800"
+            className="rounded-full w-10 h-10 bg-white/10 theme_paragraph theme_border"
           >
             ✕
           </Button>
@@ -121,24 +121,27 @@ const Sidebar = ({
           </Text>
 
           <Select
-            value={theme}
-            className="bg-amber-900 text-amber-50"
-            onChange={setTheme}
-            options={[
-              { label: "Obsidian", value: "obsidian" },
-              { label: "Midnight", value: "midnight" },
-              { label: "Carbon", value: "carbon" },
-              { label: "Titanium", value: "titanium" },
-              { label: "Steel", value: "steel" },
-              { label: "Quartz", value: "quartz" },
-              { label: "Sandstone", value: "sandstone" },
-              { label: "Aurora", value: "aurora" },
-              { label: "Nebula", value: "nebula" },
-              { label: "Solarized", value: "solarized" },
-              { label: "High Contrast", value: "contrast" },
-              { label: "System Default", value: "system" },
-            ]}
-          />
+  value={theme}
+  onChange={setTheme}
+  triggerClassName="bg-black-200 text-amber-50 border border-black-200 hover:border-black-300 rounded-md"
+  dropdownClassName="bg-stone-900 border border-stone-900 rounded-md shadow-lg"
+  optionClassName="hover:bg-amber-500 text-amber-100 hover:text-stone-800  "
+  selectedOptionClassName="bg-white/10 text-amber-50 rounded-md"
+  options={[
+    { label: "Obsidian", value: "obsidian" },
+    { label: "Midnight", value: "midnight" },
+    { label: "Carbon", value: "carbon" },
+    { label: "Titanium", value: "titanium" },
+    { label: "Steel", value: "steel" },
+    { label: "Quartz", value: "quartz" },
+    { label: "Sandstone", value: "sandstone" },
+    { label: "Aurora", value: "aurora" },
+    { label: "Nebula", value: "nebula" },
+    { label: "Solarized", value: "solarized" },
+    { label: "High Contrast", value: "contrast" },
+    { label: "System Default", value: "system" },
+  ]}
+/>
         </View>
 
         {/* Time */}
@@ -150,7 +153,11 @@ const Sidebar = ({
 
   <Select
 value={timeOfDay}
-            onChange={setTimeOfDay}
+onChange={setTimeOfDay}
+  triggerClassName="bg-black-200 text-amber-50 border border-black-200 hover:border-black-300 rounded-md"
+  dropdownClassName="bg-stone-900 border border-stone-900 rounded-md shadow-lg"
+  optionClassName="hover:bg-amber-500 text-amber-100 hover:text-stone-800  "
+  selectedOptionClassName="bg-white/10 text-amber-50 rounded-md"
     options={[
       { label: "🇺🇸 English", value: "en" },
       { label: "🇵🇰 اردو (Urdu)", value: "ur" },
