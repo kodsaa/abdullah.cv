@@ -262,7 +262,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`transition-all duration-700 ease-out  ${
         visible ? `${slideAnimation} animate-delay-${delayStep}` : "opacity-0"
       }`}
     >
@@ -286,6 +286,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
           transition: "all .3s ease",
         }}
         className="
+      
     group
     relative
     overflow-hidden

@@ -53,26 +53,30 @@ const Sidebar = ({
   setEffects,
   children
 }: SidebarProps) => {
-  const { t } = useTranslation();
+  const { t,i18n } = useTranslation();
+  const isRTL = ["ar", "ur"].includes(i18n.language);
+
   return (
+
     <View
-      className={`
-        fixed
-        top-0
-        right-0
-        h-screen
-        max-w-full
-        z-50
-        transition-all
-        duration-700
-        h-screen
-        w-80
-        ${
-          open
-            ? "translate-x-0 opacity-100"
-            : "translate-x-full opacity-0 pointer-events-none"
-        }
-      `}
+   className={`
+  fixed
+  top-0
+  ${isRTL ? "left-0" : "right-0"}
+  h-screen
+  w-80
+  max-w-full
+  z-50
+  transition-all
+  duration-700
+  ${
+    open
+      ? "translate-x-0 opacity-100"
+      : isRTL
+      ? "-translate-x-full opacity-0 pointer-events-none"
+      : "translate-x-full opacity-0 pointer-events-none"
+  }
+`}
     >
       <Card
         className="

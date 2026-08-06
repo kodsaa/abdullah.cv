@@ -254,14 +254,16 @@ useEffect(() => {
         </View>
         
   } 
+  const isRTL = ['ar', 'ur'].includes(i18n.language);
 
   return (
     <Main
+      dir={isRTL ? 'rtl' : 'ltr'}
       className={`min-h-screen overflow-x-hidden p-0 m-0 ${
         saloonLights
           ? "mainContainer_background"
           : "bg-amber-900 text-amber-50"
-      }`}
+      } ${i18n.language}`}
     >
  
 

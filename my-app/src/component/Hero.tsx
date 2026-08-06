@@ -75,8 +75,9 @@ const themeColors = {
 } as const;
 
 const Hero = () => {
-  const { t } = useTranslation();
+  const { t ,i18n} = useTranslation();
   const mountRef = useRef<HTMLDivElement>(null);
+  const isRTL = ["ar", "ur"].includes(i18n.language);
 
   // Mouse tracking state for HTML elements parallax
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -117,6 +118,7 @@ useEffect(() => {
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
+    
 
     const colors =
   themeColors[theme as keyof typeof themeColors] ??
@@ -197,6 +199,11 @@ useEffect(() => {
     pointLight.position.set(3, 3, 3);
     scene.add(pointLight);
 
+    if(isRTL){
+      mainPoly.position.set(isRTL ? -2.2 : 2.2, 0.2, -1);
+      pointLight.position.set(isRTL ? -3 : 3, 3, 3);
+    }
+
     // 5. Mouse Parallax Target Variables
     let targetMouseX = 0;
     let targetMouseY = 0;
@@ -259,7 +266,7 @@ useEffect(() => {
         container.removeChild(renderer.domElement);
       }
     };
-  }, [theme]);
+  }, [theme,isRTL]);
 
   return (
     <Container
