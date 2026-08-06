@@ -37,11 +37,11 @@ export default function Home() {
           <TechnicalArsenal />
         </Reveal>
 
-        <Reveal variant="rotate">
+        <Reveal variant="fade-right">
           <TechnicalExpertise />
         </Reveal>
 
-        <Reveal variant="fade-right">
+        <Reveal variant="fade-left">
           <ProjectExperience />
         </Reveal>
 
@@ -49,7 +49,7 @@ export default function Home() {
           <LeadershipOwnership />
         </Reveal>
 
-        <Reveal variant="fade-up">
+        <Reveal variant="fade-down">
           <Testimonials />
         </Reveal>
 

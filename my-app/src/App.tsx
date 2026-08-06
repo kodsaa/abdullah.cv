@@ -15,6 +15,7 @@ export default function App() {
         <Route index element={<Home />} />
 
         {/* Skill Page */}
+        
         <Route path="skill/:id" element={<Skill />} />
       </Route>
     </Routes>

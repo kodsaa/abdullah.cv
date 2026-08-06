@@ -1,5 +1,4 @@
-import React from "react";
-import { Card, Container, H2, H4, Span, View } from "strivui";
+import { Container, H2, H4, Span, View } from "strivui";
 import { useTranslation } from "react-i18next";
 import {
   LeadershipIcon,
@@ -11,6 +10,7 @@ import {
   CodeQualityIcon,
   ProductOwnershipIcon,
 } from "../icon/icon";
+import Reveal from "./Reveal";
 const leadershipItems = [
   {
     icon: <LeadershipIcon className="h-6 w-6 theme-icon" />,
@@ -108,6 +108,13 @@ export default function LeadershipOwnership() {
 
       <View className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-7">
         {leadershipItems.map((item) => (
+              <Reveal
+                                                      key={item.title}
+                                                      variant="fade-up"
+                                                      preset="smooth"
+                                                      duration={0.6}
+                                                      margin="0px 0px -12% 0px" // Trigger slightly before full entry to maintain 60 FPS scroll velocity
+                                                    >
           <View key={item.title} className="lo-stack ">
             <View className="lo-stack-shadow" />
             <View className="lo-card theme_card_background">
@@ -120,6 +127,7 @@ export default function LeadershipOwnership() {
              <Span className="lo-desc">{t(item.description)}</Span>
             </View>
           </View>
+          </Reveal>
         ))}
       </View>
     </Container>

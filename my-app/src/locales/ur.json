@@ -382,5 +382,13 @@
   "techCloudDevopsTitle": "کلاؤڈ اور DevOps",
   "techCloudDevopsDesc": "CI/CD اور کنٹینرائزڈ انفراسٹرکچر کے ساتھ پروڈکشن ڈیپلائمنٹس۔",
   "techRealtimeTitle": "ریئل ٹائم سسٹمز",
-  "techRealtimeDesc": "کم تاخیر مواصلات اور اسٹریمنگ پلیٹ فارمز۔"
+  "techRealtimeDesc": "کم تاخیر مواصلات اور اسٹریمنگ پلیٹ فارمز۔",
+  "skillOccupationLabel1": "پروگرامنگ",
+  "skillOccupationLabel2": "فرنٹ اینڈ",
+  "skillOccupationLabel3": "بیک اینڈ",
+  "skillOccupationLabel4": "ڈیٹا بیس",
+  "skillOccupationLabel5": "سسٹم ڈیزائن",
+  "skillOccupationLabel6": "مصنوعی ذہانت اور مشین لرننگ",
+  "skillOccupationLabel7": "کلاؤڈ اور ڈیو آپس",
+  "skillOccupationLabel8": "ریئل ٹائم"
 }

@@ -2,6 +2,8 @@ import React, { useState, useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, Line, Stars } from "@react-three/drei";
 import * as THREE from "three";
+import { useTranslation } from "react-i18next";
+import Reveal from "../component/Reveal";
 
 // Dynamic Theme Configuration Map
 const THEME_STYLES: Record<
@@ -171,6 +173,7 @@ const THEME_STYLES: Record<
 const skillsData = [
   {
     category: "Programming",
+    titleKey: "skillOccupationLabel1",
     color: "#EAB308",
     skills: [
       { name: "JavaScript", level: 95 },
@@ -185,6 +188,7 @@ const skillsData = [
   },
   {
     category: "Frontend",
+    titleKey: "skillOccupationLabel2",
     color: "#3B82F6",
     skills: [
       { name: "React", level: 98 },
@@ -199,6 +203,7 @@ const skillsData = [
   },
   {
     category: "Backend",
+    titleKey: "skillOccupationLabel3",
     color: "#22C55E",
     skills: [
       { name: "Django", level: 88 },
@@ -214,6 +219,7 @@ const skillsData = [
   },
   {
     category: "Databases",
+    titleKey: "skillOccupationLabel4",
     color: "#A855F7",
     skills: [
       { name: "PostgreSQL", level: 90 },
@@ -229,6 +235,7 @@ const skillsData = [
   {
     category: "System Design",
     color: "#EF4444",
+    titleKey: "skillOccupationLabel5",
     skills: [
       { name: "Microservices", level: 93 },
       { name: "Distributed Systems", level: 88 },
@@ -242,6 +249,7 @@ const skillsData = [
   },
   {
     category: "AI & ML",
+    titleKey: "skillOccupationLabel6",
     color: "#8B5CF6",
     skills: [
       { name: "OpenAI", level: 96 },
@@ -256,6 +264,7 @@ const skillsData = [
   },
   {
     category: "Cloud & DevOps",
+    titleKey: "skillOccupationLabel7",
     color: "#06B6D4",
     skills: [
       { name: "Docker", level: 92 },
@@ -270,6 +279,7 @@ const skillsData = [
   },
   {
     category: "Real-Time",
+    titleKey: "skillOccupationLabel8",
     color: "#F97316",
     skills: [
       { name: "WebRTC", level: 94 },
@@ -397,6 +407,13 @@ function Planet({
     return pts;
   }, [radius]);
 
+useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth", // or "auto"
+  });
+}, []);
   return (
     <>
       <Line
@@ -456,6 +473,7 @@ function SolarSun({
   labelColor: string;
 }) {
   const sunMeshRef = useRef<THREE.Mesh>(null!);
+  
 
   const blendedCoreColor = useMemo(() => {
     if (!themeCoreColor) return categoryColor;
@@ -511,6 +529,8 @@ export default function SkillCloud3D() {
   const [theme, setTheme] = useState<string>(
     document.documentElement.dataset.theme ?? "system"
   );
+    const { t } = useTranslation();
+
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
@@ -594,7 +614,7 @@ export default function SkillCloud3D() {
                     : "none",
               }}
             >
-              {cat.category}
+              {t(cat.titleKey)}
             </button>
           );
         })}
@@ -660,5 +680,5 @@ export default function SkillCloud3D() {
         />
       </Canvas>
     </div>
-  );
+      );
 }

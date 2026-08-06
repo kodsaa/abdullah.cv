@@ -10,9 +10,7 @@ import {
   View,
 } from "strivui";
 
-interface HeroProps {
-  setIsTelegraphOpen: (value: boolean) => void;
-}
+
 const themeColors = {
   obsidian: {
     primary: 0xf59e0b,
@@ -76,7 +74,7 @@ const themeColors = {
 },
 } as const;
 
-const Hero = ({ setIsTelegraphOpen }: HeroProps) => {
+const Hero = () => {
   const { t } = useTranslation();
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -271,7 +269,7 @@ useEffect(() => {
       style={{
         perspective: "1000px",
       }}
-      className="relative max-w-full p-0 m-0 theme_hero-container flex align-items-center justify-center relative min-h-screen"
+      className="relative w-full max-w-full p-0 m-0 theme_hero-container flex align-items-center justify-center relative min-h-screen"
     >
       {/* --- THREE.JS CANVAS MOUNT POINT --- */}
       <div
@@ -384,7 +382,6 @@ useEffect(() => {
           }}
         >
           <Button
-            onClick={() => setIsTelegraphOpen(true)}
             className="border bg-transparent rounded-xl overflow-hidden py-5 px-10 theme_hero-button"
             style={{
               borderRadius: "14px",
@@ -401,7 +398,6 @@ useEffect(() => {
           </Button>
 
           <Button
-            href="#projects"
             className="border bg-transparent rounded-xl overflow-hidden py-5 px-10"
       
           >

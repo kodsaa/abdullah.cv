@@ -15,6 +15,7 @@ import {
   AIPoweredIcon,
   RealtimeMarketplaceIcon,
 } from "../icon/icon";
+import Reveal from "./Reveal";
 
 interface Project {
   title: string;
@@ -210,7 +211,15 @@ export default function ProjectExperience() {
 
       <View className="pe-grid">
         {projects.map((project, index) => (
+             <Reveal
+                                                                key={project.title}
+                                                                variant="fade-up"
+                                                                preset="smooth"
+                                                                duration={0.6}
+                                                                margin="0px 0px -12% 0px" // Trigger slightly before full entry to maintain 60 FPS scroll velocity
+                                                              >
           <ProjectCard key={project.title} project={project} index={index} />
+          </Reveal>
         ))}
       </View>
     </Container>

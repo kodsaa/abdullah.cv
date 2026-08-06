@@ -15,6 +15,7 @@ import {
   BusinessUnderstandingIcon,
   CodeIcon,
 } from "../icon/icon";
+import Reveal from "./Reveal";
 
 export const ENGINEERING_PROFILE = [
   {
@@ -250,51 +251,6 @@ const EngineeringCard = ({
   );
 };
 
-const StatCard = ({ value, label }: { value: string; label: string }) => {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <View
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        backgroundColor: "#1c1917",
-        border: `1px solid ${
-          hovered ? "rgba(245,158,11,0.4)" : "rgba(120,53,15,0.2)"
-        }`,
-        borderRadius: "12px",
-        padding: "16px",
-        textAlign: "center",
-        transition: "all 0.3s ease",
-        transform: hovered ? "translateY(-4px)" : "translateY(0)",
-      }}
-    >
-      <h2
-        style={{
-          fontSize: "28px",
-          fontWeight: 700,
-          color: "#fbbf24",
-          margin: 0,
-        }}
-      >
-        {value}
-      </h2>
-      <View
-        className="mt-2 w-16 p-0 m-0"
-        style={{
-          height: "1px",
-          backgroundColor: "rgba(245,158,11,0.4)",
-          margin: "auto",
-        }}
-      />
-      <Text
-        className="mt-2 text-xs uppercase text-gray-100"
-        style={{ letterSpacing: "0.2em" }}
-      >
-        {label}
-      </Text>
-    </View>
-  );
-};
 
 const Feature = () => {
   const [activeTab, setActiveTab] = useState("ALL");
@@ -306,7 +262,7 @@ const Feature = () => {
       : ENGINEERING_PROFILE.filter((item) => item.id === activeTab);
 
   return (
-    <Container className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <Container className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full">
       {/* Heading */}
      
           <View
@@ -382,11 +338,19 @@ const Feature = () => {
       {/* Dynamic Tab Cards Content */}
       <View className="flex flex-col gap-6">
         {activeSections.map((section, index) => (
+            <Reveal
+                        key={section.id}
+                        variant="fade-up"
+                        preset="smooth"
+                        duration={0.6}
+                        margin="0px 0px -12% 0px" // Trigger slightly before full entry to maintain 60 FPS scroll velocity
+                      >
           <EngineeringCard
             key={section.id}
             section={section}
             index={index}
           />
+          </Reveal>
         ))}
       </View>
 

@@ -382,5 +382,13 @@
   "techCloudDevopsTitle": "الحوسبة السحابية و DevOps",
   "techCloudDevopsDesc": "عمليات نشر إنتاجية باستخدام CI/CD وبنية تحتية للحاويات.",
   "techRealtimeTitle": "الأنظمة اللحظية",
-  "techRealtimeDesc": "اتصالات منخفضة الكمون ومنصات البث."
+  "techRealtimeDesc": "اتصالات منخفضة الكمون ومنصات البث.",
+  "skillOccupationLabel1": "البرمجة",
+  "skillOccupationLabel2": "الواجهة الأمامية",
+  "skillOccupationLabel3": "الواجهة الخلفية",
+  "skillOccupationLabel4": "قواعد البيانات",
+  "skillOccupationLabel5": "تصميم الأنظمة",
+  "skillOccupationLabel6": "الذكاء الاصطناعي وتعلّم الآلة",
+  "skillOccupationLabel7": "السحابة وعمليات التطوير",
+  "skillOccupationLabel8": "الأنظمة الآنية"
 }

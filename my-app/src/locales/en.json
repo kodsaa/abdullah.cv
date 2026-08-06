@@ -381,5 +381,13 @@
   "techCloudDevopsTitle": "Cloud & DevOps",
   "techCloudDevopsDesc": "Production deployments with CI/CD and containerized infrastructure.",
   "techRealtimeTitle": "Real-Time Systems",
-  "techRealtimeDesc": "Low-latency communication and streaming platforms."
+  "techRealtimeDesc": "Low-latency communication and streaming platforms.",
+  "skillOccupationLabel1": "Programming",
+  "skillOccupationLabel2": "Frontend",
+  "skillOccupationLabel3": "Backend",
+  "skillOccupationLabel4": "Databases",
+  "skillOccupationLabel5": "System Design",
+  "skillOccupationLabel6": "AI & ML",
+  "skillOccupationLabel7": "Cloud & DevOps",
+  "skillOccupationLabel8": "Real-Time"
 }

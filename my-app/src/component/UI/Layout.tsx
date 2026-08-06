@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation, useNavigation } from 'react-router-dom'
 import { Button, Main, View } from 'strivui'
 import Header from '../Header'
 import CFooter from '../Footer'
@@ -19,7 +19,6 @@ interface ActiveEffects {
 }
 
 const Layout = () => {
-  const [isTelegraphOpen, setIsTelegraphOpen] = useState<boolean>(false);
   const [saloonLights, setSaloonLights] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -29,7 +28,9 @@ const Layout = () => {
   const [theme, setTheme] = useState("system");
   const [music, setMusic] = useState(true);
   const [effects, setEffects] = useState(true);
-const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
+  const location = useLocation();
+  const [isNavigating, setIsNavigating] = useState(false);
 
 const handleLanguageChange = (value: string) => {
   setTimeOfDay(value);
@@ -222,12 +223,23 @@ const handleLanguageChange = (value: string) => {
   useEffect(() => {
   document.documentElement.setAttribute("data-theme", theme);
 }, [theme]);
+useEffect(() => {
+    // Show loader when route changes
+    setIsNavigating(true);
 
-  if (loading) {
+    const timer = setTimeout(() => {
+      setIsNavigating(false);
+    }, 2000); // Adjust duration for visual feedback
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  if (loading || isNavigating) {
     return <Loader />;
   }
 
 
+  
   const ExtraEffect =()=>{
     return  <View className='grid grid-cols-2 gap-4'>
     {(Object.keys(activeEffects) as Array<keyof ActiveEffects>).map((effect) => (

@@ -173,6 +173,7 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
 
 import { Badge, Button, Card, Container, H2, H3, Span, Text, View } from "strivui";
 import { useNavigate } from "react-router-dom";
+import Reveal from "./Reveal";
 
 /**
  * Reveals a card with a fade + rise transition the first time it
@@ -492,7 +493,15 @@ const TechnicalExpertise = () => {
         "
       >
         {TECHNICAL_EXPERTISE.map((item, index) => (
+                 <Reveal
+                                            key={item.id}
+                                            variant="rotate"
+                                            preset="smooth"
+                                            duration={0.6}
+                                            margin="0px 0px -12% 0px" // Trigger slightly before full entry to maintain 60 FPS scroll velocity
+                                          >
           <ExpertiseCard key={item.id} item={item} index={index} />
+          </Reveal>
         ))}
       </View>
     </Container>

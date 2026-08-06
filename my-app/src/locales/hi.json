@@ -382,5 +382,13 @@
   "techCloudDevopsTitle": "क्लाउड और DevOps",
   "techCloudDevopsDesc": "CI/CD और कंटेनराइज़्ड इंफ्रास्ट्रक्चर के साथ प्रोडक्शन डिप्लॉयमेंट।",
   "techRealtimeTitle": "रियल-टाइम सिस्टम्स",
-  "techRealtimeDesc": "लो-लेटेंसी कम्युनिकेशन और स्ट्रीमिंग प्लेटफ़ॉर्म।"
+  "techRealtimeDesc": "लो-लेटेंसी कम्युनिकेशन और स्ट्रीमिंग प्लेटफ़ॉर्म।",
+  "skillOccupationLabel1": "प्रोग्रामिंग",
+  "skillOccupationLabel2": "फ्रंटएंड",
+  "skillOccupationLabel3": "बैकएंड",
+  "skillOccupationLabel4": "डेटाबेस",
+  "skillOccupationLabel5": "सिस्टम डिज़ाइन",
+  "skillOccupationLabel6": "कृत्रिम बुद्धिमत्ता एवं मशीन लर्निंग",
+  "skillOccupationLabel7": "क्लाउड एवं डेवऑप्स",
+  "skillOccupationLabel8": "रीयल-टाइम"
 }

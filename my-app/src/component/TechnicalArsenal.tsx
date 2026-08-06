@@ -15,6 +15,7 @@ import {
   ProductDevelopmentIcon,
   BusinessUnderstandingIcon,
 } from "../icon/icon";
+import Reveal from "./Reveal";
 
 
 const ENGINEERING_PROFILE = [
@@ -440,7 +441,15 @@ const TechnicalArsenal = () => {
         }}
       >
         {ENGINEERING_PROFILE.map((section) => (
+                <Reveal
+                                  key={section.title}
+                                  variant="rotate"
+                                  preset="smooth"
+                                  duration={0.6}
+                                  margin="0px 0px -12% 0px" // Trigger slightly before full entry to maintain 60 FPS scroll velocity
+                                >
           <EngineeringCard key={section.title} section={section} />
+          </Reveal>
         ))}
       </div>
 
@@ -454,7 +463,15 @@ const TechnicalArsenal = () => {
         }}
       >
         {STATS.map(([value, label]) => (
+              <Reveal
+                                  key={value}
+                                  variant="fade-up"
+                                  preset="smooth"
+                                  duration={0.6}
+                                  margin="0px 0px -12% 0px" // Trigger slightly before full entry to maintain 60 FPS scroll velocity
+                                >
           <StatCard key={label} value={value} label={label} />
+          </Reveal>
         ))}
       </div>
     </Container>

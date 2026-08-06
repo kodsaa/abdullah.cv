@@ -4,6 +4,13 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import {
+  motion,
+  useInView,
+  type Variants,
+  type Transition,
+  type TargetAndTransition,
+} from "motion/react";
 
 type Variant =
   | "fade-up"
@@ -12,7 +19,14 @@ type Variant =
   | "fade-right"
   | "zoom"
   | "rotate"
-  | "blur";
+  | "blur"
+  | "glitch"
+  | "flip-3d"
+  | "glow";
+
+type Presets = "smooth" | "bouncy" | "snappy" | "heavy";
+
+type InViewOptions = NonNullable<Parameters<typeof useInView>[1]>;
 
 interface RevealProps {
   children: ReactNode;
@@ -20,129 +34,141 @@ interface RevealProps {
   delay?: number;
   duration?: number;
   variant?: Variant;
+  preset?: Presets;
+  staggerChildren?: number;
+
+  /**
+   * Re-trigger animation every time the element enters view.
+   * Default: false
+   */
   once?: boolean;
 
-  // 0.8 = animate when element reaches 80% viewport height
-  triggerPoint?: number;
+  /** IntersectionObserver margin */
+  margin?: InViewOptions["margin"];
+
+  /** Mount children only after first intersection */
+  lazy?: boolean;
 }
 
-const hiddenStyles: Record<Variant, React.CSSProperties> = {
-  "fade-up": {
-    opacity: 0,
-    transform: "translateY(80px)",
-  },
-
-  "fade-down": {
-    opacity: 0,
-    transform: "translateY(-80px)",
-  },
-
-  "fade-left": {
-    opacity: 0,
-    transform: "translateX(-80px)",
-  },
-
-  "fade-right": {
-    opacity: 0,
-    transform: "translateX(80px)",
-  },
-
-  zoom: {
-    opacity: 0,
-    transform: "scale(.85)",
-  },
-
-  rotate: {
-    opacity: 0,
-    transform: "rotate(-8deg) scale(.9)",
-  },
-
-  blur: {
-    opacity: 0,
-    filter: "blur(12px)",
-  },
+const easings: Record<Presets, Transition> = {
+  smooth: { ease: [0.16, 1, 0.3, 1] },
+  bouncy: { type: "spring", stiffness: 300, damping: 15 },
+  snappy: { ease: [0.87, 0, 0.13, 1] },
+  heavy: { type: "spring", stiffness: 100, damping: 20, mass: 1.5 },
 };
 
-const visibleStyle: React.CSSProperties = {
-  opacity: 1,
-  transform: "translateX(0) translateY(0) scale(1) rotate(0deg)",
-  filter: "blur(0px)",
+const baseVariants: Record<Variant, Variants> = {
+  "fade-up": {
+    hidden: { opacity: 0, y: 100, scale: 0.96 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+  },
+  "fade-down": {
+    hidden: { opacity: 0, y: -100, scale: 0.96 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+  },
+  "fade-left": {
+    hidden: { opacity: 0, x: -100, rotateY: 15 },
+    visible: { opacity: 1, x: 0, rotateY: 0 },
+  },
+  "fade-right": {
+    hidden: { opacity: 0, x: 100, rotateY: -15 },
+    visible: { opacity: 1, x: 0, rotateY: 0 },
+  },
+  zoom: {
+    hidden: { opacity: 0, scale: 0.6 },
+    visible: { opacity: 1, scale: 1 },
+  },
+  rotate: {
+    hidden: { opacity: 0, rotate: -18, scale: 0.8 },
+    visible: { opacity: 1, rotate: 0, scale: 1 },
+  },
+  blur: {
+    hidden: { opacity: 0, filter: "blur(20px)", scale: 1.1 },
+    visible: { opacity: 1, filter: "blur(0px)", scale: 1 },
+  },
+  "flip-3d": {
+    hidden: { opacity: 0, rotateX: 90, y: 40 },
+    visible: { opacity: 1, rotateX: 0, y: 0 },
+  },
+  glow: {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+      boxShadow: "0px 0px 0px rgba(0,255,255,0)",
+      filter: "brightness(0.5)",
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      boxShadow: "0px 0px 30px rgba(0,255,255,0.4)",
+      filter: "brightness(1)",
+    },
+  },
+  glitch: {
+    hidden: { opacity: 0, x: -20, skewX: 20, filter: "invert(100%)" },
+    visible: {
+      opacity: [0.2, 0.8, 0.4, 1],
+      x: [-10, 15, -5, 0],
+      skewX: [-15, 10, -5, 0],
+      filter: "invert(0%)",
+    },
+  },
 };
 
 export default function Reveal({
   children,
   className = "",
   delay = 0,
-  duration = 700,
+  duration = 0.8,
   variant = "fade-up",
-  once = true,
-  triggerPoint = 0.8,
+  preset = "smooth",
+  staggerChildren = 0,
+  once = false, // Set to false so it re-animates on every intersection
+  margin = "0px 0px -10% 0px",
+  lazy = false,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-
-  const [visible, setVisible] = useState(false);
+  const isInView = useInView(ref, { once, margin });
+  const [mounted, setMounted] = useState(!lazy);
 
   useEffect(() => {
-    const checkVisibility = () => {
-      if (!ref.current) return;
+    if (isInView && !mounted) {
+      setMounted(true);
+    }
+  }, [isInView, mounted]);
 
-      const rect = ref.current.getBoundingClientRect();
+  const selectedEasing = easings[preset];
 
-      const trigger = window.innerHeight * triggerPoint;
+  const transitionConfig: Transition = {
+    ...selectedEasing,
+    delay,
+    staggerChildren,
+    ...(selectedEasing.type !== "spring" ? { duration } : {}),
+  };
 
-      if (rect.top <= trigger) {
-        setVisible(true);
-      } else if (!once) {
-        setVisible(false);
-      }
-    };
+  const activeVariant = baseVariants[variant];
 
-    checkVisibility();
-
-    let ticking = false;
-
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          checkVisibility();
-          ticking = false;
-        });
-
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, {
-      passive: true,
-    });
-
-    window.addEventListener("resize", checkVisibility);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", checkVisibility);
-    };
-  }, [once, triggerPoint]);
+  const componentVariants: Variants = {
+    hidden: activeVariant.hidden,
+    visible: {
+      ...(activeVariant.visible as TargetAndTransition),
+      transition: transitionConfig,
+    },
+  };
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      className={className + "w-full"}
+      className={`w-full ${className}`}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={componentVariants}
       style={{
-        ...(visible ? visibleStyle : hiddenStyles[variant]),
-
-        transition: `
-          opacity ${duration}ms cubic-bezier(.22,1,.36,1),
-          transform ${duration}ms cubic-bezier(.22,1,.36,1),
-          filter ${duration}ms cubic-bezier(.22,1,.36,1)
-        `,
-
-        transitionDelay: `${delay}ms`,
-
+        perspective: 1200,
         willChange: "transform, opacity, filter",
       }}
     >
-      {children}
-    </div>
+      {mounted ? children : null}
+    </motion.div>
   );
 }
