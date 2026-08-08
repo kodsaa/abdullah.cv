@@ -16,7 +16,7 @@ export const EXPERIENCE = [
   employmentType: "job1EmploymentType",
   period: "job1Period",
   role: "job1Role",
-
+  isCurrent:true,
   overview: "job1Overview",
 
   responsibilities: [
@@ -41,7 +41,7 @@ export const EXPERIENCE = [
   employmentType: "job2EmploymentType",
   period: "job2Period",
   role: "job2Role",
-
+  isCurrent:false,
   overview: "job2Overview",
 
   responsibilities: [
@@ -67,7 +67,7 @@ export const EXPERIENCE = [
   employmentType: "job3EmploymentType",
   period: "job3Period",
   role: "job3Role",
-
+  isCurrent:false,
   overview: "job3Overview",
 
   products: [
@@ -97,6 +97,7 @@ export const EXPERIENCE = [
   employmentType: "job4EmploymentType",
   period: "job4Period",
   role: "job4Role",
+  isCurrent:false,
 
   overview: "job4Overview",
 
@@ -117,7 +118,7 @@ export const EXPERIENCE = [
   employmentType: "job5EmploymentType",
   period: "job5Period",
   role: "job5Role",
-
+  isCurrent:false,
   overview: "job5Overview",
 
   responsibilities: [
@@ -139,7 +140,7 @@ export const EXPERIENCE = [
   employmentType: "job6EmploymentType",
   period: "job6Period",
   role: "job6Role",
-
+  isCurrent:false,
   overview: "job6Overview",
 
   responsibilities: [
@@ -201,7 +202,7 @@ const Experience = () => {
       {/* Ledger */}
       <View className="exp-ledger">
         {EXPERIENCE.map((job, index) => {
-          const isCurrent = job.period.toLowerCase().includes("present");
+          const isCurrent = job.isCurrent;
           return (
                    <Reveal
               key={`${job.company}-${index}`}
@@ -221,27 +222,27 @@ const Experience = () => {
 
               {/* Content */}
               <Card className="exp-card theme_card_background">
-                <View className="exp-card-head">
+                <View className="exp-card-head theme-exp-card-head ">
                   <View>
-                    <Text className="exp-company"> {t(job.company)}</Text>
-                    <H3 className="exp-role">{t(job.role)}</H3>
-                    <Text className="exp-location">{t(job.location)}</Text>
+                    <Text className="exp-company theme-paragraph-heading"> {t(job.company)}</Text>
+                    <H3 className="exp-role theme-paragraph-heading-secondary">{t(job.role)}</H3>
+                    <Text className="exp-location theme-paragraph-heading-dis">{t(job.location)}</Text>
                   </View>
 
                   <View className="exp-meta">
-                    <span className={`exp-period ${isCurrent ? "exp-period--current" : ""}`}>
+                    <span className={`exp-period theme-paragraph-heading-secondary ${isCurrent ? "exp-period--current" : ""}`}>
                       {t(job.period)} 
                     </span>
                     <span className="exp-type">{t(job.employmentType)}</span>
                   </View>
                 </View>
 
-                <Text className="exp-overview">{t(job.overview)}</Text>
+                <Text className="exp-overview tmeme-paragraph-card">{t(job.overview)}</Text>
 
                 <View className="exp-columns">
                   {/* Achievements */}
                   <View className="exp-col">
-                    <Text className="exp-col-label">{t("keyAchievements")}</Text>
+                    <Text className="exp-col-label theme-paragraph-heading-dis">{t("keyAchievements")}</Text>
                     <View className="flex flex-col gap-2">
                       {job.achievements.map((item) => (
                        <View key={item} className="exp-pill"> {t(item)} </View>
@@ -251,11 +252,11 @@ const Experience = () => {
 
                   {/* Responsibilities */}
                   <View className="exp-col">
-                    <Text className="exp-col-label">{t("coreResponsibilities")}</Text>
+                    <Text className="exp-col-label theme-paragraph-heading-dis">{t("coreResponsibilities")}</Text>
                     <View className="flex flex-col gap-2">
                       {job.responsibilities.slice(0, 5).map((item) => (
-                        <View key={item} className="exp-check-row">
-                          <span className="exp-check-mark">✓</span>
+                        <View key={item} className="exp-check-row tmeme-paragraph-card">
+                          <span className="exp-check-mark theme-paragraph-heading">✓</span>
                           <span className="exp-check-text">{t(item)}</span>
                         </View>
                       ))}

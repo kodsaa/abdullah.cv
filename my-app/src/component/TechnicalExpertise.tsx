@@ -278,11 +278,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
         }}
         style={{
           transform: cardTransform,
-          border: `1px solid ${
-            hovered
-              ? "rgba(245,158,11,0.4)"
-              : "rgba(120,53,15,0.2)"
-          }`,
+          border: `1px solid transparent`,
           transition: "all .3s ease",
         }}
         className="
@@ -298,16 +294,16 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   "
       >
         {/* Top glow line - left to right on hover */}
-        <div
+        <View
           style={{
             position: "absolute",
             top: 0,
             left: 0,
             height: "2px",
             width: hovered ? "100%" : "0%",
-            background: "linear-gradient(to right, #f59e0b, #fb923c, #f59e0b)",
             transition: "width 0.7s ease-out",
           }}
+          className="feature-card-effect-bg"
         />
 
         {/* Soft ambient glow that sweeps in on hover, purely decorative */}
@@ -362,8 +358,8 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             transition-transform
             duration-500
             ease-out
-            group-hover:scale-110
-            group-hover:rotate-6
+            theme-bg-effect
+            p-2
             "
           >
             {item.icon}
@@ -373,13 +369,13 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             style={{
               lineHeight: 1.2,
             }}
-            className="font-serif m-0 p-0 text-amber-200 font-normal"
+            className="font-serif m-0 p-0 theme-paragraph-heading-secondary font-normal"
           >
             {t(item.titleKey)}
           </H3>
         </View>
 
-        <Text className="text-stone-200 text-sm leading-7 mb-6">
+        <Text className="tmeme-paragraph-card text-sm leading-7 mb-6">
           {t(item.descKey)}
         </Text>
 
@@ -388,6 +384,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             <Badge
               key={skill.label}
               className="
+              tmeme-paragraph-card
               rounded-md
               inline-flex
               items-center
@@ -403,9 +400,6 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
               transition-all
               duration-300
               bg-transparent
-              hover:text-black
-              hover:scale-105
-              hover:animate-pop
               "
               style={{
                 transitionDelay: `${index * 90 + 200 + skillIndex * 35}ms`,
@@ -415,7 +409,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             </Badge>
           ))}
         </View>
-        <Button onClick={() => navigate(`/skill/${item.id}`)} className="bg-transparent mt-4 text-amber-500 ">
+        <Button onClick={() => navigate(`/skill/${item.id}`)} className="bg-transparent mt-4 theme-paragraph-heading ">
           {t("viewOccupation")}
         </Button>
       </Card>

@@ -120,11 +120,11 @@ export default function LeadershipOwnership() {
             <View className="lo-card theme_card_background">
               <View className="lo-icon">{item.icon}</View>
 
-             <H4 className="lo-title">{t(item.title)}</H4>
+             <H4 className="lo-title theme-paragraph-heading-secondary">{t(item.title)}</H4>
 
               <Span className="lo-divider" />
 
-             <Span className="lo-desc">{t(item.description)}</Span>
+             <Span className="lo-desc tmeme-paragraph-card">{t(item.description)}</Span>
             </View>
           </View>
           </Reveal>

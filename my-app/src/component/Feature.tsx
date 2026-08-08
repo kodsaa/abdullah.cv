@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import {
+  Button,
   Container,
   H2,
   H3,
@@ -26,7 +27,7 @@ export const ENGINEERING_PROFILE = [
   {
    id: "APPLICATIONS",
   label: "APPLICATIONS",
-  icon: <ProductDevelopmentIcon className="h-8 w-8 text-orange-500" />,
+  icon: <ProductDevelopmentIcon className="h-8 w-8 text-orange-500 theme-icon" />,
   title: "appTitle",
   color: "amber",
   outcome: "appOutcome",
@@ -47,7 +48,7 @@ export const ENGINEERING_PROFILE = [
   {
     id: "CORE",
     label: "CORE SYSTEMS",
-    icon: <ArchitectureEngineeringIcon className="h-8 w-8 text-orange-500" />,
+    icon: <ArchitectureEngineeringIcon className="h-8 w-8 text-orange-500 theme-icon" />,
     title: "coreTitle",
     color: "orange",
     outcome:
@@ -58,7 +59,7 @@ export const ENGINEERING_PROFILE = [
   {
     id: "AUTOMATION",
     label: "AUTOMATION",
-    icon: <BusinessUnderstandingIcon className="h-8 w-8 text-orange-500" />,
+    icon: <BusinessUnderstandingIcon className="h-8 w-8 text-orange-500 theme-icon" />,
     title: "autoTitle",
     color: "yellow",
     outcome:
@@ -71,7 +72,7 @@ export const ENGINEERING_PROFILE = [
   {
     id: "PLATFORM",
     label: "PLATFORM",
-    icon: <CodeIcon className="h-8 w-8 text-orange-500" />,
+    icon: <CodeIcon className="h-8 w-8 text-orange-500 theme-icon" />,
     title: "platTitle", 
     color: "stone",
     outcome:
@@ -115,32 +116,25 @@ const FilterTab = ({
 }) => {
   const [hovered, setHovered] = useState(false);
   return (
-    <button
+    <Button
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className={active?"theme-glowing-button":"theme-glowing-button-deactivate"}
       style={{
         fontFamily: "monospace",
         fontSize: "11px",
         letterSpacing: "0.05em",
         padding: "10px 18px",
         borderRadius: "8px",
-        border: active
-          ? "1px solid #d97706"
-          : `1px solid ${hovered ? "rgba(245,158,11,0.4)" : "rgba(120,53,15,0.3)"}`,
-        background: active
-          ? "linear-gradient(135deg, #f59e0b, #d97706)"
-          : "#1c1917",
-        color: active ? "#1c1917" : hovered ? "#fde68a" : "#a8a29e",
         fontWeight: active ? 700 : 500,
         cursor: "pointer",
         transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)",
         transform: active ? "translateY(-1px)" : "translateY(0)",
-        boxShadow: active ? "0 8px 20px -6px rgba(245,158,11,0.5)" : "none",
       }}
     >
       {label}
-    </button>
+    </Button>
   );
 };
 
@@ -165,27 +159,22 @@ const EngineeringCard = ({
         position: "relative",
         overflow: "hidden",
         borderRadius: "16px",
-        border: `1px solid ${hovered ? "rgba(245,158,11,0.5)" : "#292524"}`,
         padding: "32px",
         transition: "all 0.5s ease-out",
-        boxShadow: hovered
-          ? "0 20px 50px -15px rgba(245,158,11,.2)"
-          : "none",
         display: "flex",
         flexDirection: reversed ? "row-reverse" : "row",
         flexWrap: "wrap",
         gap: "32px",
         alignItems: "flex-start",
       }}
-      className="theme_card_background"
+      className="theme_card_background feature-card "
     >
       {/* top glow line */}
       <View
-        className="p-0 m-0 absolute top-0 left-0 h-2"
+        className="p-0 m-0 absolute top-0 left-0 h-2 feature-card-effect-bg"
         style={{
           height: "2px",
           width: hovered ? "100%" : "0%",
-          background: "linear-gradient(to right, #f59e0b, #fb923c, #f59e0b)",
           transition: "width 0.7s ease-out",
         }}
       />
@@ -193,10 +182,8 @@ const EngineeringCard = ({
       {/* Left block: icon + title + badge */}
       <View className="p-0 m-0" style={{ flex: "1 1 240px", minWidth: "220px" }}>
         <View
-          className="p-0 m-0 h-12 w-12 rounded-md flex items-center justify-center mb-4"
+          className="p-0 m-0 h-12 w-12 rounded-md flex items-center justify-center mb-4 theme-bg-effect"
           style={{
-            border: "1px solid rgba(245,158,11,0.4)",
-            backgroundColor: "rgba(245,158,11,0.08)",
             transform: hovered ? "scale(1.05)" : "scale(1)",
             transition: "transform 0.4s ease",
           }}
@@ -206,24 +193,20 @@ const EngineeringCard = ({
 
         <H3
           style={{ lineHeight: 1.2 }}
-          className="font-serif m-0 p-0 text-amber-200 font-normal"
+          className="font-serif m-0 p-0 theme-paragraph-heading-secondary  font-normal"
         >
          {t(section.title as string)}
         </H3>
 
-        <Text className="font-serif font-normal mt-2 mb-5 text-xs text-stone-400">
+        <Text className="font-serif font-normal mt-2 mb-5 text-xs tmeme-paragraph-card ">
           {t("coreExpertise", { count: section.items?.length })} 
         </Text>
 
         <View
-          style={{
-            border: "1px solid rgba(245,158,11,0.35)",
-            backgroundColor: "rgba(245,158,11,0.08)",
-          }}
-          className="inline-flex align-center gap-2 rounded-full px-3 py-1"
+          className="inline-flex align-center gap-2 rounded-full px-3 py-1 theme-bg-effect"
         >
-          <Span className="shrink-0 bg-amber-500 rounded-xl h-2 w-2 mt-1" />
-          <Span className="text-xs text-amber-400 font-normal">
+          <Span className="shrink-0 rounded-xl h-2 w-2 mt-1 theme-bg-effect_first" />
+          <Span className="text-xs theme-paragraph-heading font-normal">
           {t(section.outcome as string)}
           </Span>
         </View>
@@ -241,8 +224,8 @@ const EngineeringCard = ({
         >
           {section.items?.map((item) => (
             <Text key={item} className="flex align-center gap-2 p-0 m-0">
-              <Span className="shrink-0 text-amber-400 text-sm">→</Span>
-             <Span style={{ lineHeight: 1.5 }} className="text-sm text-stone-100"> {t(item)} </Span>
+              <Span className="shrink-0 text-amber-400 text-sm theme-paragraph-heading">→</Span>
+             <Span style={{ lineHeight: 1.5 }} className="text-sm text-stone-100 tmeme-paragraph-card"> {t(item)} </Span>
             </Text>
           ))}
         </View>
@@ -254,7 +237,6 @@ const EngineeringCard = ({
 
 const Feature = () => {
   const [activeTab, setActiveTab] = useState("ALL");
-  const { ref: textRef, isVisible: textVisible } = useScrollAnimate();
  const { t } = useTranslation();
   const activeSections =
     activeTab === "ALL"

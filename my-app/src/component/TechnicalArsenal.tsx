@@ -20,7 +20,7 @@ import Reveal from "./Reveal";
 
 const ENGINEERING_PROFILE = [
   {
-    icon: <ProductDevelopmentIcon className="h-8 w-8 text-orange-500" />,
+    icon: <ProductDevelopmentIcon className="h-8 w-8 theme-icon" />,
     title: "section1Title",
     color: "amber",
     items: [
@@ -37,7 +37,7 @@ const ENGINEERING_PROFILE = [
     ],
   },
   {
-    icon: <ArchitectureEngineeringIcon className="h-8 w-8 text-orange-500" />,
+    icon: <ArchitectureEngineeringIcon className="h-8 w-8 theme-icon" />,
     title: "section2Title",
     color: "orange",
     items: [
@@ -56,7 +56,7 @@ const ENGINEERING_PROFILE = [
     ],
   },
   {
-    icon: <BusinessUnderstandingIcon className="h-8 w-8 text-orange-500" />,
+    icon: <BusinessUnderstandingIcon className="h-8 w-8 theme-icon" />,
     title: "section3Title",
     color: "yellow",
     items: [
@@ -112,24 +112,20 @@ const EngineeringCard = ({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
+    <View
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="theme_card_background"
+      className="theme_card_background arsenal_card"
       style={{
         position: "relative",
         overflow: "hidden",
         borderRadius: "20px",
-        border: `1px solid ${hovered ? "rgba(245,158,11,0.45)" : "#292524"}`,
         transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
-        boxShadow: hovered
-          ? "0 25px 55px -20px rgba(245,158,11,.28)"
-          : "none",
       }}
     >
       {/* diagonal accent band, top-right */}
-      <div
+      <View
         style={{
           position: "absolute",
           top: 0,
@@ -140,23 +136,23 @@ const EngineeringCard = ({
           pointerEvents: "none",
         }}
       >
-        <div
+        <View
+          className="arsenal_overlay_bg"
           style={{
             position: "absolute",
             top: "14px",
             right: "-38px",
             width: "140px",
             height: hovered ? "34px" : "0px",
-            background: "linear-gradient(90deg, #f59e0b, #fb923c)",
             transform: "rotate(45deg)",
             transition: "height 0.4s ease-out",
             opacity: 0.9,
           }}
         />
-      </div>
+      </View>
 
       {/* header */}
-      <div
+      <View
         style={{
           display: "flex",
           alignItems: "center",
@@ -164,13 +160,12 @@ const EngineeringCard = ({
           padding: "24px 20px 18px",
         }}
       >
-        <div
+        <View
+          className="theme-bg-effect"
           style={{
             height: "52px",
             width: "52px",
             borderRadius: "16px",
-            backgroundColor: "rgba(245,158,11,0.1)",
-            border: "1px solid rgba(245,158,11,0.25)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -180,45 +175,44 @@ const EngineeringCard = ({
           }}
         >
           {section.icon}
-        </div>
+        </View>
 
-        <div style={{ minWidth: 0, flex: 1 }}>
-          <h3
+        <View style={{ minWidth: 0, flex: 1 }}>
+          <H3
             style={{
               fontSize: "19px",
               fontFamily: "serif",
-              color: "#fef3c7",
               lineHeight: 1.25,
               margin: 0,
             }}
+            className="theme-paragraph-heading-secondary"
           >
             {t(section.title)}
-          </h3>
-          <span
+          </H3>
+          <Span
             style={{
               fontSize: "10px",
               textTransform: "uppercase",
               letterSpacing: "0.15em",
-              color: "#78716c",
               fontFamily: "ui-monospace, SF Mono, Menlo, monospace",
             }}
+            className="theme-paragraph-heading-dis"
           >
             {section.items.length} {t("coreSkillsLabel")}
-          </span>
-        </div>
-      </div>
+          </Span>
+        </View>
+      </View>
 
-      <div
+      <View
+        className="arsenal_devider"
         style={{
           height: "1px",
           margin: "0 20px",
-          background:
-            "linear-gradient(to right, rgba(245,158,11,0.25), transparent)",
         }}
       />
 
       {/* Skills as chips */}
-      <div
+      <View
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -229,8 +223,8 @@ const EngineeringCard = ({
         {section.items.map((item, i) => (
           <SkillChip key={item} item={item} index={i} parentHovered={hovered} />
         ))}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 };
 
@@ -244,18 +238,12 @@ const SkillChip = ({
   parentHovered: boolean;
 }) => {
   const { t } = useTranslation();
-  const [hovered, setHovered] = useState(false);
   return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <Span
+
+      className="theme-bg-effect inline-flex align-item-center arsenal-tech-chip"
       style={{
-        display: "inline-flex",
-        alignItems: "center",
         borderRadius: "8px",
-        border: `1px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.35)"}`,
-        backgroundColor: hovered ? "rgba(245,158,11,0.12)" : "rgba(41,37,36,0.5)",
-        color: hovered ? "#fef3c7" : "#a8a29e",
         padding: "6px 12px",
         fontSize: "12.5px",
         lineHeight: 1.4,
@@ -267,7 +255,7 @@ const SkillChip = ({
       }}
     >
       {t(item)}
-    </span>
+    </Span>
   );
 };
 
@@ -275,16 +263,13 @@ const StatCard = ({ value, label }: { value: string; label: string }) => {
   const { t } = useTranslation();
   const [hovered, setHovered] = useState(false);
   return (
-    <div
+    <View
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="theme_card_background"
+      className="theme_card_background arsenal_card_effect_border"
       style={{
         position: "relative",
         overflow: "hidden",
-        border: `1px solid ${
-          hovered ? "rgba(245,158,11,0.4)" : "rgba(120,53,15,0.2)"
-        }`,
         borderRadius: "16px",
         padding: "20px 16px",
         textAlign: "center",
@@ -293,51 +278,49 @@ const StatCard = ({ value, label }: { value: string; label: string }) => {
       }}
     >
       {/* corner ticks */}
-      <span
+      <Span
         style={{
           position: "absolute",
           top: "8px",
           left: "8px",
           width: "10px",
           height: "10px",
-          borderTop: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
-          borderLeft: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
           transition: "border-color 0.35s ease",
         }}
+        className="arsenal-corner-top-left"
       />
-      <span
+      <Span
         style={{
           position: "absolute",
           bottom: "8px",
           right: "8px",
           width: "10px",
           height: "10px",
-          borderBottom: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
-          borderRight: `2px solid ${hovered ? "#f59e0b" : "rgba(120,53,15,0.4)"}`,
           transition: "border-color 0.35s ease",
         }}
+        className="arsenal-corner-bottom-right"
       />
 
-      <h2
+      <H2
         style={{
           fontSize: "30px",
           fontWeight: 700,
           fontFamily: "serif",
-          color: "#fbbf24",
           margin: 0,
           letterSpacing: "-0.02em",
         }}
+        className="theme-paragraph-heading"
       >
         {value}
-      </h2>
-      <div
+      </H2>
+      <View
+        className="theme-bg-effect_first"
         style={{
           marginTop: "10px",
           marginLeft: "auto",
           marginRight: "auto",
           height: "2px",
           width: hovered ? "36px" : "20px",
-          background: "linear-gradient(to right, #f59e0b, #fb923c)",
           transition: "width 0.4s ease",
         }}
       />
@@ -347,13 +330,13 @@ const StatCard = ({ value, label }: { value: string; label: string }) => {
           fontSize: "10px",
           textTransform: "uppercase",
           letterSpacing: "0.2em",
-          color: "#a8a29e",
           fontFamily: "ui-monospace, SF Mono, Menlo, monospace",
         }}
+        className="theme-paragraph-heading-secondary"
       >
         {t(label)}
       </p>
-    </div>
+    </View>
   );
 };
 
@@ -366,7 +349,7 @@ const TechnicalArsenal = () => {
 
       {/* Heading */}
       <View className="text-center mb-10 lg:mb-16">
-        <div
+        <View
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -386,22 +369,22 @@ const TechnicalArsenal = () => {
           <Span
             className="h-px w-8 theme_section_main_heading_dash"
           />
-        </div>
+        </View>
 
         <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
-          <span
+          <Span
             className="font-serif italic font-light ta-heading-shine"
             data-text={t("engineeringHeadingLine1")}
           >
             {t("engineeringHeadingLine1")}
-          </span>
-          <span className="inline-block w-3 sm:w-4" />
-          <span
+          </Span>
+          <Span className="inline-block w-3 sm:w-4" />
+          <Span
             className="font-sans font-bold not-italic ta-heading-shine"
             data-text={t("engineeringHeadingLine2")}
           >
             {t("engineeringHeadingLine2")}
-          </span>
+          </Span>
         </H2>
 
         <View className="mt-4 h-px w-20 mx-auto bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
@@ -416,24 +399,24 @@ const TechnicalArsenal = () => {
         >
           <Text className="mt-6 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg theme_section_paragraph leading-7 lg:leading-8 px-2 font-light tracking-wide">
             {t("profileText1")}
-            <span className="font-serif italic theme_section_paragraph_highlight">
+            <Span className="font-serif italic theme_section_paragraph_highlight">
               {t("profileHighlight1")}
-            </span>
+            </Span>
             {t("profileText2")}
-            <span className="font-serif italic theme_section_paragraph_highlight">
+            <Span className="font-serif italic theme_section_paragraph_highlight">
               {t("profileHighlight2")}
-            </span>
+            </Span>
             {t("profileText3")}
-            <span className="font-serif italic theme_section_paragraph_highlight_secondary">
+            <Span className="font-serif italic theme_section_paragraph_highlight_secondary">
               {t("profileHighlight3")}
-            </span>
+            </Span>
             {t("profileText4")}
           </Text>
         </div>
       </View>
 
       {/* Cards */}
-      <div
+      <View
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -451,10 +434,10 @@ const TechnicalArsenal = () => {
           <EngineeringCard key={section.title} section={section} />
           </Reveal>
         ))}
-      </div>
+      </View>
 
       {/* Bottom Stats */}
-      <div
+      <View
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
@@ -473,7 +456,7 @@ const TechnicalArsenal = () => {
           <StatCard key={label} value={value} label={label} />
           </Reveal>
         ))}
-      </div>
+      </View>
     </Container>
   );
 };

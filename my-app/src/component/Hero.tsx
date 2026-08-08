@@ -38,9 +38,9 @@ const themeColors = {
     particle: 0xbae6fd,
   },
   quartz: {
-    primary: 0x8b5cf6,
-    secondary: 0xc4b5fd,
-    particle: 0xddd6fe,
+    primary: 0x836fc7,
+    secondary: 0x836fc7,
+    particle: 0x836fc7,
   },
   sandstone: {
     primary: 0xb45309,

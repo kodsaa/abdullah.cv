@@ -63,7 +63,7 @@ const ContactMe = () => {
           <View className="lg:col-span-5 space-y-6">
             <View className="inline-flex items-center gap-3">
               <Span className="cm-pulse-dot" />
-              <Span className="uppercase tracking-[0.35em] text-xs text-amber-400 font-mono font-semibold">
+              <Span className="uppercase tracking-[0.35em] text-xs theme-paragraph-heading font-mono font-semibold">
               {t("contact")}
               </Span>
             </View>
