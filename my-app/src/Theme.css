@@ -8,7 +8,7 @@
   [data-theme="system"] {
     --header-bg: #1a1a1a;
     --hero-bg: #080707;
-        --theme-icon-color: #f97316;
+     --theme-icon-color: #f97316;
     --sidebar-bg: #000000;
     --card-background: #1c1917;
     --card-border: rgba(120, 53, 15, 0.3);
@@ -92,6 +92,27 @@
 
     --pe-cta: #78716c;
     --pe-cta-hover: #fbbf24;
+    --select-border: #78350f;
+    --select-border-hover: #f59e0b;
+    --select-bg: #1a1a1a;
+    --select-text: #fffbeb;
+
+    --select-dropdown-bg: #1c1917;
+    --select-dropdown-border: #78350f;
+
+    --select-list-text: #fef3c7;
+    --select-list-bg: rgba(245, 158, 11, 0.05);
+
+    --select-option-text: #fef3c7;
+    --select-option-hover-bg: #f59e0b;
+    --select-option-hover-text: #292524; 
+
+     --sidebar-heading: #fbbf24;
+
+    --effect-button-border: #f59e0b;
+    --effect-button-bg: #f59e0b;
+    --effect-button-text: #080707;
+    --effect-button-selected-bg: rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -101,7 +122,7 @@
     --header-bg: #ffffff;
     --hero-bg: #ffffff;
     --hero-heading: #1c1917;
-      --theme-icon-color: #d97706;
+    --theme-icon-color: #d97706;
 
 
     --hero-heading-secondary: #57534e;
@@ -185,6 +206,26 @@
 
     --pe-cta: #78716c;
     --pe-cta-hover: #d97706;
+      --select-border: #d6d3d1;
+    --select-border-hover: #d97706;
+    --select-bg: #ffffff;
+    --select-text: #292524;
+
+    --select-dropdown-bg: #ffffff;
+    --select-dropdown-border: #d6d3d1;
+
+    --select-list-text: #44403c;
+    --select-list-bg: rgba(217, 119, 6, 0.03);
+
+    --select-option-text: #44403c;
+    --select-option-hover-bg: #d97706;
+    --select-option-hover-text: #ffffff;
+     --sidebar-heading: #b45309;
+
+    --effect-button-border: #d97706;
+    --effect-button-bg: #d97706;
+    --effect-button-text: #ffffff;
+    --effect-button-selected-bg: rgba(217, 119, 6, 0.12);
   }
 }
 
@@ -276,6 +317,26 @@
 
   --pe-cta: #78716c;
   --pe-cta-hover: #fbbf24;
+    --select-border: #78350f;
+  --select-border-hover: #f59e0b;
+  --select-bg: #1a1a1a;
+  --select-text: #fffbeb;
+
+  --select-dropdown-bg: #1c1917;
+  --select-dropdown-border: #78350f;
+
+  --select-list-text: #fef3c7;
+  --select-list-bg: rgba(245, 158, 11, 0.05);
+
+  --select-option-text: #fef3c7;
+  --select-option-hover-bg: #f59e0b;
+  --select-option-hover-text: #292524;
+  --sidebar-heading: #fbbf24;
+
+  --effect-button-border: #f59e0b;
+  --effect-button-bg: #f59e0b;
+  --effect-button-text: #080707;
+  --effect-button-selected-bg: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="carbon"]{
@@ -362,6 +423,26 @@
 
   --pe-cta: #737373;
   --pe-cta-hover: #f87171;
+  --select-border: #525252;
+  --select-border-hover: #ef4444;
+  --select-bg: #171717;
+  --select-text: #fafafa;
+
+  --select-dropdown-bg: #1c1c1c;
+  --select-dropdown-border: #404040;
+
+  --select-list-text: #f5f5f5;
+  --select-list-bg: rgba(239, 68, 68, 0.05);
+
+  --select-option-text: #fca5a5;
+  --select-option-hover-bg: #ef4444;
+  --select-option-hover-text: #ffffff;
+    --sidebar-heading: #fbbf24;
+
+  --effect-button-border: #ef4444;
+  --effect-button-bg: #ef4444;
+  --effect-button-text: #080707;
+  --effect-button-selected-bg: rgba(255, 255, 255, 0.2);
 
 }
 /* =========================
@@ -454,6 +535,26 @@
 
   --pe-cta: #94a3b8;
   --pe-cta-hover: #60a5fa;
+    --select-border: #1e3a8a;
+  --select-border-hover: #3b82f6;
+  --select-bg: #0f172a;
+  --select-text: #eff6ff;
+
+  --select-dropdown-bg: #111827;
+  --select-dropdown-border: #1e3a8a;
+
+  --select-list-text: #dbeafe;
+  --select-list-bg: rgba(59, 130, 246, 0.05);
+
+  --select-option-text: #dbeafe;
+  --select-option-hover-bg: #3b82f6;
+  --select-option-hover-text: #ffffff;
+    --sidebar-heading: #60a5fa;
+
+  --effect-button-border: #3b82f6;
+  --effect-button-bg: #3b82f6;
+  --effect-button-text: #ffffff;
+  --effect-button-selected-bg: rgba(59, 130, 246, 0.18);
 }
 
 /* =========================
@@ -545,6 +646,26 @@
 
   --pe-cta: #94a3b8;
   --pe-cta-hover: #67e8f9;
+    --select-border: #334155;
+  --select-border-hover: #06b6d4;
+  --select-bg: #1a2129;
+  --select-text: #ecfeff;
+
+  --select-dropdown-bg: #111827;
+  --select-dropdown-border: #334155;
+
+  --select-list-text: #cffafe;
+  --select-list-bg: rgba(6, 182, 212, 0.05);
+
+  --select-option-text: #a5f3fc;
+  --select-option-hover-bg: #06b6d4;
+  --select-option-hover-text: #083344;
+    --sidebar-heading: #67e8f9;
+
+  --effect-button-border: #06b6d4;
+  --effect-button-bg: #06b6d4;
+  --effect-button-text: #083344;
+  --effect-button-selected-bg: rgba(6, 182, 212, 0.18);
 }
 
 /* =========================
@@ -637,6 +758,26 @@
 
   --pe-cta: #94a3b8;
   --pe-cta-hover: #7dd3fc;
+    --select-border: #475569;
+  --select-border-hover: #38bdf8;
+  --select-bg: #27313c;
+  --select-text: #f1f5f9;
+
+  --select-dropdown-bg: #1e293b;
+  --select-dropdown-border: #475569;
+
+  --select-list-text: #e2e8f0;
+  --select-list-bg: rgba(56, 189, 248, 0.05);
+
+  --select-option-text: #bae6fd;
+  --select-option-hover-bg: #38bdf8;
+  --select-option-hover-text: #082f49;
+   --sidebar-heading: #7dd3fc;
+
+  --effect-button-border: #38bdf8;
+  --effect-button-bg: #38bdf8;
+  --effect-button-text: #082f49;
+  --effect-button-selected-bg: rgba(56, 189, 248, 0.18);
 
 }
 
@@ -731,6 +872,26 @@
 
   --pe-cta: #64748b;
   --pe-cta-hover: #8b5cf6;
+   --select-border: #c4b5fd;
+  --select-border-hover: #8b5cf6;
+  --select-bg: #ffffff;
+  --select-text: #1e293b;
+
+  --select-dropdown-bg: #f8fafc;
+  --select-dropdown-border: #ddd6fe;
+
+  --select-list-text: #475569;
+  --select-list-bg: rgba(139, 92, 246, 0.04);
+
+  --select-option-text: #475569;
+  --select-option-hover-bg: #8b5cf6;
+  --select-option-hover-text: #ffffff;
+    --sidebar-heading: #7c3aed;
+
+  --effect-button-border: #8b5cf6;
+  --effect-button-bg: #8b5cf6;
+  --effect-button-text: #ffffff;
+  --effect-button-selected-bg: rgba(139, 92, 246, 0.14);
 }
 
 /* =========================
@@ -821,6 +982,27 @@
 
   --pe-cta: #a88d72;
   --pe-cta-hover: #fbbf24;
+   --select-border: #92400e;
+  --select-border-hover: #d97706;
+  --select-bg: #3f3023;
+  --select-text: #fef3c7;
+
+  --select-dropdown-bg: #2f241b;
+  --select-dropdown-border: #78350f;
+
+  --select-list-text: #fde68a;
+  --select-list-bg: rgba(217, 119, 6, 0.05);
+
+  --select-option-text: #fef3c7;
+  --select-option-hover-bg: #d97706;
+  --select-option-hover-text: #1c1917;
+
+    --sidebar-heading: #fbbf24;
+
+  --effect-button-border: #d97706;
+  --effect-button-bg: #d97706;
+  --effect-button-text: #1c1917;
+  --effect-button-selected-bg: rgba(217, 119, 6, 0.18);
 }
 
 /* =========================
@@ -912,6 +1094,28 @@
 
   --pe-cta: #9ca3af;
   --pe-cta-hover: #34d399;
+    --select-border: #065f46;
+  --select-border-hover: #10b981;
+  --select-bg: #0b1f1d;
+  --select-text: #ecfdf5;
+
+  --select-dropdown-bg: #071a17;
+  --select-dropdown-border: #065f46;
+
+  --select-list-text: #d1fae5;
+  --select-list-bg: rgba(16, 185, 129, 0.05);
+
+  --select-option-text: #a7f3d0;
+  --select-option-hover-bg: #10b981;
+  --select-option-hover-text: #022c22;
+
+   --sidebar-heading: #6ee7b7;
+
+  --effect-button-border: #10b981;
+  --effect-button-bg: #10b981;
+  --effect-button-text: #022c22;
+  --effect-button-selected-bg: rgba(16, 185, 129, 0.18);
+
 }
 
 /* =========================
@@ -1003,6 +1207,27 @@
 
   --pe-cta: #a78bfa;
   --pe-cta-hover: #d8b4fe;
+   --select-border: #581c87;
+  --select-border-hover: #a855f7;
+  --select-bg: #160d2b;
+  --select-text: #f3e8ff;
+
+  --select-dropdown-bg: #0f071c;
+  --select-dropdown-border: #581c87;
+
+  --select-list-text: #e9d5ff;
+  --select-list-bg: rgba(168, 85, 247, 0.05);
+
+  --select-option-text: #d8b4fe;
+  --select-option-hover-bg: #a855f7;
+  --select-option-hover-text: #ffffff;
+
+   --sidebar-heading: #d8b4fe;
+
+  --effect-button-border: #a855f7;
+  --effect-button-bg: #a855f7;
+  --effect-button-text: #ffffff;
+  --effect-button-selected-bg: rgba(168, 85, 247, 0.18);
 }
 
 /* =========================
@@ -1094,6 +1319,28 @@
 
   --pe-cta: #839496;
   --pe-cta-hover: #b58900;
+    --select-border: #586e75;
+  --select-border-hover: #2aa198;
+  --select-bg: #073642;
+  --select-text: #fdf6e3;
+
+  --select-dropdown-bg: #002b36;
+  --select-dropdown-border: #586e75;
+
+  --select-list-text: #eee8d5;
+  --select-list-bg: rgba(42, 161, 152, 0.05);
+
+  --select-option-text: #93a1a1;
+  --select-option-hover-bg: #2aa198;
+  --select-option-hover-text: #002b36;
+
+   --sidebar-heading: #b58900;
+
+  --effect-button-border: #2aa198;
+  --effect-button-bg: #2aa198;
+  --effect-button-text: #002b36;
+  --effect-button-selected-bg: rgba(42, 161, 152, 0.18);
+
 }
 
 /* =========================
@@ -1184,6 +1431,27 @@
 
   --pe-cta: #d4d4d4;
   --pe-cta-hover: #ffff00;
+    --select-border: #ffffff;
+  --select-border-hover: #ffff00;
+  --select-bg: #000000;
+  --select-text: #ffffff;
+
+  --select-dropdown-bg: #000000;
+  --select-dropdown-border: #ffffff;
+
+  --select-list-text: #ffffff;
+  --select-list-bg: rgba(255, 255, 255, 0.05);
+
+  --select-option-text: #ffffff;
+  --select-option-hover-bg: #ffff00;
+  --select-option-hover-text: #000000;
+
+    --sidebar-heading: #ffff00;
+
+  --effect-button-border: #ffff00;
+  --effect-button-bg: #ffff00;
+  --effect-button-text: #000000;
+  --effect-button-selected-bg: rgba(255, 255, 255, 0.2);
 }
 
 .mainContainer_background {
@@ -1482,9 +1750,47 @@
   color: var(--theme-icon-color);
 }
 
+.theme-select-container {
+  border-color: var(--select-border);
+  background-color: var(--select-bg);
+  color: var(--select-text);
+}
 
+.theme-select-container:hover {
+  border-color: var(--select-border-hover);
+}
 
+.theme-select-container-dropdown {
+  background-color: var(--select-dropdown-bg);
+  border-color: var(--select-dropdown-border);
+}
 
+.theme-select-list {
+  color: var(--select-list-text);
+  background-color: var(--select-list-bg);
+}
+
+.theme-option-select {
+  color: var(--select-option-text);
+}
+
+.theme-option-select:hover {
+  background-color: var(--select-option-hover-bg);
+  color: var(--select-option-hover-text);
+}
+.theme-sidebar-heading {
+  color: var(--sidebar-heading);
+}
+
+.theme-effect-button {
+  border-color: var(--effect-button-border);
+  background-color: var(--effect-button-bg);
+  color: var(--effect-button-text);
+}
+
+.theme-effect-button-select {
+  background-color: var(--effect-button-selected-bg);
+}
 /* 
 
 .theme_hero-text-heading {

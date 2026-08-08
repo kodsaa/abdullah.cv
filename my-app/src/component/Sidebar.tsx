@@ -99,11 +99,11 @@ const Sidebar = ({
 
           <View>
 
-            <H3 className="text-2xl text-amber-400">
+            <H3 className="text-2xl theme-sidebar-heading">
               ⚙ {t("settings")}
             </H3>
 
-            <Span className="text-xs text-stone-500 uppercase tracking-widest">
+            <Span className="text-xs theme_paragraph_secondary  uppercase tracking-widest">
               {t("personalizeExperience")}
             </Span>
 
@@ -122,17 +122,18 @@ const Sidebar = ({
 
         <View className="mt-10">
 
-          <Text className="mb-3 text-stone-400">
+          <Text className="mb-3 theme_paragraph_secondary">
             {t("theme")}
           </Text>
 
           <Select
   value={theme}
   onChange={setTheme}
-  triggerClassName="bg-black-200 text-amber-50 border border-black-200 hover:border-black-300 rounded-md"
-  dropdownClassName="bg-stone-900 border border-stone-900 rounded-md shadow-lg"
-  optionClassName="hover:bg-amber-500 text-amber-100 hover:text-stone-800  "
-  selectedOptionClassName="bg-white/10 text-amber-50 rounded-md"
+  
+  triggerClassName="theme-select-container"
+  dropdownClassName="theme-select-container-dropdown"
+  optionClassName="theme-option-select"
+  selectedOptionClassName="theme-select-list  overflow-hidden"
   options={[
     { label: "Obsidian", value: "obsidian" },
     { label: "Midnight", value: "midnight" },
@@ -153,17 +154,17 @@ const Sidebar = ({
         {/* Time */}
 
    <View>
-  <Text className="mb-3 text-stone-400">
+  <Text className="mb-3 theme_paragraph_secondary ">
     {t("language")}
   </Text>
 
   <Select
 value={timeOfDay}
 onChange={setTimeOfDay}
-  triggerClassName="bg-black-200 text-amber-50 border border-black-200 hover:border-black-300 rounded-md"
-  dropdownClassName="bg-stone-900 border border-stone-900 rounded-md shadow-lg"
-  optionClassName="hover:bg-amber-500 text-amber-100 hover:text-stone-800  "
-  selectedOptionClassName="bg-white/10 text-amber-50 rounded-md"
+    triggerClassName="theme-select-container"
+  dropdownClassName="theme-select-container-dropdown"
+  optionClassName="theme-option-select"
+  selectedOptionClassName="theme-select-list  overflow-hidden"
     options={[
       { label: "🇺🇸 English", value: "en" },
       { label: "🇵🇰 اردو (Urdu)", value: "ur" },
@@ -178,7 +179,7 @@ onChange={setTimeOfDay}
 
         <View className="mt-10 ">
 
-            <Text className="text-stone-400 ">{t("effects")}</Text>
+            <Text className="theme_paragraph_secondary ">{t("effects")}</Text>
 
 
             {/* <Text className="text-stone-400 m-0 p-0 "> Water Effects</Text>
