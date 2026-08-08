@@ -381,26 +381,7 @@ export default function Loader() {
         </Text>
       </View>
 
-      {/* Animation Styles */}
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-
-        @keyframes spinReverse {
-          to { transform: rotate(-360deg); }
-        }
-
-        @keyframes pulseParticle {
-          0%, 100% { opacity: 0.2; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.3); }
-        }
-
-        @keyframes pulseDot {
-          0%, 100% { opacity: 0.3; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-      `}</style>
+    
     </Main>
   );
 }
