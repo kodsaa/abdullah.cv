@@ -24,7 +24,7 @@ const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [season, setSeason] = useState("summer");
-  const [timeOfDay, setTimeOfDay] = useState("day");
+  const [languages, setlanguages] = useState("day");
   const [theme, setTheme] = useState("system");
   const [music, setMusic] = useState(true);
   const [effects, setEffects] = useState(true);
@@ -33,8 +33,9 @@ const Layout = () => {
   const [isNavigating, setIsNavigating] = useState(false);
 
 const handleLanguageChange = (value: string) => {
-  setTimeOfDay(value);
+  setlanguages(value);
   i18n.changeLanguage(value);
+  localStorage.setItem("language", value)
 };
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -234,6 +235,52 @@ useEffect(() => {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
+  useEffect(() => {
+  const savedTheme = localStorage.getItem("theme");
+  const savedEffects = localStorage.getItem("activeEffects");
+  const savedLanguage = localStorage.getItem("language");
+
+  if (savedTheme) {
+    setTheme(savedTheme);
+  }
+
+  if (savedEffects) {
+    try {
+      setActiveEffects(JSON.parse(savedEffects));
+    } catch {
+      setActiveEffects({});
+    }
+  }
+
+  if (savedLanguage) {
+    setlanguages(savedLanguage);
+    i18n.changeLanguage(savedLanguage);
+  }
+
+}, []);
+
+useEffect(() => {
+  document.documentElement.setAttribute("data-theme", theme);
+}, [theme]);
+
+useEffect(() => {
+  localStorage.setItem("theme", theme);
+}, [theme]);
+
+useEffect(() => {
+  localStorage.setItem(
+    "activeEffects",
+    JSON.stringify(activeEffects)
+  );
+}, [activeEffects]);
+const handleTheme = () => {
+  setSidebarOpen(false);
+
+  localStorage.setItem("theme", theme);
+  localStorage.setItem("activeEffects", JSON.stringify(activeEffects));
+};
+
+
   if (loading || isNavigating) {
     return <Loader />;
   }
@@ -284,11 +331,11 @@ useEffect(() => {
       <Header setSidebarOpen={()=>{setSidebarOpen(true)}} />
            <Sidebar
         open={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
+        onClose={() =>handleTheme()}
         season={season}
         setSeason={setSeason}
-        timeOfDay={timeOfDay}
-       setTimeOfDay={handleLanguageChange} 
+        languages={languages}
+        setlanguages={handleLanguageChange} 
         saloonLights={saloonLights}
         setSaloonLights={setSaloonLights}
         theme={theme}

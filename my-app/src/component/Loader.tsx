@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Main, View, H1, Span, Text, Image } from "strivui";
 import imageLoading from "../assets/Loading.jpg";
 import syedTown from "../assets/syed.jpeg";
 
@@ -48,7 +47,7 @@ export default function Loader() {
   );
 
   return (
-    <Main className="loader-container">
+    <main className="loader-container">
       {/* Background Image Layer */}
       <div
         className="loader-bg-image"
@@ -77,7 +76,7 @@ export default function Loader() {
       </div>
 
       {/* Center Glassmorphism Card */}
-      <View className="loader-card">
+      <div className="loader-card">
         {/* Profile / Animated Rings */}
         <div className="ring-container">
           <div className="ring-outer" />
@@ -86,7 +85,7 @@ export default function Loader() {
 
           {/* Profile Image */}
           <div className="profile-wrapper">
-            <Image
+            <img
               src={syedTown}
               alt="Syed Town"
               className="profile-img"
@@ -95,29 +94,29 @@ export default function Loader() {
         </div>
 
         {/* Status Pill Badge */}
-        <View className="badge">
-          <Span className="badge-dot" />
-          <Span className="badge-text">System Initialization</Span>
-        </View>
+        <div className="badge">
+          <span className="badge-dot" />
+          <span className="badge-text">System Initialization</span>
+        </div>
 
         {/* Heading */}
-        <H1 className="loader-heading">
-          <Span className="heading-text-light">Software </Span>
-          <Span className="heading-text-gradient">Engineer</Span>
-        </H1>
+        <h1 className="loader-heading">
+          <span className="heading-text-light">Software </span>
+          <span className="heading-text-gradient">Engineer</span>
+        </h1>
 
         {/* Subtitle */}
-        <Text className="loader-subtitle">Engineering The Digital Frontier</Text>
+        <p className="loader-subtitle">Engineering The Digital Frontier</p>
 
-        <View className="divider-line" />
+        <div className="divider-line" />
 
         {/* Progress Bar & Status Text */}
         <div className="progress-section">
           <div className="progress-label-wrapper">
-            <Span className="progress-message">{currentMessage}</Span>
-            <Span className="progress-percentage">
+            <span className="progress-message">{currentMessage}</span>
+            <span className="progress-percentage">
               {Math.min(Math.floor(progress), 100)}%
-            </Span>
+            </span>
           </div>
 
           <div className="progress-track">
@@ -136,8 +135,8 @@ export default function Loader() {
         </div>
 
         {/* Brand Footer */}
-        <Text className="brand-footer">© STRIVUI ENGINE</Text>
-      </View>
-    </Main>
+        <p className="brand-footer">© STRIVUI ENGINE</p>
+      </div>
+    </main>
   );
 }

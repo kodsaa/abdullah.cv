@@ -18,8 +18,8 @@ interface SidebarProps {
   season: string;
   setSeason: (value: string) => void;
 
-  timeOfDay: string;
-  setTimeOfDay: (value: string) => void;
+  languages: string;
+  setlanguages: (value: string) => void;
 
   saloonLights: boolean;
   setSaloonLights: (value: boolean) => void;
@@ -41,8 +41,8 @@ const Sidebar = ({
   onClose,
   season,
   setSeason,
-  timeOfDay,
-  setTimeOfDay,
+  languages,
+  setlanguages,
   saloonLights,
   setSaloonLights,
   theme,
@@ -159,8 +159,8 @@ const Sidebar = ({
   </Text>
 
   <Select
-value={timeOfDay}
-onChange={setTimeOfDay}
+value={languages}
+onChange={setlanguages}
     triggerClassName="theme-select-container"
   dropdownClassName="theme-select-container-dropdown"
   optionClassName="theme-option-select"
