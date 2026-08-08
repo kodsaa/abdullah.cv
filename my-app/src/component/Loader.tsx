@@ -48,55 +48,28 @@ export default function Loader() {
   );
 
   return (
-    <Main
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-        backgroundColor: "#130f03", // Stone 950
-        color: "#f5f5f4",
-      }}
-    >
+    <Main className="loader-container">
       {/* Background Image Layer */}
       <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:`url(${imageLoading})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.15,
-          transform: "scale(1.05)",
-          transition: "transform 10s ease-out",
-        }}
+        className="loader-bg-image"
+        style={{ backgroundImage: `url(${imageLoading})` }}
       />
 
       {/* Ambient Gradient Overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-        }}
-      />
+      <div className="loader-overlay" />
 
       {/* Dust Particles */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+      <div className="loader-particles">
         {particles.map((p, i) => (
           <span
             key={i}
+            className="loader-particle"
             style={{
-              position: "absolute",
               left: `${p.left}%`,
               top: `${p.top}%`,
               width: `${p.size}px`,
               height: `${p.size}px`,
-              borderRadius: "50%",
-              backgroundColor: "rgba(253, 230, 138, 0.25)",
-              animation: `pulseParticle ${p.duration}s infinite ease-in-out`,
+              animationDuration: `${p.duration}s`,
               animationDelay: `${p.delay}s`,
             }}
           />
@@ -104,284 +77,67 @@ export default function Loader() {
       </div>
 
       {/* Center Glassmorphism Card */}
-      <View
-        style={{
-          position: "relative",
-          zIndex: 10,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "40px 32px",
-          maxWidth: "480px",
-          width: "90%",
-          borderRadius: "16px",
-        }}
-      >
+      <View className="loader-card">
         {/* Profile / Animated Rings */}
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "128px",
-            height: "128px",
-            marginBottom: "24px",
-          }}
-        >
-          {/* Outer Spin */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: "50%",
-              border: "1px solid rgba(245, 158, 11, 0.3)",
-              borderTopColor: "#fbbf24",
-              animation: "spin 2s linear infinite",
-            }}
-          />
-          {/* Inner Reverse Spin */}
-          <div
-            style={{
-              position: "absolute",
-              inset: "8px",
-              borderRadius: "50%",
-              border: "1px solid rgba(68, 64, 60, 0.4)",
-              borderRightColor: "rgba(245, 158, 11, 0.7)",
-              animation: "spinReverse 4s linear infinite",
-            }}
-          />
-          {/* Background Glow */}
-          <div
-            style={{
-              position: "absolute",
-              inset: "16px",
-              borderRadius: "50%",
-              backgroundColor: "rgba(245, 158, 11, 0.15)",
-              filter: "blur(20px)",
-            }}
-          />
+        <div className="ring-container">
+          <div className="ring-outer" />
+          <div className="ring-inner" />
+          <div className="ring-glow" />
 
           {/* Profile Image */}
-          <div
-            style={{
-              position: "relative",
-              width: "80px",
-              height: "80px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "1px solid rgba(245, 158, 11, 0.4)",
-              backgroundColor: "#1c1917",
-            }}
-          >
+          <div className="profile-wrapper">
             <Image
               src={syedTown}
               alt="Syed Town"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                opacity: 0.85,
-              }}
+              className="profile-img"
             />
           </div>
         </div>
 
         {/* Status Pill Badge */}
-        <View
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            borderRadius: "9999px",
-            padding: "4px 14px",
-            border: "1px solid rgba(245, 158, 11, 0.35)",
-            backgroundColor: "rgba(245, 158, 11, 0.08)",
-            marginBottom: "12px",
-          }}
-        >
-          <Span
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              backgroundColor: "#f59e0b",
-            }}
-          />
-          <Span
-            style={{
-              fontSize: "12px",
-              color: "#fbbf24",
-              fontWeight: 500,
-              letterSpacing: "0.05em",
-            }}
-          >
-            System Initialization
-          </Span>
+        <View className="badge">
+          <Span className="badge-dot" />
+          <Span className="badge-text">System Initialization</Span>
         </View>
 
-        {/* Heading: Mixed Serif Italic & Sans Bold */}
-        <H1
-          style={{
-            textAlign: "center",
-            fontSize: "28px",
-            lineHeight: 1.2,
-            margin: "4px 0 0 0",
-            padding: 0,
-          }}
-        >
-          <Span
-            style={{
-              fontFamily: "serif",
-              fontStyle: "italic",
-              fontWeight: 300,
-              color: "#e7e5e4",
-            }}
-          >
-            Software{" "}
-          </Span>
-          <Span
-            style={{
-              fontFamily: "sans-serif",
-              fontWeight: 800,
-              fontStyle: "normal",
-              background: "linear-gradient(to right, #fef3c7, #fcd34d, #f59e0b)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Engineer
-          </Span>
+        {/* Heading */}
+        <H1 className="loader-heading">
+          <Span className="heading-text-light">Software </Span>
+          <Span className="heading-text-gradient">Engineer</Span>
         </H1>
 
         {/* Subtitle */}
-        <Text
-          style={{
-            marginTop: "8px",
-            fontSize: "11px",
-            fontFamily: "monospace",
-            letterSpacing: "0.3em",
-            fontWeight: 700,
-            textTransform: "uppercase",
-            color: "rgba(245, 158, 11, 0.8)",
-            textAlign: "center",
-          }}
-        >
-          Engineering The Digital Frontier
-        </Text>
+        <Text className="loader-subtitle">Engineering The Digital Frontier</Text>
 
-        <View
-          style={{
-            marginTop: "16px",
-            height: "1px",
-            width: "64px",
-            background: "linear-gradient(to right, transparent, rgba(245, 158, 11, 0.5), transparent)",
-          }}
-        />
+        <View className="divider-line" />
 
         {/* Progress Bar & Status Text */}
-        <div style={{ width: "100%", marginTop: "32px" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "10px",
-            }}
-          >
-            <Span
-              style={{
-                fontFamily: "serif",
-                fontStyle: "italic",
-                fontSize: "13px",
-                color: "#a8a29e",
-              }}
-            >
-              {currentMessage}
-            </Span>
-            <Span
-              style={{
-                fontFamily: "monospace",
-                fontWeight: 700,
-                fontSize: "13px",
-                color: "#fbbf24",
-                marginLeft: "8px",
-              }}
-            >
+        <div className="progress-section">
+          <div className="progress-label-wrapper">
+            <Span className="progress-message">{currentMessage}</Span>
+            <Span className="progress-percentage">
               {Math.min(Math.floor(progress), 100)}%
             </Span>
           </div>
 
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "6px",
-              borderRadius: "9999px",
-              backgroundColor: "rgba(41, 37, 36, 0.8)",
-              overflow: "hidden",
-              border: "1px solid rgba(68, 64, 60, 0.4)",
-            }}
-          >
+          <div className="progress-track">
             <div
-              style={{
-                height: "100%",
-                width: `${progress}%`,
-                borderRadius: "9999px",
-                background: "linear-gradient(90deg, #f59e0b, #fde047, #f59e0b)",
-                transition: "width 0.15s ease-out",
-                boxShadow: "0 0 12px rgba(245, 158, 11, 0.5)",
-              }}
+              className="progress-fill"
+              style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
         {/* Pulse Indicator */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "32px" }}>
-          <span
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              backgroundColor: "#fbbf24",
-              animation: "pulseDot 1.2s infinite ease-in-out",
-            }}
-          />
-          <span
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              backgroundColor: "rgba(251, 191, 36, 0.5)",
-            }}
-          />
-          <span
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              backgroundColor: "rgba(251, 191, 36, 0.2)",
-            }}
-          />
+        <div className="pulse-wrapper">
+          <span className="pulse-dot-active" />
+          <span className="pulse-dot-dim" />
+          <span className="pulse-dot-faint" />
         </div>
 
         {/* Brand Footer */}
-        <Text
-          style={{
-            marginTop: "24px",
-            fontSize: "10px",
-            fontFamily: "monospace",
-            fontWeight: 700,
-            letterSpacing: "0.35em",
-            textTransform: "uppercase",
-            color: "#78716c",
-          }}
-        >
-          © STRIVUI ENGINE
-        </Text>
+        <Text className="brand-footer">© STRIVUI ENGINE</Text>
       </View>
-
-    
     </Main>
   );
 }

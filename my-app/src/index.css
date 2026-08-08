@@ -1424,6 +1424,7 @@ body{
 }
 
 /* ========================Loader================================ */
+/* Animations */
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
@@ -1441,3 +1442,238 @@ body{
           0%, 100% { opacity: 0.3; transform: scale(0.8); }
           50% { opacity: 1; transform: scale(1.2); }
         }
+
+/* Layout Containers */
+.loader-container {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+}
+
+.loader-bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  transform: scale(1.05);
+  transition: transform 10s ease-out;
+}
+
+.loader-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.loader-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.loader-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: pulseParticle infinite ease-in-out;
+}
+
+.loader-card {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 32px;
+  max-width: 480px;
+  width: 90%;
+  border-radius: 16px;
+}
+
+/* Profile Section & Rings */
+.ring-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 128px;
+  margin-bottom: 24px;
+}
+
+.ring-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.ring-inner {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+
+  animation: spinReverse 4s linear infinite;
+}
+
+.ring-glow {
+  position: absolute;
+  inset: 16px;
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.profile-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+/* Badge Component */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  padding: 4px 14px;
+  margin-bottom: 12px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* Typography Elements */
+.loader-heading {
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 4px 0 0 0;
+  padding: 0;
+}
+
+.heading-text-light {
+  font-family: serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.heading-text-gradient {
+  font-family: sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.loader-subtitle {
+  margin-top: 8px;
+  font-size: 11px;
+  font-family: monospace;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.divider-line {
+  margin-top: 16px;
+  height: 1px;
+  width: 64px;
+}
+
+/* Progress Component */
+.progress-section {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.progress-label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.progress-message {
+  font-family: serif;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.progress-percentage {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 13px;
+  margin-left: 8px;
+}
+
+.progress-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.15s ease-out;
+}
+
+/* Dots Pulse Indicator */
+.pulse-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.pulse-dot-active {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: pulseDot 1.2s infinite ease-in-out;
+}
+
+.pulse-dot-dim {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.pulse-dot-faint {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Footer Component */
+.brand-footer {
+  margin-top: 24px;
+  font-size: 10px;
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
