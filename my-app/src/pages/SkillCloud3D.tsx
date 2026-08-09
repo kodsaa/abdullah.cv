@@ -1,9 +1,8 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Text, Line, Stars } from "@react-three/drei";
 import * as THREE from "three";
 import { useTranslation } from "react-i18next";
-import Reveal from "../component/Reveal";
 
 // Dynamic Theme Configuration Map
 const THEME_STYLES: Record<
@@ -357,6 +356,25 @@ function generatePlanetTexture(baseColorHex: string, themeAccentHex: string | un
   return texture;
 }
 
+// Dynamic Camera Controller for Smooth Responsiveness
+function DynamicCameraController({ screenWidth }: { screenWidth: number }) {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    const isXS = screenWidth < 480;
+    const isMobile = screenWidth >= 480 && screenWidth < 640;
+    const isTablet = screenWidth >= 640 && screenWidth < 1024;
+
+    const targetZ = isXS ? 22 : isMobile ? 18 : isTablet ? 15 : 13;
+    const targetY = isXS ? 12 : isMobile ? 10 : isTablet ? 9 : 8;
+
+    camera.position.set(0, targetY, targetZ);
+    camera.lookAt(0, 0, 0);
+  }, [screenWidth, camera]);
+
+  return null;
+}
+
 function Planet({
   name,
   level,
@@ -367,11 +385,12 @@ function Planet({
   initialAngle,
   index,
   labelColor,
+  scaleFactor = 1,
 }: any) {
   const orbitGroupRef = useRef<THREE.Group>(null!);
   const planetMeshRef = useRef<THREE.Mesh>(null!);
 
-  const planetSize = 0.22 + (level / 100) * 0.25;
+  const planetSize = (0.22 + (level / 100) * 0.25) * scaleFactor;
 
   const surfaceTexture = useMemo(
     () => generatePlanetTexture(color, themeAccent, index),
@@ -407,13 +426,6 @@ function Planet({
     return pts;
   }, [radius]);
 
-useEffect(() => {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth", // or "auto"
-  });
-}, []);
   return (
     <>
       <Line
@@ -445,8 +457,8 @@ useEffect(() => {
           </group>
 
           <Text
-            position={[0, planetSize + 0.35, 0]}
-            fontSize={0.18}
+            position={[0, planetSize + 0.25 * scaleFactor, 0]}
+            fontSize={0.16 * scaleFactor}
             color={labelColor || "#ffffff"}
             anchorX="center"
             anchorY="middle"
@@ -466,14 +478,16 @@ function SolarSun({
   categoryColor,
   themeCoreColor,
   labelColor,
+  scaleFactor = 1,
 }: {
   name: string;
   categoryColor: string;
   themeCoreColor?: string;
   labelColor: string;
+  scaleFactor?: number;
 }) {
   const sunMeshRef = useRef<THREE.Mesh>(null!);
-  
+  const sunRadius = 0.85 * scaleFactor;
 
   const blendedCoreColor = useMemo(() => {
     if (!themeCoreColor) return categoryColor;
@@ -491,7 +505,7 @@ function SolarSun({
   return (
     <group position={[0, 0, 0]}>
       <mesh ref={sunMeshRef}>
-        <sphereGeometry args={[0.85, 32, 32]} />
+        <sphereGeometry args={[sunRadius, 32, 32]} />
         <meshStandardMaterial
           color={blendedCoreColor}
           emissive={blendedCoreColor}
@@ -501,7 +515,7 @@ function SolarSun({
       </mesh>
 
       <mesh scale={[1.22, 1.22, 1.22]}>
-        <sphereGeometry args={[0.85, 32, 32]} />
+        <sphereGeometry args={[sunRadius, 32, 32]} />
         <meshBasicMaterial
           color={blendedCoreColor}
           transparent
@@ -511,8 +525,8 @@ function SolarSun({
       </mesh>
 
       <Text
-        position={[0, 1.35, 0]}
-        fontSize={0.35}
+        position={[0, sunRadius + 0.4 * scaleFactor, 0]}
+        fontSize={0.3 * scaleFactor}
         color={labelColor || "#ffffff"}
         anchorX="center"
         outlineWidth={0.03}
@@ -529,8 +543,20 @@ export default function SkillCloud3D() {
   const [theme, setTheme] = useState<string>(
     document.documentElement.dataset.theme ?? "system"
   );
-    const { t } = useTranslation();
+  const [screenWidth, setScreenWidth] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
+  const { t } = useTranslation();
 
+  // Resize Listener for Responsive Adjustments
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
@@ -557,6 +583,15 @@ export default function SkillCloud3D() {
       .getHexString()}`;
   }, [selectedCategory.color, activeThemeConfig.accentColor]);
 
+  // Responsive Math Scale Calculations
+  const isXS = screenWidth < 480;
+  const isMobile = screenWidth >= 480 && screenWidth < 640;
+  const isTablet = screenWidth >= 640 && screenWidth < 1024;
+
+  const objectScale = isXS ? 0.6 : isMobile ? 0.75 : isTablet ? 0.88 : 1;
+  const radiusStep = isXS ? 0.65 : isMobile ? 0.75 : isTablet ? 0.85 : 0.95;
+  const baseRadius = isXS ? 1.6 : isMobile ? 1.9 : 2.4;
+
   return (
     <div
       style={{
@@ -573,19 +608,21 @@ export default function SkillCloud3D() {
       <div
         style={{
           position: "absolute",
-          top: "20px",
+          top: isXS ? "12px" : "20px",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 10,
           display: "flex",
-          gap: "8px",
+          gap: isXS ? "4px" : "8px",
           background: activeThemeConfig.navBg,
-          padding: "8px 12px",
+          padding: isXS ? "6px 8px" : "8px 12px",
           borderRadius: "12px",
           border: `1px solid ${activeThemeConfig.navBorder}`,
           backdropFilter: "blur(12px)",
-          maxWidth: "92%",
+          maxWidth: "94%",
           overflowX: "auto",
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
           transition: "all 0.3s ease",
         }}
       >
@@ -596,12 +633,12 @@ export default function SkillCloud3D() {
               key={cat.category}
               onClick={() => setActiveTab(cat.category)}
               style={{
-                padding: "8px 16px",
+                padding: isXS ? "6px 12px" : "8px 16px",
                 borderRadius: "8px",
                 border: "none",
                 cursor: "pointer",
                 fontWeight: 600,
-                fontSize: "13px",
+                fontSize: isXS ? "11px" : "13px",
                 whiteSpace: "nowrap",
                 transition: "all 0.3s ease",
                 background: isActive ? activeCategoryColor : "transparent",
@@ -621,7 +658,8 @@ export default function SkillCloud3D() {
       </div>
 
       {/* 3D Scene Canvas */}
-      <Canvas camera={{ position: [0, 8, 13], fov: 45 }}>
+      <Canvas camera={{ position: [0, 8, 13], fov: isXS ? 55 : 45 }}>
+        <DynamicCameraController screenWidth={screenWidth} />
         <ambientLight intensity={activeThemeConfig.ambientIntensity} />
         <pointLight
           position={[0, 0, 0]}
@@ -634,7 +672,7 @@ export default function SkillCloud3D() {
         <Stars
           radius={100}
           depth={50}
-          count={2500}
+          count={isXS ? 1200 : 2500}
           factor={4}
           saturation={0}
           fade={activeThemeConfig.starsFade}
@@ -647,11 +685,12 @@ export default function SkillCloud3D() {
           categoryColor={selectedCategory.color}
           themeCoreColor={activeThemeConfig.coreColor}
           labelColor={activeThemeConfig.labelColor}
+          scaleFactor={objectScale}
         />
 
         {/* Dynamic Planets & Orbits */}
         {selectedCategory.skills.map((skill, idx) => {
-          const orbitRadius = 2.4 + idx * 0.95;
+          const orbitRadius = baseRadius + idx * radiusStep;
           const orbitSpeed = 0.35 / (idx + 1);
           const startAngle =
             (idx / selectedCategory.skills.length) * Math.PI * 2;
@@ -668,6 +707,7 @@ export default function SkillCloud3D() {
               speed={orbitSpeed}
               initialAngle={startAngle}
               labelColor={activeThemeConfig.labelColor}
+              scaleFactor={objectScale}
             />
           );
         })}
@@ -675,10 +715,10 @@ export default function SkillCloud3D() {
         <OrbitControls
           enableZoom={true}
           maxPolarAngle={Math.PI / 2.1}
-          minDistance={5}
-          maxDistance={28}
+          minDistance={isXS ? 6 : 5}
+          maxDistance={isXS ? 35 : 28}
         />
       </Canvas>
     </div>
-      );
+  );
 }

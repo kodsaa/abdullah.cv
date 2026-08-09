@@ -72,6 +72,11 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
       { label: "React Query", icon: "" },
       { label: "Tailwind CSS", icon: <TailwindCSSIcon className="h-5 w-5" /> },
       { label: "StrivUI", icon: "" },
+      { label: "Micro Frontends", icon: "" },
+      { label: "SSR", icon: "" },
+      { label: "SSG", icon: "" },
+      { label: "Component Architecture", icon: "" },
+
     ],
   },
   {
@@ -81,14 +86,16 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     descKey: "techBackendDesc",
     skills: [
       { label: "Django", icon: "" },
-      { label: "FastAPI", icon: "" },
-      { label: "Flask", icon: <FlaskIcon className="h-5 w-5 " /> },
-      { label: "Node.js", icon: <NodeJSIcon className="h-5 w-5 " /> },
-      { label: "Express", icon: "" },
-      { label: "REST API", icon: "" },
-      { label: "GraphQL", icon: "" },
-      { label: "JWT", icon: "" },
-      { label: "RBAC", icon: "" },
+{ label: "FastAPI", icon: "" },
+{ label: "Flask", icon: <FlaskIcon className="h-5 w-5" /> },
+{ label: "Node.js", icon: <NodeJSIcon className="h-5 w-5" /> },
+{ label: "Express.js", icon: "" },
+{ label: "Microservices", icon: "" },
+{ label: "Message Queues", icon: "" },
+{ label: "REST APIs", icon: "" },
+{ label: "GraphQL", icon: "" },
+{ label: "Event-Driven Architecture", icon: "" },
+{ label: "Async Programming", icon: "" },
     ],
   },
   {
@@ -105,6 +112,11 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
       { label: "Indexing", icon: "" },
       { label: "Aggregation", icon: "" },
       { label: "Replication", icon: "" },
+      { label: "Query Optimization", icon: "" },
+      { label: "Caching", icon: "" },
+      { label: "Transactions", icon: "" },
+      { label: "Data Modeling", icon: "" },
+
     ],
   },
   {
@@ -113,14 +125,16 @@ const TECHNICAL_EXPERTISE: ExpertiseItem[] = [
     titleKey: "techSystemDesignTitle",
     descKey: "techSystemDesignDesc",
     skills: [
-      { label: "Microservices", icon: "" },
-      { label: "Distributed Systems", icon: "" },
-      { label: "Load Balancing", icon: "" },
-      { label: "Caching", icon: "" },
-      { label: "Queues", icon: "" },
-      { label: "Clean Architecture", icon: "" },
       { label: "SOLID", icon: "" },
+      { label: "Caching", icon: "" },
+            { label: "Microservices", icon: "" },
+                  { label: "Queues", icon: "" },
+
+     { label: "Distributed Systems", icon: "" },
+      { label: "Load Balancing", icon: "" },
       { label: "Design Patterns", icon: "" },
+            { label: "Clean Architecture", icon: "" },
+
     ],
   },
   {

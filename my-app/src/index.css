@@ -1,4 +1,5 @@
 @layer app {
+
 *{
     scroll-behavior: smooth;
 }
@@ -1699,4 +1700,5 @@ html .pe-spotlight {
   height: 100%;
   object-fit: cover;
   display: block;
+}
 }

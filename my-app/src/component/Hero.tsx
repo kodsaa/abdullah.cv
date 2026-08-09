@@ -10,7 +10,6 @@ import {
   View,
 } from "strivui";
 
-
 const themeColors = {
   obsidian: {
     primary: 0xf59e0b,
@@ -68,14 +67,14 @@ const themeColors = {
     particle: 0xffffff,
   },
   system: {
-  primary: 0xffe082,
-  secondary: 0xfbbf24,
-  particle: 0xfcd34d,
-},
+    primary: 0xffe082,
+    secondary: 0xfbbf24,
+    particle: 0xfcd34d,
+  },
 } as const;
 
 const Hero = () => {
-  const { t ,i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const mountRef = useRef<HTMLDivElement>(null);
   const isRTL = ["ar", "ur"].includes(i18n.language);
 
@@ -97,32 +96,31 @@ const Hero = () => {
     setTilt({ x: 0, y: 0 });
   };
 
-const [theme, setTheme] = useState(
-  document.documentElement.dataset.theme ?? "system"
-);
+  const [theme, setTheme] = useState(
+    document.documentElement.dataset.theme ?? "system"
+  );
 
-useEffect(() => {
-  const observer = new MutationObserver(() => {
-    setTheme(document.documentElement.dataset.theme ?? "system");
-  });
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setTheme(document.documentElement.dataset.theme ?? "system");
+    });
 
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-theme"],
-  });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
 
-  return () => observer.disconnect();
-}, []);
+    return () => observer.disconnect();
+  }, []);
 
   // --- Three.js Scene Setup ---
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
-    
 
     const colors =
-  themeColors[theme as keyof typeof themeColors] ??
-  themeColors.system;
+      themeColors[theme as keyof typeof themeColors] ??
+      themeColors.system;
 
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
@@ -142,12 +140,12 @@ useEffect(() => {
     // 2. 3D Wireframe Icosahedron (Geometric Accent)
     const geometry = new THREE.IcosahedronGeometry(1.6, 1);
     const material = new THREE.MeshStandardMaterial({
-       color: colors.primary,
-  emissive: colors.primary,
-  emissiveIntensity: 0.1,
-  wireframe: true,
-  roughness: 0.3,
-  metalness: 0.8,
+      color: colors.primary,
+      emissive: colors.primary,
+      emissiveIntensity: 0.1,
+      wireframe: true,
+      roughness: 0.3,
+      metalness: 0.8,
     });
     const mainPoly = new THREE.Mesh(geometry, material);
     mainPoly.position.set(2.2, 0.2, -1);
@@ -163,6 +161,34 @@ useEffect(() => {
     });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
     mainPoly.add(coreMesh);
+
+    // Reduced 3D Globe scale on small screens
+    const updateCanvasLayout = () => {
+      const width = container.clientWidth;
+      const isXS = width < 480;
+      const isMobile = width >= 480 && width < 640;
+      const isTablet = width >= 640 && width < 1024;
+
+      // Scale globe down significantly on smaller screens
+      const scale = isXS ? 0.35 : isMobile ? 0.45 : isTablet ? 0.75 : 1.0;
+      mainPoly.scale.set(scale, scale, scale);
+
+      // Reposition globe position dynamically
+      const xPos = isXS || isMobile
+        ? 0
+        : isTablet
+        ? isRTL
+          ? -1.5
+          : 1.5
+        : isRTL
+        ? -2.2
+        : 2.2;
+
+      const yPos = isXS ? 1.1 : isMobile ? 0.9 : 0.2;
+      mainPoly.position.set(xPos, yPos, -1);
+    };
+
+    updateCanvasLayout();
 
     // 3. Floating Particle Field (Dust / Stars)
     const particleCount = 200;
@@ -181,7 +207,7 @@ useEffect(() => {
     );
 
     const particlesMat = new THREE.PointsMaterial({
-      color:  colors.particle,
+      color: colors.particle,
       size: 0.035,
       transparent: true,
       opacity: 0.6,
@@ -199,8 +225,7 @@ useEffect(() => {
     pointLight.position.set(3, 3, 3);
     scene.add(pointLight);
 
-    if(isRTL){
-      mainPoly.position.set(isRTL ? -2.2 : 2.2, 0.2, -1);
+    if (isRTL) {
       pointLight.position.set(isRTL ? -3 : 3, 3, 3);
     }
 
@@ -246,6 +271,7 @@ useEffect(() => {
       camera.aspect = container.clientWidth / container.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(container.clientWidth, container.clientHeight);
+      updateCanvasLayout();
     };
 
     window.addEventListener("resize", handleResize);
@@ -266,8 +292,7 @@ useEffect(() => {
         container.removeChild(renderer.domElement);
       }
     };
-  }, [theme,isRTL]);
-
+  }, [theme, isRTL]);
   return (
     <Container
       id="home"
@@ -293,7 +318,7 @@ useEffect(() => {
 
       {/* --- CONTENT LAYER --- */}
       <View
-        className="relative z-10 w-full max-w-5xl pt-32 pb-20 "
+        className="relative z-10 w-full max-w-5xl pt-32 pb-20 px-5  "
         style={{
           maxWidth: "1280px",
           paddingTop: "120px",
@@ -338,7 +363,7 @@ useEffect(() => {
             letterSpacing: "-0.02em",
             transform: "translateZ(50px)",
           }}
-          className="text-6xl"
+          className="text-3xl md:text-5xl lg:text-6xl"
         >
           <Span
             className="italic font-light font-serif theme_hero-text-heading"
