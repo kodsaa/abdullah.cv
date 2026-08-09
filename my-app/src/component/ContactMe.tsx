@@ -90,12 +90,14 @@ const ContactMe = () => {
                 <span className="cm-btn-arrow">→</span>
               </Button>
 
-              <Button
-                onClick={() => window.open("/resume.pdf", "_blank")}
-                className="cm-btn-ghost"
-              >
-                {t("downloadResume")}
-              </Button>
+            
+              <a
+              className="cm-btn-ghost "
+  href="/SYED_ABDULLAH_ALI-RESUME-SOFTWARE-ENGINEER.pdf"
+  download
+>
+{t("downloadResume")}
+</a>
             </View>
 
             <View className="cm-status">
