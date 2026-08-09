@@ -246,11 +246,7 @@ const Testimonials = () => {
               : fullMessage;
 
             return (
-              <div
-                className="tw-card"
-                key={item.name}
-                onClick={goToLinkedIn}
-              >
+              <div className="tw-card" key={item.name}>
                 <span className="tw-quote-mark">"</span>
 
                 <div className="tw-card-top">

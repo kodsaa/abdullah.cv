@@ -1,25 +1,22 @@
-@layer app {
 *{
     scroll-behavior: smooth;
 }
-
 body{
   padding: 0;
   margin: 0;
-  background-color: #000;
+  background-color: #000000;
 }
 
-html .mainContainer_background {
+.mainContainer_background {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   /* 🌌 base dark radial background */
 }
 
 /* 🟦 grid overlay layer */
-html .mainContainer_background::before {
+.mainContainer_background::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -28,7 +25,7 @@ html .mainContainer_background::before {
 }
 
 /* ✨ glow blur layer (top light) */
-html .mainContainer_background::after {
+.mainContainer_background::after {
   content: "";
   position: absolute;
   top: -200px;
@@ -44,7 +41,7 @@ html .mainContainer_background::after {
 
 
 /* Outer container providing 3D depth perspective */
-html .page-perspective-container {
+.page-perspective-container {
   perspective: 1200px;
   width: 100%;
   min-height: 100vh;
@@ -53,7 +50,7 @@ html .page-perspective-container {
 }
 
 /* Page wrapper that performs the opening animation */
-html .page-open-animation {
+.page-open-animation {
   width: 100%;
   min-height: 100vh;
   transform-origin: top center; /* Originates from the top like an opening card */
@@ -69,7 +66,6 @@ html .page-open-animation {
     transform: rotateX(-20deg) translateY(30px) scale(0.95);
     filter: brightness(0.7);
   }
-
   100% {
     opacity: 1;
     transform: rotateX(0deg) translateY(0) scale(1);
@@ -77,11 +73,11 @@ html .page-open-animation {
   }
 }
 
-html .sora-font {
-  font-family: Sora, sans-serif;
+.sora-font {
+  font-family: "Sora", sans-serif;
 }
 
-html .script {
+.script {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 4.5rem;
@@ -89,8 +85,8 @@ html .script {
   font-weight: 700;
 }
 
-html .main {
-  font-family: Manrope, sans-serif;
+.main {
+  font-family: "Manrope", sans-serif;
   font-size: 4.2rem;
   font-weight: 800;
   color: #f8f8f8;
@@ -105,29 +101,29 @@ html .main {
 
 /* ===== Project Experience Section ===== */
 
-html .pe-heading-wrap {
+.pe-heading-wrap {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-html .pe-eyebrow-row {
+.pe-eyebrow-row {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 0.25rem;
 }
 
-html .pe-eyebrow-line {
+.pe-eyebrow-line {
   height: 1px;
   width: 2rem;
-  background: linear-gradient(to right, transparent, rgb(245 158 11 / 70%));
+  background: linear-gradient(to right, transparent, rgba(245, 158, 11, 0.7));
 }
 
-html .pe-eyebrow-line--right {
-  background: linear-gradient(to left, transparent, rgb(245 158 11 / 70%));
+.pe-eyebrow-line--right {
+  background: linear-gradient(to left, transparent, rgba(245, 158, 11, 0.7));
 }
 
-html .pe-eyebrow {
+.pe-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.35em;
   color: #f59e0b;
@@ -136,7 +132,7 @@ html .pe-eyebrow {
   font-size: 0.85rem;
 }
 
-html .pe-title {
+.pe-title {
   margin-top: 1rem;
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.15;
@@ -144,14 +140,14 @@ html .pe-title {
   color: #fef3c7;
 }
 
-html .pe-divider {
+.pe-divider {
   margin: 1.25rem auto 0;
   height: 1px;
   width: 5rem;
-  background: linear-gradient(to right, transparent, rgb(245 158 11 / 60%), transparent);
+  background: linear-gradient(to right, transparent, rgba(245, 158, 11, 0.6), transparent);
 }
 
-html .pe-subtitle {
+.pe-subtitle {
   display: block;
   margin-top: 1.5rem;
   color: #a8a29e;
@@ -162,42 +158,41 @@ html .pe-subtitle {
   margin-right: auto;
 }
 
-html .pe-grid {
+.pe-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
 
-@media (width >= 768px) {
-html  .pe-grid {
+@media (min-width: 768px) {
+  .pe-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-html .pe-reveal {
+.pe-reveal {
   opacity: 0;
   transform: translateY(48px) scale(0.96);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html .pe-reveal.pe-in-view {
+.pe-reveal.pe-in-view {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
 /* ---- Blueprint / technical-drawing card ---- */
 
-html .pe-card-outer {
+.pe-card-outer {
   --mx: 50%;
   --my: 50%;
-
   position: relative;
   transition: transform 0.15s ease-out;
   will-change: transform;
 }
 
-html .pe-card {
+.pe-card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -208,10 +203,10 @@ html .pe-card {
 
 /* Corner brackets - the signature interactive touch, like a camera
    focus reticle or blueprint crop-mark, extending on hover */
-html .pe-card::before,
-html .pe-card::after,
-html .pe-card-outer .pe-corner-tl,
-html .pe-card-outer .pe-corner-br {
+.pe-card::before,
+.pe-card::after,
+.pe-card-outer .pe-corner-tl,
+.pe-card-outer .pe-corner-br {
   content: "";
   position: absolute;
   width: 22px;
@@ -221,7 +216,7 @@ html .pe-card-outer .pe-corner-br {
   pointer-events: none;
 }
 
-html .pe-card::before {
+.pe-card::before {
   top: -1px;
   left: -1px;
   border-right: none;
@@ -229,7 +224,7 @@ html .pe-card::before {
   border-top-left-radius: 8px;
 }
 
-html .pe-card::after {
+.pe-card::after {
   bottom: -1px;
   right: -1px;
   border-left: none;
@@ -237,15 +232,15 @@ html .pe-card::after {
   border-bottom-right-radius: 8px;
 }
 
-html .pe-card-outer:hover .pe-card::before,
-html .pe-card-outer:hover .pe-card::after {
+.pe-card-outer:hover .pe-card::before,
+.pe-card-outer:hover .pe-card::after {
   width: 34px;
   height: 34px;
   opacity: 1;
 }
 
 /* Cursor spotlight - kept subtle, blueprint-glow rather than a blob */
-html .pe-spotlight {
+.pe-spotlight {
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -496,9 +491,8 @@ html .pe-spotlight {
   padding: 2rem;
 }
 
-@media (width >= 640px) { .cm-shell { padding: 3rem; } }
-
-@media (width >= 1024px) { .cm-shell { padding: 4rem; } }
+@media (min-width: 640px) { .cm-shell { padding: 3rem; } }
+@media (min-width: 1024px) { .cm-shell { padding: 4rem; } }
 
 .cm-orb {
   position: absolute;
@@ -726,7 +720,7 @@ html .pe-spotlight {
   50.01%, 100% { opacity: 0; }
 }
 
-@media (width <= 640px) {
+@media (max-width: 640px) {
   .term-body { font-size: 0.75rem; }
   .term-lineno { width: 1.5rem; padding-right: 0.6rem; }
 }
@@ -952,7 +946,7 @@ html .pe-spotlight {
   padding-top: 1.5rem;
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .ft-bottom {
     flex-direction: row;
     align-items: center;
@@ -1015,7 +1009,7 @@ html .pe-spotlight {
   width: 56px;
 }
 
-@media (width >= 1024px) {
+@media (min-width: 1024px) {
   .exp-marker-col { display: flex; }
 }
 
@@ -1048,7 +1042,7 @@ html .pe-spotlight {
   transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .exp-card { padding: 2rem 2.25rem; }
 }
 
@@ -1062,7 +1056,7 @@ html .pe-spotlight {
   margin-bottom: 1.25rem;
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .exp-card-head {
     flex-direction: row;
     align-items: flex-start;
@@ -1099,7 +1093,7 @@ html .pe-spotlight {
   flex-shrink: 0;
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .exp-meta { align-items: flex-end; }
 }
 
@@ -1115,7 +1109,7 @@ html .pe-spotlight {
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
   color: #78716c;
-  border: 1px solid rgb(120 53 15 / 35%);
+  border: 1px solid rgba(120, 53, 15, 0.35);
 }
 
 .exp-overview {
@@ -1131,7 +1125,7 @@ html .pe-spotlight {
   margin-bottom: 1.75rem;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .exp-columns { grid-template-columns: 1fr 1fr; }
 }
 
@@ -1267,7 +1261,7 @@ html .pe-spotlight {
   transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-@media (width >= 480px) {
+@media (min-width: 480px) {
   .tw-card {
     width: 320px;
   }
@@ -1430,7 +1424,6 @@ html .pe-spotlight {
 }
 
 /* ========================Loader================================ */
-
 /* Animations */
         @keyframes spin {
           to { transform: rotate(360deg); }
@@ -1523,6 +1516,7 @@ html .pe-spotlight {
   position: absolute;
   inset: 8px;
   border-radius: 50%;
+
   animation: spinReverse 4s linear infinite;
 }
 
@@ -1575,7 +1569,7 @@ html .pe-spotlight {
   text-align: center;
   font-size: 28px;
   line-height: 1.2;
-  margin: 4px 0 0;
+  margin: 4px 0 0 0;
   padding: 0;
 }
 
@@ -1682,21 +1676,4 @@ html .pe-spotlight {
   font-weight: 700;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-}
-
-
-
-.tw-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.tw-avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }

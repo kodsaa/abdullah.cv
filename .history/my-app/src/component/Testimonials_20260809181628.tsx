@@ -2,24 +2,12 @@ import { useRef, useState, useEffect } from "react";
 import { Container, H2, Span, Text, View } from "strivui";
 import { useTranslation } from "react-i18next";
 
-// Testimonial images import
-import testimonial1Initials from "../Testimonials-images/testimonial1Initials.png";
-import testimonial2Initials from "../Testimonials-images/testimonial2Initials.png";
-import testimonial3Initials from "../Testimonials-images/testimonial3Initials.png";
-import testimonial4Initials from "../Testimonials-images/testimonial4Initials.png";
-import testimonial5Initials from "../Testimonials-images/testimonial5Initials.png";
-import testimonial6Initials from "../Testimonials-images/testimonial6Initials.png";
-import testimonial7Initials from "../Testimonials-images/testimonial7Initials.png";
-import testimonial8Initials from "../Testimonials-images/testimonial8Initials.png";
-import testimonial9Initials from "../Testimonials-images/testimonial9Initials.png";
-import testimonial10Initials from "../Testimonials-images/testimonial10Initials.png";
-
 interface Testimonial {
   name: string;
   title: string;
   relation: string;
   message: string;
-  initials: string; // ab yeh image path store karega
+  initials: string;
 }
 
 const LINKEDIN_RECOMMENDATIONS_URL =
@@ -33,70 +21,70 @@ const TESTIMONIALS: Testimonial[] = [
     title: "testimonial1Title",
     relation: "testimonial1Relation",
     message: "testimonial1Message",
-    initials: testimonial1Initials,
+    initials: "testimonial1Initials",
   },
   {
     name: "testimonial2Name",
     title: "testimonial2Title",
     relation: "testimonial2Relation",
     message: "testimonial2Message",
-    initials: testimonial2Initials,
+    initials: "testimonial2Initials",
   },
   {
     name: "testimonial3Name",
     title: "testimonial3Title",
     relation: "testimonial3Relation",
     message: "testimonial3Message",
-    initials: testimonial3Initials,
+    initials: "testimonial3Initials",
   },
   {
     name: "testimonial4Name",
     title: "testimonial4Title",
     relation: "testimonial4Relation",
     message: "testimonial4Message",
-    initials: testimonial4Initials,
+    initials: "testimonial4Initials",
   },
   {
     name: "testimonial5Name",
     title: "testimonial5Title",
     relation: "testimonial5Relation",
     message: "testimonial5Message",
-    initials: testimonial5Initials,
+    initials: "testimonial5Initials",
   },
   {
     name: "testimonial6Name",
     title: "testimonial6Title",
     relation: "testimonial6Relation",
     message: "testimonial6Message",
-    initials: testimonial6Initials,
+    initials: "testimonial6Initials",
   },
   {
     name: "testimonial7Name",
     title: "testimonial7Title",
     relation: "testimonial7Relation",
     message: "testimonial7Message",
-    initials: testimonial7Initials,
+    initials: "testimonial7Initials",
   },
   {
     name: "testimonial8Name",
     title: "testimonial8Title",
     relation: "testimonial8Relation",
     message: "testimonial8Message",
-    initials: testimonial8Initials,
+    initials: "testimonial8Initials",
   },
   {
     name: "testimonial9Name",
     title: "testimonial9Title",
     relation: "testimonial9Relation",
     message: "testimonial9Message",
-    initials: testimonial9Initials,
+    initials: "testimonial9Initials",
   },
   {
     name: "testimonial10Name",
     title: "testimonial10Title",
     relation: "testimonial10Relation",
     message: "testimonial10Message",
-    initials: testimonial10Initials,
+    initials: "testimonial10Initials",
   },
 ];
 
@@ -106,6 +94,9 @@ const Testimonials = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [expandedIndexes, setExpandedIndexes] = useState<Set<number>>(
+    new Set()
+  );
 
   const getStep = () => {
     const el = trackRef.current;
@@ -145,6 +136,7 @@ const Testimonials = () => {
 
   // drag to scroll
   const isDown = useRef(false);
+  const didDrag = useRef(false);
   const startX = useRef(0);
   const startLeft = useRef(0);
 
@@ -152,6 +144,7 @@ const Testimonials = () => {
     const el = trackRef.current;
     if (!el) return;
     isDown.current = true;
+    didDrag.current = false;
     el.classList.add("tw-dragging");
     startX.current = e.pageX;
     startLeft.current = el.scrollLeft;
@@ -160,6 +153,8 @@ const Testimonials = () => {
   const onPointerMove = (e: React.MouseEvent) => {
     if (!isDown.current || !trackRef.current) return;
     const dx = e.pageX - startX.current;
+    // treat as a drag only past a small threshold, so plain clicks still work
+    if (Math.abs(dx) > 5) didDrag.current = true;
     trackRef.current.scrollLeft = startLeft.current - dx;
   };
 
@@ -168,9 +163,26 @@ const Testimonials = () => {
     trackRef.current?.classList.remove("tw-dragging");
   };
 
-  const goToLinkedIn = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const openLinkedInRecommendations = () => {
+    // don't navigate if the user was dragging the carousel
+    if (didDrag.current) {
+      didDrag.current = false;
+      return;
+    }
     window.open(LINKEDIN_RECOMMENDATIONS_URL, "_blank", "noopener,noreferrer");
+  };
+
+  const toggleExpanded = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation(); // don't trigger the card's LinkedIn click-through
+    setExpandedIndexes((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
   };
 
   return (
@@ -238,29 +250,33 @@ const Testimonials = () => {
           onMouseUp={onPointerUp}
           onMouseLeave={onPointerUp}
         >
-          {TESTIMONIALS.map((item) => {
+          {TESTIMONIALS.map((item, index) => {
             const fullMessage = t(item.message);
             const isLong = fullMessage.length > MESSAGE_TRUNCATE_LENGTH;
-            const displayMessage = isLong
-              ? `${fullMessage.slice(0, MESSAGE_TRUNCATE_LENGTH).trimEnd()}… `
-              : fullMessage;
+            const isExpanded = expandedIndexes.has(index);
+            const displayMessage =
+              isLong && !isExpanded
+                ? `${fullMessage.slice(0, MESSAGE_TRUNCATE_LENGTH).trimEnd()}…`
+                : fullMessage;
 
             return (
               <div
                 className="tw-card"
                 key={item.name}
-                onClick={goToLinkedIn}
+                onClick={openLinkedInRecommendations}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openLinkedInRecommendations();
+                  }
+                }}
               >
                 <span className="tw-quote-mark">"</span>
 
                 <div className="tw-card-top">
-                  <div className="tw-avatar">
-                    <img
-                      src={item.initials}
-                      alt={t(item.name)}
-                      className="tw-avatar-img"
-                    />
-                  </div>
+                  <div className="tw-avatar">{t(item.initials)}</div>
                   <div className="tw-head-text">
                     <div className="tw-name-row">
                       <span className="tw-name">{t(item.name)}</span>
@@ -273,9 +289,13 @@ const Testimonials = () => {
                 <p className="tw-message">
                   {displayMessage}
                   {isLong && (
-                    <span className="tw-read-more" onClick={goToLinkedIn}>
-                      {t("readMore") || "Read more"}
-                    </span>
+                    <button
+                      type="button"
+                      className="tw-read-more"
+                      onClick={(e) => toggleExpanded(index, e)}
+                    >
+                      {isExpanded ? t("readLess") || "Read less" : t("readMore") || "Read more"}
+                    </button>
                   )}
                 </p>
 

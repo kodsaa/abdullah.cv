@@ -2,104 +2,86 @@ import { useRef, useState, useEffect } from "react";
 import { Container, H2, Span, Text, View } from "strivui";
 import { useTranslation } from "react-i18next";
 
-// Testimonial images import
-import testimonial1Initials from "../Testimonials-images/testimonial1Initials.png";
-import testimonial2Initials from "../Testimonials-images/testimonial2Initials.png";
-import testimonial3Initials from "../Testimonials-images/testimonial3Initials.png";
-import testimonial4Initials from "../Testimonials-images/testimonial4Initials.png";
-import testimonial5Initials from "../Testimonials-images/testimonial5Initials.png";
-import testimonial6Initials from "../Testimonials-images/testimonial6Initials.png";
-import testimonial7Initials from "../Testimonials-images/testimonial7Initials.png";
-import testimonial8Initials from "../Testimonials-images/testimonial8Initials.png";
-import testimonial9Initials from "../Testimonials-images/testimonial9Initials.png";
-import testimonial10Initials from "../Testimonials-images/testimonial10Initials.png";
-
 interface Testimonial {
   name: string;
   title: string;
   relation: string;
   message: string;
-  initials: string; // ab yeh image path store karega
+  initials: string;
 }
-
-const LINKEDIN_RECOMMENDATIONS_URL =
-  "https://www.linkedin.com/in/syed-abdullah-ali380/details/recommendations/";
-
-const MESSAGE_TRUNCATE_LENGTH = 220;
-
-const TESTIMONIALS: Testimonial[] = [
+  
+ const TESTIMONIALS: Testimonial[] = [
   {
     name: "testimonial1Name",
     title: "testimonial1Title",
     relation: "testimonial1Relation",
     message: "testimonial1Message",
-    initials: testimonial1Initials,
+    initials: "testimonial1Initials",
   },
   {
     name: "testimonial2Name",
     title: "testimonial2Title",
     relation: "testimonial2Relation",
     message: "testimonial2Message",
-    initials: testimonial2Initials,
+    initials: "testimonial2Initials",
   },
   {
     name: "testimonial3Name",
     title: "testimonial3Title",
     relation: "testimonial3Relation",
     message: "testimonial3Message",
-    initials: testimonial3Initials,
+    initials: "testimonial3Initials",
   },
   {
     name: "testimonial4Name",
     title: "testimonial4Title",
     relation: "testimonial4Relation",
     message: "testimonial4Message",
-    initials: testimonial4Initials,
+    initials: "testimonial4Initials",
   },
   {
     name: "testimonial5Name",
     title: "testimonial5Title",
     relation: "testimonial5Relation",
     message: "testimonial5Message",
-    initials: testimonial5Initials,
+    initials: "testimonial5Initials",
   },
   {
     name: "testimonial6Name",
     title: "testimonial6Title",
     relation: "testimonial6Relation",
     message: "testimonial6Message",
-    initials: testimonial6Initials,
+    initials: "testimonial6Initials",
   },
   {
     name: "testimonial7Name",
     title: "testimonial7Title",
     relation: "testimonial7Relation",
     message: "testimonial7Message",
-    initials: testimonial7Initials,
+    initials: "testimonial7Initials",
   },
   {
     name: "testimonial8Name",
     title: "testimonial8Title",
     relation: "testimonial8Relation",
     message: "testimonial8Message",
-    initials: testimonial8Initials,
+    initials: "testimonial8Initials",
   },
   {
     name: "testimonial9Name",
     title: "testimonial9Title",
     relation: "testimonial9Relation",
     message: "testimonial9Message",
-    initials: testimonial9Initials,
+    initials: "testimonial9Initials",
   },
   {
     name: "testimonial10Name",
     title: "testimonial10Title",
     relation: "testimonial10Relation",
     message: "testimonial10Message",
-    initials: testimonial10Initials,
+    initials: "testimonial10Initials",
   },
 ];
-
 const Testimonials = () => {
   const { t } = useTranslation();
   const trackRef = useRef<HTMLDivElement>(null);
@@ -168,11 +150,6 @@ const Testimonials = () => {
     trackRef.current?.classList.remove("tw-dragging");
   };
 
-  const goToLinkedIn = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    window.open(LINKEDIN_RECOMMENDATIONS_URL, "_blank", "noopener,noreferrer");
-  };
-
   return (
     <Container className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
       <View className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 sm:mb-14">
@@ -238,51 +215,26 @@ const Testimonials = () => {
           onMouseUp={onPointerUp}
           onMouseLeave={onPointerUp}
         >
-          {TESTIMONIALS.map((item) => {
-            const fullMessage = t(item.message);
-            const isLong = fullMessage.length > MESSAGE_TRUNCATE_LENGTH;
-            const displayMessage = isLong
-              ? `${fullMessage.slice(0, MESSAGE_TRUNCATE_LENGTH).trimEnd()}… `
-              : fullMessage;
+          {TESTIMONIALS.map((item) => (
+            <div className="tw-card" key={item.name}>
+              <span className="tw-quote-mark">"</span>
 
-            return (
-              <div
-                className="tw-card"
-                key={item.name}
-                onClick={goToLinkedIn}
-              >
-                <span className="tw-quote-mark">"</span>
-
-                <div className="tw-card-top">
-                  <div className="tw-avatar">
-                    <img
-                      src={item.initials}
-                      alt={t(item.name)}
-                      className="tw-avatar-img"
-                    />
+              <div className="tw-card-top">
+                <div className="tw-avatar">{t(item.initials)}</div>
+                <div className="tw-head-text">
+                  <div className="tw-name-row">
+                    <span className="tw-name">{t(item.name)}</span>
+                    <span className="tw-verified">✓</span>
                   </div>
-                  <div className="tw-head-text">
-                    <div className="tw-name-row">
-                      <span className="tw-name">{t(item.name)}</span>
-                      <span className="tw-verified">✓</span>
-                    </div>
-                    <span className="tw-title">{t(item.title)}</span>
-                  </div>
+                  <span className="tw-title">{t(item.title)}</span>
                 </div>
-
-                <p className="tw-message">
-                  {displayMessage}
-                  {isLong && (
-                    <span className="tw-read-more" onClick={goToLinkedIn}>
-                      {t("readMore") || "Read more"}
-                    </span>
-                  )}
-                </p>
-
-                <span className="tw-relation">— {t(item.relation)}</span>
               </div>
-            );
-          })}
+
+              <p className="tw-message">{t(item.message)}</p>
+
+              <span className="tw-relation">— {t(item.relation)}</span>
+            </div>
+          ))}
         </div>
       </div>
 
