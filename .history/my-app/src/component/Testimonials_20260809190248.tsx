@@ -3,16 +3,16 @@ import { Container, H2, Span, Text, View } from "strivui";
 import { useTranslation } from "react-i18next";
 
 // Testimonial images import
-import testimonial1Initials from "../Testimonials-images/testimonial1Initials.png";
-import testimonial2Initials from "../Testimonials-images/testimonial2Initials.png";
-import testimonial3Initials from "../Testimonials-images/testimonial3Initials.png";
-import testimonial4Initials from "../Testimonials-images/testimonial4Initials.png";
-import testimonial5Initials from "../Testimonials-images/testimonial5Initials.png";
-import testimonial6Initials from "../Testimonials-images/testimonial6Initials.png";
-import testimonial7Initials from "../Testimonials-images/testimonial7Initials.png";
-import testimonial8Initials from "../Testimonials-images/testimonial8Initials.png";
-import testimonial9Initials from "../Testimonials-images/testimonial9Initials.png";
-import testimonial10Initials from "../Testimonials-images/testimonial10Initials.png";
+import testimonial1Initials from "./Testimonials-images/testimonial1Initials.png";
+import testimonial2Initials from "./Testimonials-images/testimonial2Initials.png";
+import testimonial3Initials from "./Testimonials-images/testimonial3Initials.png";
+import testimonial4Initials from "./Testimonials-images/testimonial4Initials.png";
+import testimonial5Initials from "./Testimonials-images/testimonial5Initials.png";
+import testimonial6Initials from "./Testimonials-images/testimonial6Initials.png";
+import testimonial7Initials from "./Testimonials-images/testimonial7Initials.png";
+import testimonial8Initials from "./Testimonials-images/testimonial8Initials.png";
+import testimonial9Initials from "./Testimonials-images/testimonial9Initials.png";
+import testimonial10Initials from "./Testimonials-images/testimonial10Initials.png";
 
 interface Testimonial {
   name: string;
@@ -246,11 +246,7 @@ const Testimonials = () => {
               : fullMessage;
 
             return (
-              <div
-                className="tw-card"
-                key={item.name}
-                onClick={goToLinkedIn}
-              >
+              <div className="tw-card" key={item.name}>
                 <span className="tw-quote-mark">"</span>
 
                 <div className="tw-card-top">

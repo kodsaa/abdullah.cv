@@ -1677,20 +1677,3 @@ body{
   letter-spacing: 0.35em;
   text-transform: uppercase;
 }
-
-
-
-.tw-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.tw-avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
