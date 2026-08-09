@@ -22,6 +22,8 @@ interface Project {
   icon: ReactNode;
   description: string;
   technologies: string[];
+  url:string,
+
 }
 
 const projects: Project[] = [
@@ -40,6 +42,8 @@ const projects: Project[] = [
   "Event-Driven Architecture",
   "RBAC",
   "CI/CD"],
+  url:"https://github.com/syedabdullahali/Enterprise-Platform-Design",
+
   },
   {
     title: "project2Title",
@@ -61,6 +65,7 @@ const projects: Project[] = [
   "Real-Time Systems",
   "AI"
 ],
+ url:"https://github.com/syedabdullahali/Commerce-Systems-Design"
   },
   {
     title: "project3Title",
@@ -77,7 +82,9 @@ technologies: [
   "Multi-Head Attention",
   "Positional Encoding",
   "RAG",
-]  },
+],  
+url:"https://github.com/syedabdullahali/LLM-Platform-Architecture"
+},
   {
     title: "project4Title",
     icon: <RealtimeMarketplaceIcon className="h-8 w-8 theme-icon" />,
@@ -96,6 +103,7 @@ technologies: [
   "REST APIs",
   "JWT",
 ],
+url:"https://github.com/syedabdullahali/Realtime-Systems-Architecture"
   },
 ];
 
@@ -153,7 +161,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     event.currentTarget.style.transform =
       "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
   };
-
+const handleUrlNavigate = (url: string) => {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    window.open(url, "_blank", "noopener,noreferrer");
+  } 
+};
   return (
     <div
       ref={ref}
@@ -190,7 +202,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             ))}
           </View>
 
-          <Button className="pe-cta">
+          <Button className="pe-cta" onClick={()=>handleUrlNavigate(project.url)}>
             {t("viewArchitecture")} <span className="pe-cta-arrow">→</span>
           </Button>
         </Card>
