@@ -603,7 +603,7 @@ html .pe-spotlight {
   backdrop-filter: blur(4px);
   transition: all 0.25s ease;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration-style: none;
 }
 
 
@@ -746,7 +746,119 @@ html .pe-spotlight {
   }
 }
 
+/* 1. Global Box-Sizing & Viewport Containment */
+*, ::before, ::after {
+  box-sizing: border-box;
+}
 
+.cm-shell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: clamp(0.875rem, 4vw, 2rem);
+  width: 100%;
+  max-width: 100%; /* Force strict fit */
+  box-sizing: border-box;
+}
+
+@media (width >= 640px) { .cm-shell { padding: 3rem; border-radius: 32px; } }
+@media (width >= 1024px) { .cm-shell { padding: 4rem; } }
+
+/* 2. Fix Orbital Element Scaling */
+.cm-orb {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(80px); /* Lower blur radius prevents rendering overflows on mobile */
+  max-width: 100vw;
+}
+
+.cm-orb--tl {
+  top: -4rem;
+  left: -4rem;
+  height: clamp(10rem, 50vw, 24rem);
+  width: clamp(10rem, 50vw, 24rem);
+  animation: cm-drift 10s ease-in-out infinite;
+}
+
+.cm-orb--br {
+  bottom: -4rem;
+  right: -4rem;
+  height: clamp(10rem, 50vw, 24rem);
+  width: clamp(10rem, 50vw, 24rem);
+  animation: cm-drift 12s ease-in-out infinite reverse;
+}
+
+/* 3. Buttons & Flex Items Wrapping */
+.cm-btn-primary,
+.cm-btn-ghost {
+  border-radius: 12px;
+  font-size: clamp(0.75rem, 3.2vw, 0.875rem);
+  padding: 0.75rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal; /* Allows button text to wrap if screen is very narrow */
+  text-align: center;
+}
+
+/* 4. Terminal Panel Overflow Fixes */
+.term-window {
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.term-body {
+  padding: 0.875rem 0.5rem;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: clamp(0.68rem, 2.8vw, 0.85rem);
+  line-height: 1.6;
+  overflow-x: auto; /* Enables horizontal scrolling for code instead of page breaking */
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.term-line {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0; /* CRITICAL: Prevents flex children from stretching parent beyond 100% */
+}
+
+.term-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0; /* Allows text clipping/wrapping inside code block */
+}
+
+.term-str {
+  word-break: break-all; /* Breaks long URL/string tokens that force layout width */
+}
+
+@media (width <= 480px) {
+  .term-code--indent { 
+    padding-left: 0.5rem; /* Reduced indent on ultra-small screens */
+  }
+  .term-body{
+    width: 300px;
+  }
+}
+
+@media (width <= 400px) {
+  .term-code--indent { 
+    padding-left: 0rem; /* Reduced indent on ultra-small screens */
+  }
+  .term-body{
+    width: 280px;
+  }
+}
 
 
 /* ===== Footer ===== */
