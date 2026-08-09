@@ -9,7 +9,7 @@ import {
 } from "strivui";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import syedTown from "../assets/syed.jpeg";
+import syedTown from "../assets/syed.jpg";
 import { useLocation } from "react-router-dom";
 
 const MENU = [

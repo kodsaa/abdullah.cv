@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import imageLoading from "../assets/Loading.jpg";
-import syedTown from "../assets/syed.jpeg";
+import syedTown from "../assets/syed.jpg";
 
 const loadingSteps = [
   { threshold: 0, text: "Initializing System Architecture..." },
