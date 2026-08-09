@@ -4,8 +4,6 @@ import "./i18n";
 import Skill from "./pages/SkillCloud3D";
 import Layout from "./component/UI/Layout";
 
-import "./index.css";
-import "./Theme.css";
 
 export default function App() {
   return (
