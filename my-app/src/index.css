@@ -603,7 +603,7 @@ html .pe-spotlight {
   backdrop-filter: blur(4px);
   transition: all 0.25s ease;
   cursor: pointer;
-  text-decoration-style: none;
+  text-decoration: none;
 }
 
 
