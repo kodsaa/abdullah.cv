@@ -369,6 +369,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             style={{
               lineHeight: 1.2,
             }}
+            
             className="font-serif m-0 p-0 theme-paragraph-heading-secondary font-normal"
           >
             {t(item.titleKey)}
@@ -421,7 +422,7 @@ const TechnicalExpertise = () => {
   const { t } = useTranslation();
 
   return (
-    <Container className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
+    <Container id ="skills" className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
       <View className="text-center mb-12 sm:mb-16">
         <View className="inline-flex items-center gap-2 mb-1">
           <Span className="h-px w-8  theme_section_main_heading_dash" />
@@ -436,7 +437,7 @@ const TechnicalExpertise = () => {
           <Span className="h-px w-8  theme_section_main_heading_dash" />
         </View>
 
-        <H2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+        <H2  className="mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight">
           <Span
             className="font-serif italic font-light ta-heading-shine"
             data-text={t("techEngineeringWord")}

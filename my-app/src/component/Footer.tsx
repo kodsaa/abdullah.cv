@@ -4,7 +4,6 @@ import {
   Text,
   Span,
   View,
-  Button,
   Footer,
 } from "strivui";
 import { useTranslation } from "react-i18next";
