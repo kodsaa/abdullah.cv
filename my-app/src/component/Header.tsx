@@ -56,7 +56,7 @@ useEffect(() => {
       >
         <Container className="max-w-7xl mx-auto flex items-center justify-between p-2">
           {/* Logo */}
-          <View className="flex flex-row items-center gap-3">
+          <Link style={{textDecoration:"none"}} href="/#home"  className="flex flex-row items-center gap-3 cursor-pointer">
             <Avatar src={syedTown} alt="Syed Abdullah Ali" />
 
             <View>
@@ -70,8 +70,9 @@ useEffect(() => {
               <Span className="text-xs theme_paragraph_secondary">
                 {t("seniorSoftwareEngineer")}
               </Span>
-            </View>
           </View>
+          </Link>
+
 
           {/* Desktop Navigation */}
           <View className="hidden lg:flex flex-row items-center gap-8 border theme_border px-4 py-2 rounded-full">
@@ -169,9 +170,9 @@ useEffect(() => {
             {/* Navigation */}
             <View className="flex flex-col gap-2">
               {MENU.map((item) => (
-                <RouterLink
+                <Link
                   key={item.href}
-                  to={item.href}
+                  href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="
                     text-white
@@ -184,7 +185,7 @@ useEffect(() => {
                   "
                 >
                   {t(item.label)}
-                </RouterLink>
+                </Link>
               ))}
             </View>
 
