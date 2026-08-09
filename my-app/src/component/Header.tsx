@@ -3,21 +3,20 @@ import {
   Button,
   Container,
   H3,
-  Link,
   Span,
   View,
+  Link
 } from "strivui";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import syedTown from "../assets/syed.jpg";
-import { useLocation } from "react-router-dom";
-
+import { useLocation, Link as RouterLink } from "react-router-dom";
 const MENU = [
-  { label: "home", href: "#home" },
-  { label: "skills", href: "#skills" },
-  { label: "experience", href: "#experience" },
-  { label: "projects", href: "#projects" },
-  { label: "contact", href: "#contact" },
+  { label: "home", href: "/#home" },
+  { label: "skills", href: "/#skills" },
+  { label: "experience", href: "/#experience" },
+  { label: "projects", href: "/#projects" },
+  { label: "contact", href: "/#contact" },
 ];
 const Header = ({setSidebarOpen}:{setSidebarOpen:()=>void}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -170,9 +169,9 @@ useEffect(() => {
             {/* Navigation */}
             <View className="flex flex-col gap-2">
               {MENU.map((item) => (
-                <Link
+                <RouterLink
                   key={item.href}
-                  href={item.href}
+                  to={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="
                     text-white
@@ -185,7 +184,7 @@ useEffect(() => {
                   "
                 >
                   {t(item.label)}
-                </Link>
+                </RouterLink>
               ))}
             </View>
 
