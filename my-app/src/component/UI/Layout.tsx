@@ -248,7 +248,7 @@ useEffect(() => {
     try {
       setActiveEffects(JSON.parse(savedEffects));
     } catch {
-      setActiveEffects({});
+      setActiveEffects();
     }
   }
 

@@ -104,7 +104,7 @@ useEffect(() => {
 
             {/* Settings */}
             <Button
-              onClick={() => setSidebarOpen(true)}
+              onClick={() => setSidebarOpen()}
               className="rounded-xl bg-white/10 border border-stone-700 w-11 h-11 text-xl theme_paragraph theme_border transition"
             >
               ⚙
