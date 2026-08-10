@@ -8,6 +8,7 @@ import ProjectExperience from "../component/ProjectExperience";
 import LeadershipOwnership from "../component/LeadershipOwnership";
 import Testimonials from "../component/Testimonials";
 import Reveal from "../component/Reveal";
+import SEO from "../component/SEO";
 
 
 // ==============================================
@@ -19,7 +20,11 @@ export default function Home() {
     <>
       {/* Interactive Floating Control Panel */}
    
-
+  <SEO
+        title="Abdullah.CV | Senior Software Engineer"
+        description="Senior Software Engineer specializing in scalable systems, AI-powered applications, cloud-native infrastructure, and software architecture."
+        canonical="https://www.strivui.com/"
+      />
       {/* Main Page Layout Wrapper */}
         <Reveal variant="fade-up">
           <Hero />
