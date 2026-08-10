@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.strivui.com/sitemap.xml
+Sitemap: https://syedabdullahali.strivui.com/sitemap.xml

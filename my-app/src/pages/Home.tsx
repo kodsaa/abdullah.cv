@@ -23,7 +23,7 @@ export default function Home() {
   <SEO
         title="Abdullah.CV | Senior Software Engineer"
         description="Senior Software Engineer specializing in scalable systems, AI-powered applications, cloud-native infrastructure, and software architecture."
-        canonical="https://www.strivui.com/"
+        canonical="https://syedabdullahali.strivui.com/"
       />
       {/* Main Page Layout Wrapper */}
         <Reveal variant="fade-up">
