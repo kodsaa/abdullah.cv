@@ -235,7 +235,7 @@
   --heading-color: #fef3c7;
   --text-secondary: #a8a29e;
   --muted: #78716c;
-  --grid-color-f: rgb(245 158 11 / 12%);
+  --grid-color-f: rgb(245 158 11 );
    --loader-bg: #130f03;
     --loader-text: #f5f5f4;
     --loader-particle: rgb(253 230 138 / 25%);
@@ -427,6 +427,7 @@
     --tw-relation-border: rgb(120 53 15 / 18%);
     --tw-dot: rgb(120 53 15 / 25%);
     --tw-dot-hover: rgb(217 119 6 / 50%);
+
       --cm-shell-border: rgb(99 102 241 / 25%);
     --cm-shell-start: #fff;
     --cm-shell-end: #f5f3ff;
@@ -468,19 +469,19 @@
     --term-icon: #6b7280;
     --term-icon-hover: #7c3aed;
     --term-cursor: #7c3aed;
-      --theme-bg-rgb: 248, 250, 252;
-    --primary: #d97706;
-    --primary-glow: rgb(217 119 6 / 50%);
-    --primary-soft: rgb(217 119 6 / 8%);
-    --primary-subtle: rgb(217 119 6 / 5%);
-    --primary-ghost: rgb(217 119 6 / 2.5%);
-    --primary-border: rgb(217 119 6 / 30%);
-    --primary-muted: rgb(217 119 6 / 55%);
-    --border-color: rgb(100 116 139 / 25%);
-    --heading-color: #1e293b;
-    --text-secondary: #475569;
-    --muted: #64748b;
-    --grid-color-f: rgb(100 116 139 / 10%);
+     --theme-bg-rgb: 41, 32, 22;
+  --primary: #d4a373;
+  --primary-glow: rgb(212 163 115 / 60%);
+  --primary-soft: rgb(212 163 115 / 10%);
+  --primary-subtle: rgb(212 163 115 / 6%);
+  --primary-ghost: rgb(212 163 115 / 3.5%);
+  --primary-border: rgb(212 163 115 / 30%);
+  --primary-muted: rgb(212 163 115 / 45%);
+  --border-color: rgb(146 100 61 / 35%);
+  --heading-color: #fef3c7;
+  --text-secondary: #d6c2a5;
+  --muted: #a89072;
+  --grid-color-f: rgb(212 163 115 );
     --loader-bg: #fafaf9;
     --loader-text: #292524;
     --loader-particle: rgb(217 119 6 / 20%);
@@ -630,6 +631,7 @@
   --arsenal-corner-hover: #f59e0b;
   --arsenal-card-border: rgb(120 53 15 / 20%);
   --arsenal-card-hover-border: rgb(245 158 11 / 40%);
+
   --lo-icon-bg: rgb(245 158 11 / 8%);
   --lo-icon-border: rgb(245 158 11 / 25%);
   --lo-icon-hover-bg: rgb(245 158 11 / 14%);
@@ -642,7 +644,8 @@
   --lo-shadow-hover-border: rgb(245 158 11 / 55%);
   --lo-gradient-start: #f59e0b;
   --lo-gradient-end: #fb923c;
-   --tw-primary: #f59e0b;
+
+  --tw-primary: #f59e0b;
   --tw-nav-bg: #1c1917;
   --tw-nav-border: rgb(120 53 15 / 40%);
   --tw-nav-text: #d6d3d1;
@@ -713,6 +716,7 @@
   --term-icon: #78716c;
   --term-icon-hover: #f59e0b;
   --term-cursor: #f59e0b;
+
   --theme-bg-rgb: 8, 7, 7;
   --primary: #f59e0b;
   --primary-glow: rgb(245 158 11 / 60%);
@@ -725,8 +729,10 @@
   --heading-color: #fef3c7;
   --text-secondary: #a8a29e;
   --muted: #78716c;
-  --grid-color-f: rgb(245 158 11 / 12%);
-    --loader-bg: #130f03;
+  --grid-color-f: rgb(245 158 11 );
+
+
+   --loader-bg: #130f03;
   --loader-text: #f5f5f4;
   --loader-particle: rgb(253 230 138 / 25%);
   --loader-primary: #f59e0b;
@@ -965,7 +971,7 @@
   --heading-color: #fee2e2;
   --text-secondary: #a3a3a3;
   --muted: #737373;
-  --grid-color-f: rgb(239 68 68 / 12%);
+  --grid-color-f: rgb(239 68 68 );
     --loader-bg: #0b0b0b;
   --loader-text: #f5f5f5;
   --loader-particle: rgb(248 113 113 / 22%);
@@ -1210,7 +1216,7 @@
   --heading-color: #dbeafe;
   --text-secondary: #94a3b8;
   --muted: #64748b;
-  --grid-color-f: rgb(96 165 250 / 12%);
+  --grid-color-f: rgb(96 165 250 );
     --loader-bg: #070b16;
   --loader-text: #e0e7ff;
   --loader-particle: rgb(129 140 248 / 25%);
@@ -1455,7 +1461,7 @@
   --heading-color: #e2e8f0;
   --text-secondary: #94a3b8;
   --muted: #64748b;
-  --grid-color-f: rgb(56 189 248 / 12%);
+  --grid-color-f: rgb(56 189 248 );
    --loader-bg: #101214;
   --loader-text: #f4f4f5;
   --loader-particle: rgb(161 161 170 / 25%);
@@ -1701,7 +1707,7 @@
   --heading-color: #f1f5f9;
   --text-secondary: #cbd5e1;
   --muted: #64748b;
-  --grid-color-f: rgb(148 163 184 / 12%);
+  --grid-color-f: rgb(148 163 184 );
     --loader-bg: #0c1117;
   --loader-text: #e2e8f0;
   --loader-particle: rgb(96 165 250 / 22%);
@@ -1935,6 +1941,7 @@
   --term-icon: #71717a;
   --term-icon-hover: #c084fc;
   --term-cursor: #a855f7;
+
   --theme-bg-rgb: 25, 20, 35;
   --primary: #c084fc;
   --primary-glow: rgb(192 132 252 / 60%);
@@ -1947,8 +1954,9 @@
   --heading-color: #f3e8ff;
   --text-secondary: #c4b5fd;
   --muted: #8b7aa8;
-  --grid-color-f: rgb(192 132 252 / 12%);
-    --loader-bg: #111014;
+  --grid-color-f: rgb(192 132 252 );
+  
+  --loader-bg: #111014;
   --loader-text: #f5f3ff;
   --loader-particle: rgb(192 132 252 / 22%);
   --loader-primary: #a855f7;
@@ -2002,12 +2010,12 @@
   --paragraph:#4a3728;
   --paragraph-secondary:#7c5e47;
   --elite-heading:#78350f;
-    --layout-bg-start: #4a3728;
-  --layout-bg-middle: #6b4f3b;
-  --layout-bg-end: #8b6a4d;
-  --grid-color: rgb(251 191 36 / 5%);
-  --glow-start: rgb(180 83 9 / 28%);
-  --glow-middle: rgb(251 191 36 / 12%);
+--layout-bg-start: #b8a48d;
+--layout-bg-middle: #d1c0aa;
+--layout-bg-end: #e7d9c6;
+--grid-color: rgb(251 191 36 / 50%);
+--glow-start: rgb(180 83 9 / 50%);
+--glow-middle: rgb(251 191 36 / 10%);
     --paragraph-hover: #d97706;
   --border-color: rgb(180 83 9 / 20%);
     --pe-card-bg-start: #4a3728;
@@ -2192,7 +2200,7 @@
   --heading-color: #fef3c7;
   --text-secondary: #d6c2a5;
   --muted: #a89072;
-  --grid-color-f: rgb(212 163 115 / 12%);
+  --grid-color-f: rgb(212 163 115 );
     --loader-bg: #17100b;
   --loader-text: #fef3c7;
   --loader-particle: rgb(217 119 6 / 22%);
@@ -2436,7 +2444,7 @@
   --heading-color: #ccfbf1;
   --text-secondary: #99f6e4;
   --muted: #5eead4;
-  --grid-color-f: rgb(45 212 191 / 12%);
+  --grid-color-f: rgb(45 212 191 );
     --loader-bg: #071412;
   --loader-text: #ecfdf5;
   --loader-particle: rgb(45 212 191 / 22%);
@@ -2681,7 +2689,7 @@
   --heading-color: #ede9fe;
   --text-secondary: #c4b5fd;
   --muted: #8b7aa8;
-  --grid-color-f: rgb(167 139 250 / 12%);
+  --grid-color-f: rgb(167 139 250 );
     --loader-bg: #0d0718;
   --loader-text: #f5f3ff;
   --loader-particle: rgb(217 70 239 / 22%);
@@ -2925,7 +2933,7 @@
   --heading-color: #eee8d5;
   --text-secondary: #93a1a1;
   --muted: #657b83;
-  --grid-color-f: rgb(181 137 0 / 12%);
+  --grid-color-f: rgb(181 137 0 );
    --loader-bg: #002b36;
   --loader-text: #eee8d5;
   --loader-particle: rgb(42 161 152 / 22%);
@@ -3169,7 +3177,7 @@
   --heading-color: #fff;
   --text-secondary: #fff;
   --muted: #ccc;
-  --grid-color-f: rgb(255 255 255 / 15%);
+  --grid-color-f: rgb(255 255 255 );
    --loader-bg: #000;
   --loader-text: #fff;
   --loader-particle: rgb(255 255 255 / 35%);
@@ -4014,7 +4022,7 @@ html .term-cursor {
 
 /* ==============================================Foter================================ */
 html .ft-shell {
-  background: rgb(var(--theme-bg-rgb), 0.55);
+  background: rgb(var(--theme-bg-rgb), 1);
   border-top: 1px solid var(--border-color);
 }
 

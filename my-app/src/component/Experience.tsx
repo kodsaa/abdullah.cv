@@ -31,9 +31,31 @@ export const EXPERIENCE = [
     "job1Lead1", "job1Lead2", "job1Lead3", "job1Lead4", "job1Lead5",
   ],
 
-  technologies: [
-    "Python", "FastAPI", "Django", "PyTorch", "LLMs", "PostgreSQL", "MySQL", "Google Cloud", "CI/CD",
-  ],
+  technologies:  [
+  "Python",
+  "FastAPI",
+  "Django",
+  "Django REST Framework",
+  "PyTorch",
+  "LLMs",
+  "RAG",
+  "PostgreSQL",
+  "MySQL",
+  "Redis",
+  "REST APIs",
+  "Modular Monolithic",
+  "Event-Driven Architecture",
+  "Docker",
+  "Google Cloud",
+  "CI/CD",
+  "GitHub Actions",
+  "Nginx",
+  "Linux",
+  "System Design",
+  "SOLID",
+  "Performance Optimization",
+  "Typescript"
+],
 },
  {
   company: "job2Company",
@@ -57,8 +79,29 @@ export const EXPERIENCE = [
   ],
 
   technologies: [
-    "React", "TypeScript", "Redux Toolkit", "Jest", "React Testing Library", "Node.js",
-  ],
+  "React",
+  "React Native",
+  "Node.js",
+  "Express.js",
+  "FastAPI",
+  "Django",
+  "MongoDB",
+  "PostgreSQL",
+  "Redis",
+  "REST APIs",
+  "WebSockets",
+  "Socket.io",
+  "JWT",
+  "RBAC",
+  "Microservices",
+  "Event-Driven Architecture",
+  "System Design",
+  "Docker",
+  "CI/CD",
+  "Git",
+  "GitHub",
+  "Typescript"
+],
 },
 
 {
@@ -87,8 +130,28 @@ export const EXPERIENCE = [
   ],
 
   technologies: [
-    "React", "React Native", "Node.js", "FastAPI", "Django", "MongoDB", "PostgreSQL", "Redis", "WebSockets", "JWT",
-  ],
+  "React",
+  "React Native",
+  "Node.js",
+  "Express.js",
+  "FastAPI",
+  "MongoDB",
+  "PostgreSQL",
+  "Redis",
+  "REST APIs",
+  "WebSockets",
+  "Socket.io",
+  "JWT",
+  "RBAC",
+  "Modular Monolithic",
+  "Event-Driven Architecture",
+  "System Design",
+  "Docker",
+  "CI/CD",
+  "Git",
+  "GitHub",
+  "Typescript"
+]
 },
 
 {
@@ -109,7 +172,26 @@ export const EXPERIENCE = [
     "job4Achieve1", "job4Achieve2", "job4Achieve3",
   ],
 
-  technologies: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+  technologies: [
+  "React",
+  "JavaScript",
+  "HTML5",
+  "CSS3",
+  "SCSS",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "REST APIs",
+  "JWT",
+  "RBAC",
+  "Redux",
+  "Responsive Design",
+  "Component Architecture",
+  "Git",
+  "Modular Monolithic", 
+  "Event-Driven Architecture",
+  "Typescript"
+],
 },
 
 {
@@ -129,9 +211,27 @@ export const EXPERIENCE = [
     "job5Achieve1", "job5Achieve2", "job5Achieve3",
   ],
 
-  technologies: [
-    "React", "TypeScript", "JavaScript", "Redux", "REST APIs", "HTML", "CSS",
-  ],
+technologies: [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Redux",
+  "Redux Toolkit",
+  "RTK Query",
+  "React Query",
+  "HTML5",
+  "CSS3",
+  "SCSS",
+  "Responsive Design",
+  "Component Architecture",
+  "Reusable Components",
+  "State Management",
+  "API Integration",
+  "Modular Architecture",
+  "React Router",
+  "Form Management",
+  "Git"
+],
 },
 
 {
@@ -151,7 +251,25 @@ export const EXPERIENCE = [
     "job6Achieve1", "job6Achieve2",
   ],
 
-  technologies: ["HTML", "CSS", "JavaScript", "React"],
+  technologies: [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Redux",
+  "Redux Toolkit",
+  "RTK Query",
+  "React Query",
+  "HTML5",
+  "CSS3",
+  "SCSS",
+  "Responsive Design",
+  "Component Architecture",
+  "Reusable Components",
+  "State Management",
+  "API Integration",
+  "React Router",
+  "Git"
+],
 },
 ];
 

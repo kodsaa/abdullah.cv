@@ -413,28 +413,38 @@ const Hero = () => {
             transform: "translateZ(45px)",
           }}
         >
-          <Button
-            className="border bg-transparent rounded-xl overflow-hidden py-5 px-10 theme_hero-button"
-            style={{
-              borderRadius: "14px",
-              fontWeight: 800,
-              padding: "18px 36px",
-              fontSize: "15px",
-              fontFamily: "sans-serif",
-              letterSpacing: "0.05em",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-{t("letsConnect")}
-          </Button>
-
-          <Button
-            className="border bg-transparent rounded-xl overflow-hidden py-5 px-10"
-      
-          >
-          {t("exploreWork")}
-          </Button>
+    <Button
+  className="border bg-transparent rounded-xl overflow-hidden py-5 px-10 theme_hero-button"
+  style={{
+    borderRadius: "14px",
+    fontWeight: 800,
+    padding: "18px 36px",
+    fontSize: "15px",
+    fontFamily: "sans-serif",
+    letterSpacing: "0.05em",
+    border: "none",
+    cursor: "pointer",
+  }}
+  onClick={() => {
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+>
+  {t("letsConnect")}
+</Button>
+        <Button
+  className="rounded-xl overflow-hidden py-5 px-10 theme-bg-effect theme_paragraph_secondary"
+  onClick={() => {
+    document.getElementById("projects")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+>
+  {t("exploreWork")}
+</Button>
         </View>
 
         {/* Metric Cards */}
