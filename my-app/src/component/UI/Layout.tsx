@@ -41,7 +41,7 @@ const handleLanguageChange = (value: string) => {
 
   // Active effect toggle flags
   const [activeEffects, setActiveEffects] = useState<ActiveEffects>({
-    ripple: true,
+    ripple: false,
     thunder: false,
     fireflies: false,
     particles: false,
@@ -248,7 +248,13 @@ useEffect(() => {
     try {
       setActiveEffects(JSON.parse(savedEffects));
     } catch {
-      setActiveEffects();
+      setActiveEffects({
+    ripple: false,
+    thunder: false,
+    fireflies: false,
+    particles: false,
+    matrix: false,
+      });
     }
   }
 
