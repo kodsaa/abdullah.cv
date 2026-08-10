@@ -182,7 +182,8 @@
     --tw-relation-border: rgb(120 53 15 / 25%);
     --tw-dot: rgb(120 53 15 / 40%);
     --tw-dot-hover: rgb(245 158 11 / 50%);
-      --cm-shell-border: rgb(120 53 15 / 30%);
+
+  --cm-shell-border: rgb(120 53 15 / 30%);
   --cm-shell-start: #1c1917;
   --cm-shell-end: #0f0d0b;
   --cm-shell-shadow: rgb(0 0 0 / 60%);
@@ -201,9 +202,10 @@
   --cm-ghost-hover-text: #fde68a;
   --cm-status-bg: rgb(245 158 11 / 5%);
   --cm-status-border: rgb(120 53 15 / 30%);
-    --cm-status-dot: #4ade80;
+  --cm-status-dot: #4ade80;
   --cm-status-dot-ring: rgb(74 222 128 / 15%);
-    --term-border: rgb(120 53 15 / 35%);
+
+  --term-border: rgb(120 53 15 / 35%);
   --term-bg: #0d0b09;
   --term-shadow: rgb(0 0 0 / 70%);
   --term-titlebar: #171412;
@@ -428,47 +430,50 @@
     --tw-dot: rgb(120 53 15 / 25%);
     --tw-dot-hover: rgb(217 119 6 / 50%);
 
-      --cm-shell-border: rgb(99 102 241 / 25%);
-    --cm-shell-start: #fff;
-    --cm-shell-end: #f5f3ff;
-    --cm-shell-shadow: rgb(79 70 229 / 15%);
-    --cm-orb-primary: rgb(139 92 246 / 10%);
-    --cm-orb-secondary: rgb(99 102 241 / 8%);
-    --cm-pulse: #7c3aed;
-    --cm-pulse-border: #7c3aed;
-    --cm-gradient-start: #7c3aed;
-    --cm-gradient-end: #4f46e5;
-    --cm-primary-text: #fff;
-    --cm-ghost-bg: rgb(255 255 255 / 80%);
-    --cm-ghost-border: rgb(99 102 241 / 30%);
-    --cm-ghost-text: #6d28d9;
-    --cm-ghost-hover-bg: rgb(99 102 241 / 8%);
-    --cm-ghost-hover-border: rgb(99 102 241 / 50%);
-    --cm-ghost-hover-text: #4c1d95;
-    --cm-status-bg: rgb(99 102 241 / 5%);
-    --cm-status-border: rgb(99 102 241 / 20%);
-      --cm-status-dot: #16a34a;
-    --cm-status-dot-ring: rgb(22 163 74 / 15%);
-     --term-border: rgb(124 58 237 / 25%);
-    --term-bg: #fafafa;
-    --term-shadow: rgb(79 70 229 / 15%);
-    --term-titlebar: #f3f4f6;
-    --term-titlebar-border: rgb(124 58 237 / 20%);
-    --term-dot-red: #dc2626;
-    --term-dot-yellow: #ca8a04;
-    --term-dot-green: #16a34a;
-    --term-filename: #6b7280;
-    --term-line-number: #9ca3af;
-    --term-code: #374151;
-    --term-keyword: #7c3aed;
-    --term-type: #2563eb;
-    --term-property: #0891b2;
-    --term-punctuation: #6b7280;
-    --term-string: #16a34a;
-    --term-string-hover: #7c3aed;
-    --term-icon: #6b7280;
-    --term-icon-hover: #7c3aed;
-    --term-cursor: #7c3aed;
+
+  --cm-shell-border: rgb(180 83 9 / 30%);
+  --cm-shell-start: #292524;
+  --cm-shell-end: #1c1917;
+  --cm-shell-shadow: rgb(0 0 0 / 55%);
+  --cm-orb-primary: rgb(217 119 6 / 12%);
+  --cm-orb-secondary: rgb(180 83 9 / 8%);
+  --cm-pulse: #f59e0b;
+  --cm-pulse-border: #f59e0b;
+  --cm-gradient-start: #d97706;
+  --cm-gradient-end: #ea580c;
+  --cm-primary-text: #1c1917;
+  --cm-ghost-bg: rgb(41 37 36 / 70%);
+  --cm-ghost-border: rgb(217 119 6 / 30%);
+  --cm-ghost-text: #fbbf24;
+  --cm-ghost-hover-bg: rgb(217 119 6 / 10%);
+  --cm-ghost-hover-border: rgb(217 119 6 / 55%);
+  --cm-ghost-hover-text: #fde68a;
+  --cm-status-bg: rgb(217 119 6 / 5%);
+  --cm-status-border: rgb(180 83 9 / 25%);
+    --cm-status-dot: #f59e0b;
+  --cm-status-dot-ring: rgb(245 158 11 / 18%);
+   --term-border: rgb(180 83 9 / 35%);
+  --term-bg: #17110b;
+  --term-shadow: rgb(0 0 0 / 65%);
+  --term-titlebar: #21180f;
+  --term-titlebar-border: rgb(180 83 9 / 30%);
+  --term-dot-red: #ef4444;
+  --term-dot-yellow: #f59e0b;
+  --term-dot-green: #22c55e;
+  --term-filename: #78716c;
+  --term-line-number: #57534e;
+  --term-code: #d6d3d1;
+  --term-keyword: #fb923c;
+  --term-type: #fbbf24;
+  --term-property: #93c5fd;
+  --term-punctuation: #78716c;
+  --term-string: #86efac;
+  --term-string-hover: #fde68a;
+  --term-icon: #78716c;
+  --term-icon-hover: #f59e0b;
+  --term-cursor: #d97706;
+
+
      --theme-bg-rgb: 41, 32, 22;
   --primary: #d4a373;
   --primary-glow: rgb(212 163 115 / 60%);
@@ -822,7 +827,7 @@
   --select-option-text: #fca5a5;
   --select-option-hover-bg: #ef4444;
   --select-option-hover-text: #fff;
-    --sidebar-heading: #fbbf24;
+  --sidebar-heading: #ef4444;
   --effect-button-border: #ef4444;
   --effect-button-bg: #ef4444;
   --effect-button-text: #080707;
@@ -2147,7 +2152,8 @@
   --tw-relation-border: rgb(146 64 14 / 25%);
   --tw-dot: rgb(146 64 14 / 40%);
   --tw-dot-hover: rgb(217 119 6 / 50%);
-   --cm-shell-border: rgb(180 83 9 / 30%);
+
+  --cm-shell-border: rgb(180 83 9 / 30%);
   --cm-shell-start: #292524;
   --cm-shell-end: #1c1917;
   --cm-shell-shadow: rgb(0 0 0 / 55%);
@@ -2188,6 +2194,8 @@
   --term-icon: #78716c;
   --term-icon-hover: #f59e0b;
   --term-cursor: #d97706;
+
+
   --theme-bg-rgb: 41, 32, 22;
   --primary: #d4a373;
   --primary-glow: rgb(212 163 115 / 60%);
