@@ -58,7 +58,7 @@ export default function Home() {
           <Testimonials />
         </Reveal>
 
-        <Reveal variant="fade-right">
+        <Reveal variant="fade-down">
           <ContactMe />
         </Reveal>
     </>
