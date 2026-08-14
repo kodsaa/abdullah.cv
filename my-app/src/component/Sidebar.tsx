@@ -166,10 +166,10 @@ onChange={setlanguages}
   optionClassName="theme-option-select"
   selectedOptionClassName="theme-select-list  overflow-hidden"
     options={[
-      { label: "🇺🇸 English", value: "en" },
-      { label: "🇵🇰 اردو (Urdu)", value: "ur" },
-      { label: "🇸🇦 العربية (Arabic)", value: "ar" },
-      { label: "🇮🇳 हिन्दी (Hindi)", value: "hi" },
+{ label: "🇺🇸 English", value: "en" },
+{ label: "🇮🇳 اردو (Urdu)", value: "ur" },
+{ label: "🇸🇦 العربية (Arabic)", value: "ar" },
+{ label: "🇮🇳 हिन्दी (Hindi)", value: "hi" },
     ]}
   />
 </View>

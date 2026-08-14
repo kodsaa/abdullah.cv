@@ -224,16 +224,18 @@ const handleLanguageChange = (value: string) => {
   useEffect(() => {
   document.documentElement.setAttribute("data-theme", theme);
 }, [theme]);
+
+const routeSection = location.pathname.split("/")[1];
+
 useEffect(() => {
-    // Show loader when route changes
-    setIsNavigating(true);
+  setIsNavigating(true);
 
-    const timer = setTimeout(() => {
-      setIsNavigating(false);
-    }, 2000); // Adjust duration for visual feedback
+  const timer = setTimeout(() => {
+    setIsNavigating(false);
+  }, 2000);
 
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+  return () => clearTimeout(timer);
+}, [routeSection]);
 
   useEffect(() => {
   const savedTheme = localStorage.getItem("theme");

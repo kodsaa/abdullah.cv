@@ -46,7 +46,7 @@ const CONTACT_INFO = [
     icon: <LinkedinIcon className="h-4 w-4" />,
     key: "linkedin",
     value: "linkedin.com/in/syedabdullahali",
-    href: "https://linkedin.com/in/syedabdullahali",
+    href: "https://www.linkedin.com/in/syed-abdullah-ali380/",
   },
 ];
 

@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Text, Line, Stars } from "@react-three/drei";
 import * as THREE from "three";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useNavigation, useParams } from "react-router-dom";
 
 // Dynamic Theme Configuration Map
 const THEME_STYLES: Record<
@@ -173,6 +174,7 @@ const skillsData = [
   {
     category: "Programming",
     titleKey: "skillOccupationLabel1",
+    id: "programming-languages",
     color: "#EAB308",
     skills: [
       { name: "JavaScript", level: 95 },
@@ -187,6 +189,7 @@ const skillsData = [
   },
   {
     category: "Frontend",
+    id: "frontend-engineering",
     titleKey: "skillOccupationLabel2",
     color: "#3B82F6",
     skills: [
@@ -202,6 +205,7 @@ const skillsData = [
   },
   {
     category: "Backend",
+    id: "backend-engineering",
     titleKey: "skillOccupationLabel3",
     color: "#22C55E",
     skills: [
@@ -218,6 +222,7 @@ const skillsData = [
   },
   {
     category: "Databases",
+    id: "databases",
     titleKey: "skillOccupationLabel4",
     color: "#A855F7",
     skills: [
@@ -233,6 +238,7 @@ const skillsData = [
   },
   {
     category: "System Design",
+    id: "system-design",
     color: "#EF4444",
     titleKey: "skillOccupationLabel5",
     skills: [
@@ -248,6 +254,7 @@ const skillsData = [
   },
   {
     category: "AI & ML",
+    id: "ai-machine-learning",
     titleKey: "skillOccupationLabel6",
     color: "#8B5CF6",
     skills: [
@@ -263,6 +270,7 @@ const skillsData = [
   },
   {
     category: "Cloud & DevOps",
+    id: "cloud-devops",
     titleKey: "skillOccupationLabel7",
     color: "#06B6D4",
     skills: [
@@ -278,6 +286,7 @@ const skillsData = [
   },
   {
     category: "Real-Time",
+    id: "real-time-systems",
     titleKey: "skillOccupationLabel8",
     color: "#F97316",
     skills: [
@@ -539,7 +548,10 @@ function SolarSun({
 }
 
 export default function SkillCloud3D() {
-  const [activeTab, setActiveTab] = useState<string>("Frontend");
+  const {id} = useParams()
+  const [activeTab, setActiveTab] = useState<string>(`${id}`);
+
+  const navigate = useNavigate()
   const [theme, setTheme] = useState<string>(
     document.documentElement.dataset.theme ?? "system"
   );
@@ -571,10 +583,14 @@ export default function SkillCloud3D() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(()=>{
+   setActiveTab(`${id}`)
+  },[id])
+
   const activeThemeConfig = THEME_STYLES[theme] || THEME_STYLES.system;
 
   const selectedCategory =
-    skillsData.find((cat) => cat.category === activeTab) || skillsData[0];
+    skillsData.find((cat) => cat.id === activeTab) || skillsData[0];
 
   const activeCategoryColor = useMemo(() => {
     if (!activeThemeConfig.accentColor) return selectedCategory.color;
@@ -627,11 +643,11 @@ export default function SkillCloud3D() {
         }}
       >
         {skillsData.map((cat) => {
-          const isActive = activeTab === cat.category;
+          const isActive = activeTab === cat.id;
           return (
             <button
-              key={cat.category}
-              onClick={() => setActiveTab(cat.category)}
+              key={cat.id}
+              onClick={() =>    navigate(`/skill/${cat.id}`)}
               style={{
                 padding: isXS ? "6px 12px" : "8px 16px",
                 borderRadius: "8px",
