@@ -42,7 +42,7 @@ export default function Home() {
           <TechnicalArsenal />
         </Reveal>
 
-        <Reveal variant="fade-right">
+        <Reveal variant="fade-up">
           <TechnicalExpertise />
         </Reveal>
 
@@ -58,7 +58,7 @@ export default function Home() {
           <Testimonials />
         </Reveal>
 
-        <Reveal variant="fade-down">
+        <Reveal variant="fade-up">
           <ContactMe />
         </Reveal>
     </>
