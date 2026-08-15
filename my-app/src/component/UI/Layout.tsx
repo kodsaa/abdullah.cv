@@ -301,7 +301,7 @@ const handleTheme = () => {
           <Button
             key={effect}
             onClick={() => toggleEffect(effect)}
-            className={`${activeEffects[effect] ? "theme-effect-button" : "theme-effect-button-select"}   font-normal text-xs gap-1`}
+            className={`${activeEffects[effect] ? "theme-effect-button" : "theme-effect-button-select theme-bg-effect theme-icon"} font-normal text-xs gap-1`}
           >
            {icons[effect]}   {effect}
           </Button>
