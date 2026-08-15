@@ -262,6 +262,13 @@
   "testimonialsLabel": "प्रशंसापत्र",
   "testimonialsHeadingLine1": "मेरी बात मत मानिए,",
   "testimonialsHeadingLine2": "इनकी सुनिए।",
+   
+  "testimonial0Name": "मोहम्मद सफ़ाफ़",
+  "testimonial0Title": "सीनियर फुल-स्टैक इंजीनियर | ASP.NET Core | Laravel | Django | React | React Native | Power Platform | SharePoint | ERP | Docker | GCP | CI/CD | सऊदी अरब",
+  "testimonial0Relation": "सैयद अब्दुल्लाह के साथ एक ही टीम में काम किया",
+  "testimonial0Message": "मुझे सैयद अब्दुल्लाह के साथ काम करने का अवसर मिला और मैंने उन्हें एक समर्पित, पेशेवर और भरोसेमंद व्यक्ति पाया। वे एक बेहतरीन टीम प्लेयर हैं, अच्छी तरह संवाद करते हैं और अपने काम को हमेशा सकारात्मक दृष्टिकोण के साथ करते हैं। वे जिम्मेदारी के साथ अपने कार्यों को पूरा करते हैं और टीम के साथ मिलकर प्रभावी ढंग से काम करते हैं। मैं अब्दुल्लाह को ऐसे किसी भी व्यक्ति के लिए ज़रूर अनुशंसित करूंगा जो एक जिम्मेदार, प्रतिभाशाली और भरोसेमंद प्रोफेशनल की तलाश में हो।",
+  "testimonial0Initials": "MS",
+
   "testimonial1Name": "यूसुफ एम्बाबी",
   "testimonial1Title": "सॉफ्टवेयर इंजीनियर @ HRGF | Node.JS | Django | Laravel | Cloud | मेंटरिंग | फुलस्टैक डेवलपर | बैकएंड इंजीनियर | Docker | GCP | AWS",
   "testimonial1Relation": "यूसुफ सीधे तौर पर सैयद अब्दुल्ला को मैनेज करते थे",

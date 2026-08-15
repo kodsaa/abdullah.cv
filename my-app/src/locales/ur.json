@@ -263,6 +263,13 @@
   "testimonialsLabel": "تعریفی آراء",
   "testimonialsHeadingLine1": "میری بات مت مانیں،",
   "testimonialsHeadingLine2": "انہی کی سنیں۔",
+
+  "testimonial0Name": "محمد صفاف",
+  "testimonial0Title": "سینئر فل اسٹیک انجینئر | ASP.NET Core | Laravel | Django | React | React Native | Power Platform | SharePoint | ERP | Docker | GCP | CI/CD | سعودی عرب",
+  "testimonial0Relation": "سید عبداللہ کے ساتھ ایک ہی ٹیم میں کام کیا",
+  "testimonial0Message": "مجھے سید عبداللہ کے ساتھ کام کرنے کا موقع ملا اور میں نے انہیں ایک محنتی، پیشہ ور اور قابلِ اعتماد شخص پایا۔ وہ ایک بہترین ٹیم ممبر ہیں، اچھی طرح بات چیت کرتے ہیں اور اپنے کام کو ہمیشہ مثبت رویے کے ساتھ انجام دیتے ہیں۔ وہ اپنی ذمہ داریوں کو پوری سنجیدگی کے ساتھ نبھاتے ہیں اور ٹیم کے ساتھ مؤثر انداز میں کام کرتے ہیں۔ میں عبداللہ کو ہر اس شخص کے لیے ضرور تجویز کروں گا جو ایک ذمہ دار، باصلاحیت اور قابلِ اعتماد پیشہ ور کی تلاش میں ہو۔",
+  "testimonial0Initials": "MS",
+
   "testimonial1Name": "یوسف عمبابی",
   "testimonial1Title": "سافٹ ویئر انجینئر @ HRGF | Node.JS | Django | Laravel | Cloud | مینٹرنگ | فل اسٹیک ڈویلپر | بیک اینڈ انجینئر | Docker | GCP | AWS",
   "testimonial1Relation": "یوسف براہِ راست سید عبداللہ کو مینج کرتے تھے",

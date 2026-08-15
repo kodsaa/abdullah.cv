@@ -3,6 +3,7 @@ import { Container, H2, Span, Text, View } from "strivui";
 import { useTranslation } from "react-i18next";
 
 // Testimonial images import
+import testimonial0Initials from "../Testimonials-images/testimonial0Initials.png";
 import testimonial1Initials from "../Testimonials-images/testimonial1Initials.png";
 import testimonial2Initials from "../Testimonials-images/testimonial2Initials.png";
 import testimonial3Initials from "../Testimonials-images/testimonial3Initials.png";
@@ -28,6 +29,13 @@ const LINKEDIN_RECOMMENDATIONS_URL =
 const MESSAGE_TRUNCATE_LENGTH = 220;
 
 const TESTIMONIALS: Testimonial[] = [
+    {
+    name: "testimonial0Name",
+    title: "testimonial0Title",
+    relation: "testimonial0Relation",
+    message: "testimonial0Message",
+    initials: testimonial0Initials,
+  },
   {
     name: "testimonial1Name",
     title: "testimonial1Title",
@@ -42,6 +50,21 @@ const TESTIMONIALS: Testimonial[] = [
     message: "testimonial2Message",
     initials: testimonial2Initials,
   },
+    {
+    name: "testimonial5Name",
+    title: "testimonial5Title",
+    relation: "testimonial5Relation",
+    message: "testimonial5Message",
+    initials: testimonial5Initials,
+  },
+    {
+    name: "testimonial4Name",
+    title: "testimonial4Title",
+    relation: "testimonial4Relation",
+    message: "testimonial4Message",
+    initials: testimonial4Initials,
+  },
+
   {
     name: "testimonial3Name",
     title: "testimonial3Title",
@@ -49,20 +72,7 @@ const TESTIMONIALS: Testimonial[] = [
     message: "testimonial3Message",
     initials: testimonial3Initials,
   },
-  {
-    name: "testimonial4Name",
-    title: "testimonial4Title",
-    relation: "testimonial4Relation",
-    message: "testimonial4Message",
-    initials: testimonial4Initials,
-  },
-  {
-    name: "testimonial5Name",
-    title: "testimonial5Title",
-    relation: "testimonial5Relation",
-    message: "testimonial5Message",
-    initials: testimonial5Initials,
-  },
+  
   {
     name: "testimonial6Name",
     title: "testimonial6Title",
