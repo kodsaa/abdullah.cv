@@ -31,6 +31,7 @@ const Layout = () => {
   const { i18n } = useTranslation();
   const location = useLocation();
   const [isNavigating, setIsNavigating] = useState(false);
+  
 
 const handleLanguageChange = (value: string) => {
   setlanguages(value);

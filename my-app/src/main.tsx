@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { initAnalytics } from "./analytics";
 
+initAnalytics();
 import App from "./App";
 import "./i18n";
 import "./App.css";
